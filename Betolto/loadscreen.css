@@ -1,0 +1,29 @@
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;font-family:system-ui;background:#0b0f1a;color:#fff}
+
+.screen{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.hidden{display:none}
+
+#splash,#home{background:radial-gradient(circle at top,#3b3f8f,#0b0f1a 70%)}
+
+.logo-box,.mini-logo{background:linear-gradient(145deg,#5f6bff,#3f49c6);display:flex;align-items:center;justify-content:center;box-shadow:0 20px 40px rgba(0,0,0,.4)}
+.logo-box{width:120px;height:120px;border-radius:24px;animation:pulse 1.6s infinite}
+.mini-logo{width:64px;height:64px;border-radius:16px;margin-bottom:24px}
+
+.lock{width:42px;height:42px;border:4px solid #fff;border-radius:8px;position:relative}
+.lock.small{transform:scale(.8)}
+.lock::before{content:"";position:absolute;width:22px;height:18px;border:4px solid #fff;border-bottom:none;border-radius:14px 14px 0 0;top:-18px;left:50%;transform:translateX(-50%)}
+
+.dots{display:flex;gap:6px;margin-top:24px}
+.dots span{width:6px;height:6px;background:#7f88ff;border-radius:50%;animation:blink 1.4s infinite}
+.dots span:nth-child(2){animation-delay:.2s}
+.dots span:nth-child(3){animation-delay:.4s}
+
+h1{font-size:28px;margin-bottom:12px;text-align:center}
+p{font-size:15px;opacity:.75;margin-bottom:36px;text-align:center;max-width:320px}
+
+.btn{width:100%;max-width:320px;padding:14px;margin:10px auto;border-radius:999px;border:none;font-size:16px;background:linear-gradient(135deg,#5f6bff,#4a54e1);color:#fff}
+.btn.secondary{background:linear-gradient(135deg,#3e4a7a,#2e365f)}
+
+@keyframes pulse{50%{transform:scale(1.05)}}
+@keyframes blink{0%,100%{opacity:.3}20%{opacity:1}}

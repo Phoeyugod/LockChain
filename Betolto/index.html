@@ -1,0 +1,44 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LockChain Wallet</title>
+  <link rel="stylesheet" href="loadscreen.css" />
+</head>
+<body>
+
+  <div id="splash" class="screen">
+    <div class="logo-box">
+      <div class="lock"></div>
+    </div>
+    <div class="dots">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <div id="home" class="screen hidden">
+    <div class="mini-logo">
+      <div class="lock small"></div>
+    </div>
+    <h1>LockChain Wallet</h1>
+    <p>A kezdéshez, hozz létre egy tárcát vagy importálj egy már meglévőt.</p>
+    <button class="btn">Tárca létrehozása</button>
+    <button class="btn secondary" onclick="window.location.href='../Pin/import.html'">Van már tárcám</button>
+
+
+
+  </div>
+
+  <script>
+    setTimeout(() => {
+      document.getElementById('splash').style.display = 'none';
+      document.getElementById('home').classList.remove('hidden');
+    }, 5000);
+  </script>
+
+</body>
+</html>
+
+
