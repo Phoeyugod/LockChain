@@ -1,3 +1,4 @@
+/*--------------------Fejléc--------------------*/
 header{
 
     background-color: black ;
@@ -22,6 +23,20 @@ header{
     
 }
 
+#beallitaskep{
+    float: right;
+    margin-top: 17px; 
+    margin-bottom: auto;  
+    height: 60px;
+    margin-right: 40px;
+}
+#malacperselykep{
+    float: right;
+    height: 90px;
+    margin-right: 40px;
+}
+/*----------------------------------------------------*/
+
 #test{background: linear-gradient(0deg, rgba(59, 63, 143, 1) 0%, rgba(0, 0, 0, 1) 100%);}
 #test{
     height: 1000px
@@ -30,4 +45,13 @@ header{
 body{
     margin: 0%;
 
+}
+#karka{
+    text-align: center
+    ;
+}
+#Karikakep{
+    margin-top: 100px;
+    height: 500px;
+    width: 500px    ;
 }
