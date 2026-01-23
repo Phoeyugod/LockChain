@@ -15,32 +15,101 @@
 
   <div class="pin-card">
     <div class="pin-grid">
-      <div class="pin-item"><span>1.</span><div class="slot"></div></div>
-      <div class="pin-item"><span>7.</span><div class="slot"></div></div>
-
-      <div class="pin-item"><span>2.</span><div class="slot"></div></div>
-      <div class="pin-item"><span>8.</span><div class="slot"></div></div>
-
-      <div class="pin-item"><span>3.</span><div class="slot"></div></div>
-      <div class="pin-item"><span>9.</span><div class="slot"></div></div>
-
-      <div class="pin-item"><span>4.</span><div class="slot"></div></div>
-      <div class="pin-item"><span>10.</span><div class="slot"></div></div>
-
-      <div class="pin-item"><span>5.</span><div class="slot"></div></div>
-      <div class="pin-item"><span>11.</span><div class="slot"></div></div>
-
-      <div class="pin-item"><span>6.</span><div class="slot"></div></div>
-      <div class="pin-item"><span>12.</span><div class="slot"></div></div>
+  
+      <div class="pin-item"><span>1.</span><input class="slot" maxlength="10"></div>
+      <div class="pin-item"><span>7.</span><input class="slot" maxlength="10"></div>
+  
+      <div class="pin-item"><span>2.</span><input class="slot" maxlength="10"></div>
+      <div class="pin-item"><span>8.</span><input class="slot" maxlength="10"></div>
+  
+      <div class="pin-item"><span>3.</span><input class="slot" maxlength="10"></div>
+      <div class="pin-item"><span>9.</span><input class="slot" maxlength="10"></div>
+  
+      <div class="pin-item"><span>4.</span><input class="slot" maxlength="10"></div>
+      <div class="pin-item"><span>10.</span><input class="slot" maxlength="10"></div>
+  
+      <div class="pin-item"><span>5.</span><input class="slot" maxlength="10"></div>
+      <div class="pin-item"><span>11.</span><input class="slot" maxlength="10"></div>
+  
+      <div class="pin-item"><span>6.</span><input class="slot" maxlength="10"></div>
+      <div class="pin-item"><span>12.</span><input class="slot" maxlength="10"></div>
+  
     </div>
-
+  
     <div class="icons">
-      <div class="icon danger">⛔</div>
-      <div class="icon">📋</div>
+      <div class="icon danger" id="clearBtn">⛔</div>
+      <div class="icon" id="copyBtn">📋</div>
     </div>
   </div>
-
+  
   <button class="login-btn">Bejelentkezek</button>
-
+  <script>
+    const inputs = document.querySelectorAll('.slot');
+    const loginBtn = document.querySelector('.login-btn');
+  
+    loginBtn.addEventListener('click', () => {
+      let allFilled = true;
+  
+      inputs.forEach(input => {
+        if (input.value.trim() === '') {
+          allFilled = false;
+          input.classList.add('error');
+        } else {
+          input.classList.remove('error');
+        }
+      });
+  
+      if (!allFilled) {
+        document.querySelector('.pin-card').classList.add('shake');
+        setTimeout(() => {
+          document.querySelector('.pin-card').classList.remove('shake');
+        }, 400);
+        return;
+      }
+  
+      
+      window.location.href = '../TarcaKesz/TarcaKesz.html';
+    });
+  </script>
+  
+  <script>
+    const slots = document.querySelectorAll('.slot');
+    const copyBtn = document.getElementById('copyBtn');
+    const clearBtn = document.getElementById('clearBtn');
+  
+    // autofókusz ha elérte a max hosszot
+    slots.forEach((slot, index) => {
+      slot.addEventListener('input', () => {
+        if (slot.value.length === slot.maxLength && index < slots.length - 1) {
+          slots[index + 1].focus();
+        }
+      });
+    });
+  
+    // COPY – összes mező egy stringbe
+    copyBtn.addEventListener('click', async () => {
+      const pin = Array.from(slots).map(s => s.value).join(' ');
+      if (!pin.trim()) return;
+  
+      try {
+        await navigator.clipboard.writeText(pin);
+        copyBtn.textContent = '✅';
+        setTimeout(() => copyBtn.textContent = '📋', 1000);
+      } catch {
+        alert('Másolás nem sikerült');
+      }
+    });
+  
+    // DELETE 
+    clearBtn.addEventListener('click', () => {
+      slots.forEach(s => s.value = '');
+      slots[0].focus();
+  
+      clearBtn.style.transform = 'scale(1.2)';
+      setTimeout(() => clearBtn.style.transform = 'scale(1)', 150);
+    });
+  </script>
+  
+  
 </body>
 </html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LockChain Wallet – Seed</title>
+  <link rel="stylesheet" href="pin.css" />
+</head>
+<body>
+
+  <div class="top-bar">
+    <h1>LockChain Wallet</h1>
+    <div class="lang">HU 🇭🇺</div>
+  </div>
+
+  <div class="pin-card">
+    <div class="pin-grid" id="seedCard">
+      <!-- seed szavak ide kerülnek JS-sel -->
+    </div>
+
+    <div class="icons">
+      <div class="icon" id="copyBtn">📋</div>
+    </div>
+  </div>
+  
+  <button class="login-btn" onclick="goNext()">Tovább</button>
+
+<script>
+const seedWords = [
+  'apple','lock','chain','crypto',
+  'wallet','secure','node','block',
+  'hash','token','key','vault'
+];
+
+const seedCard = document.getElementById('seedCard');
+seedWords.forEach((word, i) => {
+  const div = document.createElement('div');
+  div.className = 'pin-item';
+  div.innerHTML = `<span>${i+1}.</span> ${word}`;
+  seedCard.appendChild(div);
+});
+
+// COPY gomb
+const copyBtn = document.getElementById('copyBtn');
+copyBtn.addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText(seedWords.join(' '));
+    copyBtn.textContent = '✅';
+    setTimeout(() => copyBtn.textContent = '📋', 1000);
+  } catch {
+    alert('Másolás nem sikerült');
+  }
+});
+
+// Tovább
+function goNext(){
+  sessionStorage.setItem('seed', seedWords.join(' '));
+  window.location.href = 'verify.html';
+}
+</script>
+
+</body>
+</html>
