@@ -1,7 +1,7 @@
 header{
 
     background-color: black ;
-    height: 70px;
+    height: 90px;
     width: 100%;
     color: white;
 
@@ -9,11 +9,20 @@ header{
 #Hportfolio{
     
     margin-bottom: 0%;
-    margin: 0%;
-
+    margin-top: 10px;
+    margin-left: 30px;
+    width: 250px;
+    background-color:black;
+    text-align: center;
+    border: black;
+}
+#PortfolioSz{
+    color: white;
+    font-size: x-large;
+    
 }
 
-#test{background: linear-gradient(180deg, rgba(59, 63, 143, 1) 0%, rgba(0, 0, 0, 1) 100%);}
+#test{background: linear-gradient(0deg, rgba(59, 63, 143, 1) 0%, rgba(0, 0, 0, 1) 100%);}
 #test{
     height: 1000px
     
