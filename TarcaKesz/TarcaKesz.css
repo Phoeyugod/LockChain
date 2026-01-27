@@ -66,4 +66,26 @@
     box-shadow: 0 12px 30px rgba(95,107,255,.6);
     cursor: pointer;
   }
+  .login-btn {
+    margin-top: 34px;
+    width: 260px;
+    padding: 14px;
+  
+    border-radius: 999px;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+  
+    color: #fff;
+    background: linear-gradient(135deg, #5f6bff, #3c4ddb);
+    box-shadow: 0 12px 30px rgba(95,107,255,.55);
+  
+    cursor: pointer;
+    transition: .25s ease;
+  }
+  
+  .login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 40px rgba(95,107,255,.75);
+  }
   
