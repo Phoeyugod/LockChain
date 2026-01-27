@@ -1,0 +1,168 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont;
+  }
+  
+  body {
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #1c2260, #070b1a);
+    color: #fff;
+    padding: 40px;
+  }
+  
+
+  
+  /* ===== PORTFOLIO CARD ===== */
+  
+  .portfolio-card {
+    max-width: 760px;
+    margin: 0 auto 40px;
+    padding: 26px 30px;
+    border-radius: 22px;
+    margin-top: 116px;
+    background: linear-gradient(135deg, #5f6bff, #3c46b4);
+    box-shadow: 0 30px 70px rgba(0,0,0,.55);
+  }
+  
+  .label {
+    font-size: 14px;
+    opacity: .85;
+  }
+  
+  .balance {
+    margin-top: 6px;
+    font-size: 26px;
+    font-weight: 600;
+  }
+  
+  .change {
+    font-size: 14px;
+    margin-left: 10px;
+  }
+  
+  .positive { color: #57ff9a; }
+  .negative { color: #ff5a5a; }
+  
+  /* ===== ACTIONS ===== */
+  
+  .actions {
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+  
+  .action {
+    height: 46px;
+    border-radius: 14px;
+    border: none;
+  
+    background: rgba(255,255,255,.25);
+    backdrop-filter: blur(10px);
+  
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  
+    cursor: pointer;
+    transition: .25s ease;
+  }
+  
+  .action:hover {
+    transform: translateY(-2px);
+    background: rgba(255,255,255,.35);
+  }
+  
+  /* ===== ASSET LIST ===== */
+  
+  .asset-list {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  
+  .asset {
+    padding: 18px 22px;
+    border-radius: 22px;
+  
+    background: linear-gradient(
+      90deg,
+      rgba(255,255,255,.06),
+      rgba(255,255,255,.02)
+    );
+  
+    backdrop-filter: blur(14px);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.12);
+  
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* ===== LEFT ===== */
+  
+  .asset-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  
+  .icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  /* Példa képekhez: */
+  .icon.axlux {
+    background-image: url('../Képek/Axoluxcoin.png');
+  }
+  
+  .icon.narvex {
+    background-image: url('../Képek/Narvexcoin.png');
+  }
+  
+  .name {
+    font-size: 15px;
+    font-weight: 500;
+  }
+  
+  .name span {
+    font-size: 13px;
+    opacity: .7;
+  }
+  
+  .amount {
+    font-size: 13px;
+    opacity: .75;
+    margin-top: 2px;
+  }
+  
+  /* ===== RIGHT ===== */
+  
+  .asset-right {
+    text-align: right;
+  }
+  
+  .price {
+    font-size: 15px;
+    font-weight: 500;
+  }
+  
+  .percent {
+    font-size: 13px;
+    margin-top: 2px;
+  }
+  
