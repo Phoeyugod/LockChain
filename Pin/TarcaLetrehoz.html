@@ -1,62 +1,94 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LockChain Wallet – Seed</title>
-  <link rel="stylesheet" href="pin.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LockChain Wallet – PIN</title>
+  <link rel="stylesheet" href="pin.css">
 </head>
 <body>
+<div class="top-bar">
+  <h1>LockChain Wallet</h1>
+  <div class="lang">HU 🇭🇺</div>
+</div>
 
-  <div class="top-bar">
-    <h1>LockChain Wallet</h1>
-    <div class="lang">HU 🇭🇺</div>
+<div class="pin-card">
+  <div class="pin-grid">
+
+   
+
+
+    <div class="pin-item"><span>1.</span> <input class="slot" readonly></div>
+    <div class="pin-item"><span>7.</span> <input class="slot" readonly></div>
+
+    <div class="pin-item"><span>2.</span> <input class="slot" readonly></div>
+    <div class="pin-item"><span>8.</span> <input class="slot" readonly></div>
+
+    <div class="pin-item"><span>3.</span> <input class="slot" readonly></div>
+    <div class="pin-item"><span>9.</span> <input class="slot" readonly></div>
+
+    <div class="pin-item"><span>4.</span> <input class="slot" readonly></div>
+    <div class="pin-item"><span>10.</span> <input class="slot" readonly></div>
+
+    <div class="pin-item"><span>5.</span> <input class="slot" readonly></div>
+    <div class="pin-item"><span>11.</span> <input class="slot" readonly></div>
+
+    <div class="pin-item"><span>6.</span> <input class="slot" readonly></div>
+    <div class="pin-item"><span>12.</span> <input class="slot" readonly></div>
+
   </div>
 
-  <div class="pin-card">
-    <div class="pin-grid" id="seedCard">
-      <!-- seed szavak ide kerülnek JS-sel -->
-    </div>
-
-    <div class="icons">
-      <div class="icon" id="copyBtn">📋</div>
-    </div>
+  <div class="icons">
+    <div class="icon danger" id="clearBtn">⛔</div>
+    <div class="icon" id="copyBtn">📋</div>
   </div>
-  
-  <button class="login-btn" onclick="goNext()">Tovább</button>
+</div>
+
+<button class="login-btn">Verifikáció</button>
+
+
 
 <script>
-const seedWords = [
-  'apple','lock','chain','crypto',
-  'wallet','secure','node','block',
-  'hash','token','key','vault'
-];
+  const slots = document.querySelectorAll('.slot');
+  const copyBtn = document.getElementById('copyBtn');
+  const verifyBtn = document.querySelector('.login-btn');
 
-const seedCard = document.getElementById('seedCard');
-seedWords.forEach((word, i) => {
-  const div = document.createElement('div');
-  div.className = 'pin-item';
-  div.innerHTML = `<span>${i+1}.</span> ${word}`;
-  seedCard.appendChild(div);
-});
+  const words = [
+    'atlas','crypto','ember','vault','shadow','node','matrix',
+    'quantum','orbit','lunar','signal','cipher','nova','block',
+    'pulse','iron','vector','echo','flux','zenith','ghost',
+    'neuron','delta','axiom','void','spark','core','phase'
+  ];
 
-// COPY gomb
-const copyBtn = document.getElementById('copyBtn');
-copyBtn.addEventListener('click', async () => {
-  try {
-    await navigator.clipboard.writeText(seedWords.join(' '));
-    copyBtn.textContent = '✅';
-    setTimeout(() => copyBtn.textContent = '📋', 1000);
-  } catch {
-    alert('Másolás nem sikerült');
+  function randomWord() {
+    return words[Math.floor(Math.random() * words.length)];
   }
-});
+  copyBtn.addEventListener('click', async () => {
+    const pin = Array.from(slots).map(s => s.value).join(' ');
+    try {
+      await navigator.clipboard.writeText(pin);
+      copyBtn.textContent = '✅';
+      setTimeout(() => copyBtn.textContent = '📋', 1000);
+    } catch {
+      alert('Másolás nem sikerült');
+    }
+  }); 
+  function generateSeed() {
+    const seed = [];
+    slots.forEach(slot => {
+      const w = randomWord();
+      slot.value = w;
+      seed.push(w);
+    });
+    sessionStorage.setItem('seed', seed.join(' '));
+  }
 
-// Tovább
-function goNext(){
-  sessionStorage.setItem('seed', seedWords.join(' '));
-  window.location.href = 'verify.html';
-}
+  generateSeed();
+
+  // 👉 VERIFIKÁCIÓ OLDALRA DOB
+  verifyBtn.addEventListener('click', () => {
+    window.location.href = '../Pin/SeedVerify.html';
+  });
 </script>
 
 </body>
