@@ -1,69 +1,98 @@
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    font-family: Inter, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   }
   
   body {
-    background: radial-gradient(circle at top, #0d0f1a, #05060a);
-    color: #fff;
+    background: radial-gradient(circle at top, #0b0f1e, #04050b);
+    min-height: 100vh;
     display: flex;
     justify-content: center;
-    padding: 40px;
+    padding: 30px 0;
+    color: white;
   }
   
-  .wallet {
+  .app {
     width: 420px;
-    background: linear-gradient(180deg, #0b0d17, #070812);
-    border-radius: 20px;
-    padding: 20px;
+    background: linear-gradient(180deg,#0a0f23,#060812);
+    border-radius: 28px;
+    padding: 22px;
+    box-shadow: 0 40px 80px rgba(0,0,0,.8);
   }
   
-  .top {
+  /* HEADER */
+  .header {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 22px;
   }
   
-  .coin {
+  .left {
     display: flex;
-    gap: 12px;
+    gap: 14px;
   }
   
-  .icon {
-    font-size: 36px;
+  .coin-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: radial-gradient(circle,#ffd36a,#b8891a);
   }
   
-  .balance {
+  .coin-name {
+    font-weight: 600;
+    font-size: 15px;
+  }
+  
+  .coin-price {
+    font-size: 14px;
+    color: #9aa3c7;
+  }
+  
+  .coin-price span {
+    color: #2cff9e;
+  }
+  
+  .right {
     text-align: right;
   }
   
-  .positive {
-    color: #00ff9c;
+  .balance {
+    font-size: 18px;
+    font-weight: 600;
   }
   
+  .balance-usd {
+    font-size: 13px;
+    color: #9aa3c7;
+  }
+  
+  /* ACTIONS */
   .actions {
     display: flex;
     gap: 10px;
-    margin: 20px 0;
+    margin-bottom: 22px;
   }
   
   .actions button {
     flex: 1;
-    background: #11152a;
-    border: none;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    backdrop-filter: blur(8px);
     color: white;
-    padding: 10px;
-    border-radius: 12px;
-    cursor: pointer;
+    padding: 10px 0;
+    border-radius: 14px;
+    font-size: 12px;
   }
   
-  .actions button:hover {
-    background: #1a1f3d;
-  }
-  
-  .chart-section {
-    background: #0a0d1e;
-    border-radius: 16px;
-    padding: 15px;
+  /* CHART */
+  .chart-card {
+    background: linear-gradient(180deg,#0e1330,#070a18);
+    border-radius: 22px;
+    padding: 16px;
+    box-shadow: inset 0 0 30px rgba(0,150,255,.15);
   }
   
   canvas {
@@ -74,41 +103,41 @@
   .ranges {
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
-  }
-  
-  .ranges button {
-    background: transparent;
-    border: none;
-    color: #aaa;
-    cursor: pointer;
+    margin-top: 12px;
+    font-size: 12px;
+    color: #7f87aa;
   }
   
   .ranges .active {
-    color: #00aaff;
+    color: #35b8ff;
   }
   
-  .history {
-    margin-top: 20px;
+  /* TRANSACTIONS */
+  .tx {
+    margin-top: 22px;
   }
   
-  .history ul {
-    list-style: none;
-    padding: 0;
+  .tx-title {
+    font-size: 14px;
+    margin-bottom: 12px;
   }
   
-  .history li {
+  .tx-item {
     display: flex;
     justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 1px solid #111;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
   }
   
-  .green {
-    color: #00ff9c;
+  .tx-item small {
+    color: #7f87aa;
+    font-size: 12px;
   }
   
-  .red {
-    color: #ff4d4d;
+  .green { color: #2cff9e; }
+  .red { color: #ff5c5c; }
+  
+  .amount {
+    text-align: right;
   }
   
