@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="malacpersely.css">
+</head>
+<body>
+    
+    <main class="tartalom">
+
+        <!-- ===== Fejléc rész: ikon + cím + alcím ===== -->
+        <header class="fejlec">
+            <img id="malackep" src="/Képek/malackep.png" alt="Malacpersely">
+          <h1 class="cim">Malacpersely</h1>
+          <p class="alcim">Automatikus megtakarítások kriptoportfóliójának bővítéséhez</p>
+        </header>
+    
+        <!-- ===== Teljes megtakarítás ===== -->
+        <section class="teljes-megtakaritas" aria-label="Teljes megtakarítás">
+          <div class="felirat">Teljes megtakarítás</div>
+    
+          <div class="ertek-sor">
+            <div class="ertek"></div>
+            <div class="valtozas"></div>
+          </div>
+    
+          <div class="usd"></div>
+        </section>
+    
+        <!-- ===== Engedélyezés kártya ===== -->
+        <section class="kartya szekcio">
+          <div class="szekcio-fej">
+            <div>
+              <p class="szekcio-cim">Malacpersely engedélyezése</p>
+              <p class="szekcio-leiras">Kriptovaluták automatikus mentése idővel</p>
+            </div>
+    
+            <label class="kapcsolo" aria-label="Malacpersely engedélyezése">
+              <input type="checkbox" checked />
+              <span class="kapcsolo-sav" aria-hidden="true"></span>
+              <span class="kapcsolo-pont" aria-hidden="true"></span>
+            </label>
+          </div>
+        </section>
+    
+        <!-- ===== Kerekítés kártya ===== -->
+        <section class="kartya szekcio">
+          <div class="szekcio-fej">
+            <div>
+              <p class="szekcio-cim">Automatikus kerekítésű megtakarítások</p>
+              <p class="szekcio-leiras">Kerekítse fel a vásárlásait, és takarítsa meg a különbözetet</p>
+            </div>
+    
+            <label class="kapcsolo" aria-label="Automatikus kerekítésű megtakarítások">
+              <input type="checkbox" checked />
+              <span class="kapcsolo-sav" aria-hidden="true"></span>
+              <span class="kapcsolo-pont" aria-hidden="true"></span>
+            </label>
+          </div>
+    
+          <div class="magyarazo-sor">
+            Vásárláskor a legközelebbi dollárra kerekítjük fel az összeget, és a különbözetet megtakarítjuk.
+            Példa: 4,23 dolláros vásárlás → Spóroljon $0,77
+          </div>
+        </section>
+    
+        <!-- ===== Időszakos kártya ===== -->
+        <section class="kartya szekcio">
+          <div class="szekcio-fej">
+            <div>
+              <p class="szekcio-cim">Időszakos megtakarítások</p>
+              <p class="szekcio-leiras">Automatikusan takarítson meg fix összeget rendszeresen</p>
+            </div>
+    
+            <label class="kapcsolo" aria-label="Időszakos megtakarítások">
+              <input type="checkbox" checked />
+              <span class="kapcsolo-sav" aria-hidden="true"></span>
+              <span class="kapcsolo-pont" aria-hidden="true"></span>
+            </label>
+          </div>
+    
+          <div class="mezocsoport">
+            <div>
+              <div class="mezo-felirat">Gyakoriság</div>
+              <select class="pille-mezo" aria-label="Gyakoriság">
+                <option selected>Heti</option>
+                <option>Kétheti</option>
+                <option>Havi</option>
+              </select>
+            </div>
+    
+            <div>
+              <div class="mezo-felirat">Összeg (AXLX)</div>
+              <input class="pille-mezo" type="text" value="0,001" placeholder="0,001" aria-label="Összeg (AXLX)" />
+            </div>
+          </div>
+        </section>
+    
+        <!-- ===== Alsó műveletek ===== -->
+        <section class="also-racs" aria-label="Műveletek">
+          <div class="kartya mini-kartya">
+            <h2 class="mini-cim">Befizetés</h2>
+            <div class="elvalaszto"></div>
+    
+            <input class="pille-mezo" type="text" placeholder="Összeg (AXLX)" aria-label="Befizetés összege" />
+            <div style="height: 12px;"></div>
+    
+            <button class="muvelet-gomb befizetes" type="button">+ Befizetés</button>
+          </div>
+    
+          <div class="kartya mini-kartya">
+            <h2 class="mini-cim">Jóváírás</h2>
+            <div class="elvalaszto"></div>
+    
+            <input class="pille-mezo" type="text" placeholder="Összeg (AXLX)" aria-label="Jóváírás összege" />
+            <div style="height: 12px;"></div>
+    
+            <button class="muvelet-gomb jovairas" type="button">- Jóváírás</button>
+          </div>
+        </section>
+    
+      </main>
+
+</body>
+</html>

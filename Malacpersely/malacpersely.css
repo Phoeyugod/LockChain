@@ -1,0 +1,332 @@
+
+       :root{
+        --hatter: #070A12;
+  
+        /* szövegek */
+        --szoveg: rgba(255,255,255,.92);
+        --szoveg-halvany: rgba(255,255,255,.62);
+  
+        --uveg: rgba(18, 22, 40, .52);
+        --uveg-2: rgba(10, 12, 22, .40);
+        --keret: rgba(255,255,255,.14);
+
+
+        --glow-kek: rgba(68, 108, 255, .55);
+        --glow-lila: rgba(150, 74, 255, .45);
+        --glow-turkiz: rgba(0, 255, 214, .35);
+  
+        /* sarkok + árnyék */
+        --sarok: 22px;
+        --sarok-nagy: 28px;
+        --arnyek: 0 22px 65px rgba(0,0,0,.55);
+  
+        /* Gombok */
+        --cta: linear-gradient(90deg, #00F5D4 0%, #00B7FF 100%);
+        --cta-2: linear-gradient(90deg, rgba(0,245,212,.55) 0%, rgba(0,183,255,.40) 100%);
+      }
+  
+      *{ box-sizing: border-box; }
+  
+      body{
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+        color: var(--szoveg);
+        min-height: 100vh;
+  
+        background:
+          radial-gradient(900px 520px at 50% 16%, rgba(150,74,255,.55), transparent 60%),
+          radial-gradient(900px 520px at 58% 26%, rgba(68,108,255,.55), transparent 62%),
+          radial-gradient(900px 520px at 20% 78%, rgba(30,40,120,.45), transparent 65%),
+          radial-gradient(700px 420px at 85% 86%, rgba(0,255,214,.16), transparent 60%),
+          var(--hatter);
+  
+        display: grid;
+        place-items: start center;
+        padding: 26px 16px 44px;
+      }
+  
+      /* Központi max szélesség */
+      .tartalom{
+        width: min(920px, 100%);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+  
+      /* ============================= FEJLÉC===================== */
+      .fejlec{
+        text-align: center;
+        padding-top: 8px;
+      }
+  
+      .ikon-kor{
+        /* ikon háttér: erős kék-lila gradient + glow */
+        background:
+          radial-gradient(circle at 30% 30%, rgba(0,255,214,.18), transparent 55%),
+          linear-gradient(135deg, #00B7FF 0%, #6F3CFF 60%, #B04BFF 100%);
+        border: 1px solid rgba(255,255,255,.20);
+        box-shadow: 0 22px 60px rgba(0,0,0,.55);
+      }
+
+      #malackep{
+        height: 180px;
+
+      }
+  
+  
+      .cim{
+        margin: 0 0 6px;
+        font-size: clamp(20px, 3.2vw, 30px);
+        font-weight: 800;
+        letter-spacing: .2px;
+      }
+  
+      .alcim{
+        margin: 0;
+        font-size: clamp(14px, 2.0vw, 18px);
+        color: var(--szoveg-halvany);
+        font-weight: 560;
+      }
+  
+      /* =========================================================
+         KÁRTYÁK – üveg hatás + kékség/lilás “aurával”
+         ========================================================= */
+      .kartya{
+        border-radius: var(--sarok-nagy);
+        border: 1px solid var(--keret);
+        box-shadow: var(--arnyek);
+        overflow: hidden;
+  
+        /* üveg */
+        background:
+          radial-gradient(800px 260px at 20% 10%, rgba(68,108,255,.22), transparent 60%),
+          radial-gradient(700px 260px at 85% 30%, rgba(150,74,255,.18), transparent 60%),
+          linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
+          linear-gradient(180deg, var(--uveg), var(--uveg-2));
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+  
+      /* =========================================================
+         TELJES MEGTAKARÍTÁS – felső nagy kártya (erősebb kék-lila)
+         ========================================================= */
+      .teljes-megtakaritas{
+        padding: 18px 20px;
+        border-radius: var(--sarok-nagy);
+        border: 1px solid rgba(255,255,255,.16);
+        box-shadow: 0 26px 70px rgba(0,0,0,.55);
+  
+        background:
+          radial-gradient(900px 260px at 15% 25%, rgba(68,108,255,.42), transparent 60%),
+          radial-gradient(900px 260px at 70% 30%, rgba(150,74,255,.30), transparent 62%),
+          linear-gradient(90deg, rgba(60,80,220,.35), rgba(120,60,255,.20));
+      }
+  
+      .teljes-megtakaritas .felirat{
+        font-size: 14px;
+        color: rgba(255,255,255,.70);
+        margin-bottom: 8px;
+      }
+  
+      .teljes-megtakaritas .ertek-sor{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: baseline;
+      }
+  
+      .teljes-megtakaritas .ertek{
+        font-size: 26px;
+        font-weight: 850;
+        letter-spacing: .2px;
+      }
+  
+      .teljes-megtakaritas .valtozas{
+        font-weight: 750;
+        color: rgba(120,255,190,.92);
+        font-size: 16px;
+      }
+  
+      .teljes-megtakaritas .usd{
+        margin-top: 6px;
+        color: rgba(255,255,255,.80);
+        font-weight: 680;
+        letter-spacing: .3px;
+      }
+  
+      /* =========================================================
+         SZEKCIÓ TARTALOM
+         ========================================================= */
+      .szekcio{
+        padding: 18px 18px 16px;
+      }
+  
+      .szekcio-fej{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        margin-bottom: 10px;
+      }
+  
+      .szekcio-cim{
+        font-weight: 780;
+        font-size: 16px;
+        margin: 0;
+      }
+  
+      .szekcio-leiras{
+        margin: 6px 0 0;
+        color: var(--szoveg-halvany);
+        font-size: 14px;
+        line-height: 1.35;
+      }
+  
+      /* =========================================================
+         KAPCSOLÓ (JS nélkül): input + két span (sáv + pötty)
+         FONTOS: nincs “.gomb” itt, hogy ne ütközzön a CTA gombbal!
+         ========================================================= */
+      .kapcsolo{
+        position: relative;
+        width: 58px;
+        height: 32px;
+        flex: 0 0 auto;
+      }
+  
+      /* A valódi checkbox láthatatlan, de kattintható */
+      .kapcsolo input{
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 2;
+      }
+  
+      /* Sáv (háttér) */
+      .kapcsolo .kapcsolo-sav{
+        position: absolute;
+        inset: 0;
+        border-radius: 999px;
+        background: rgba(255,255,255,.10);
+        border: 1px solid rgba(255,255,255,.18);
+        box-shadow: inset 0 0 0 1px rgba(0,0,0,.25);
+        transition: .22s ease;
+      }
+  
+      /* Pötty */
+      .kapcsolo .kapcsolo-pont{
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        width: 24px;
+        height: 24px;
+        border-radius: 999px;
+        background: rgba(255,255,255,.92);
+        box-shadow: 0 12px 18px rgba(0,0,0,.35);
+        transition: .22s ease;
+      }
+  
+      /* Bekapcsolt állapot: kékes-lilás, a pötty jobbra megy */
+      .kapcsolo input:checked ~ .kapcsolo-sav{
+        background:
+          linear-gradient(90deg, rgba(0,245,212,.30) 0%, rgba(68,108,255,.35) 55%, rgba(150,74,255,.25) 100%);
+        border-color: rgba(255,255,255,.26);
+      }
+      .kapcsolo input:checked ~ .kapcsolo-pont{
+        transform: translateX(26px);
+      }
+  
+      /* =========================================================
+         MAGYARÁZÓ CHIP (kerekítésnél)
+         ========================================================= */
+      .magyarazo-sor{
+        margin-top: 12px;
+        padding: 10px 12px;
+        border-radius: 999px;
+        background: rgba(0,0,0,.22);
+        border: 1px solid rgba(255,255,255,.12);
+        color: rgba(255,255,255,.72);
+        font-size: 12px;
+        line-height: 1.25;
+      }
+  
+      /* =========================================================
+         ŰRLAP MEZŐK (pille alakú input/select)
+         ========================================================= */
+      .mezocsoport{
+        margin-top: 14px;
+        display: grid;
+        gap: 10px;
+      }
+  
+      .mezo-felirat{
+        color: rgba(255,255,255,.75);
+        font-size: 13px;
+        font-weight: 650;
+        margin: 0 0 6px;
+      }
+  
+      .pille-mezo{
+        width: 100%;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,.16);
+        background: rgba(0,0,0,.26);
+        color: rgba(255,255,255,.88);
+        padding: 12px 14px;
+        outline: none;
+        box-shadow: inset 0 0 0 1px rgba(0,0,0,.20);
+      }
+      .pille-mezo::placeholder{ color: rgba(255,255,255,.45); }
+  
+      /* =========================================================
+         ALSÓ KÉT KÁRTYA (Befizetés / Jóváírás)
+         ========================================================= */
+      .also-racs{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      @media (min-width: 760px){
+        .also-racs{ grid-template-columns: 1fr 1fr; }
+      }
+  
+      .mini-kartya{
+        padding: 18px;
+      }
+  
+      .mini-cim{
+        margin: 0 0 12px;
+        font-size: 18px;
+        font-weight: 850;
+      }
+  
+      .elvalaszto{
+        height: 1px;
+        background: rgba(255,255,255,.10);
+        margin: 14px 0;
+      }
+  
+      /* CTA gombok */
+      .muvelet-gomb{
+        border: 0;
+        width: 100%;
+        border-radius: 999px;
+        padding: 14px 16px;
+        font-weight: 850;
+        font-size: 16px;
+        cursor: pointer;
+        box-shadow: 0 20px 55px rgba(0,0,0,.40);
+      }
+  
+      /* Befizetés: türkiz-kék, a képen nagyon “neon” */
+      .muvelet-gomb.befizetes{
+        background: var(--cta);
+        color: rgba(0,0,0,.75);
+      }
+  
+      /* Jóváírás: kicsit visszafogottabb, de még mindig türkizes */
+      .muvelet-gomb.jovairas{
+        background: var(--cta-2);
+        color: rgba(255,255,255,.92);
+        border: 1px solid rgba(255,255,255,.14);
+      }
