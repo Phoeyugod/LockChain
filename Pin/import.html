@@ -38,7 +38,7 @@
   
     <div class="icons">
       <div class="icon danger" id="clearBtn">⛔</div>
-      <div class="icon" id="copyBtn">📋</div>
+      <div class="icon" id="pasteBtn">📋</div>
     </div>
   </div>
   
@@ -65,6 +65,8 @@
           document.querySelector('.pin-card').classList.remove('shake');
         }, 400);
         return;
+
+        
       }
   
       
@@ -87,18 +89,24 @@
     });
   
     // COPY – összes mező egy stringbe
-    copyBtn.addEventListener('click', async () => {
-      const pin = Array.from(slots).map(s => s.value).join(' ');
-      if (!pin.trim()) return;
-  
-      try {
-        await navigator.clipboard.writeText(pin);
-        copyBtn.textContent = '✅';
-        setTimeout(() => copyBtn.textContent = '📋', 1000);
-      } catch {
-        alert('Másolás nem sikerült');
-      }
+    const pasteBtn = document.getElementById('pasteBtn');
+
+  pasteBtn.addEventListener('click', () => {
+    const storedSeed = sessionStorage.getItem('seed');
+    if (!storedSeed) return;
+
+    const words = storedSeed.split(' ');
+
+    if (words.length !== inputs.length) return;
+
+    inputs.forEach((input, index) => {
+      input.value = words[index];
     });
+
+    // vizuális feedback
+    pasteBtn.textContent = '✅';
+    setTimeout(() => pasteBtn.textContent = '📋', 900);
+  });
   
     // DELETE 
     clearBtn.addEventListener('click', () => {

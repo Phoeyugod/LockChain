@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <title>Crypto Wallet</title>
+  <link rel="stylesheet" href="anolux.css" />
+</head>
+<body>
+
+<div class="wallet">
+
+  <header class="top">
+    <div class="coin">
+      <div class="icon">🪙</div>
+      <div>
+        <h1>Axolux (AXLX)</h1>
+        <p id="price">$39,500.00 <span class="positive">+5.23%</span></p>
+      </div>
+    </div>
+
+    <div class="balance">
+      <p>Egyenleg</p>
+      <h2 id="balance">0.5432 AXLX</h2>
+      <span id="balanceUsd">$21,456.78</span>
+    </div>
+  </header>
+
+  <div class="actions">
+    <button>Küldés</button>
+    <button>Fogadás</button>
+    <button>Vásárlás</button>
+    <button>Eladás</button>
+    <button>Csere</button>
+  </div>
+
+  <section class="chart-section">
+    <canvas id="chart"></canvas>
+
+    <div class="ranges">
+      <button data-range="24h" class="active">24h</button>
+      <button data-range="7d">7d</button>
+      <button data-range="1m">1m</button>
+      <button data-range="1y">1y</button>
+    </div>
+  </section>
+
+  <section class="history">
+    <h3>Tranzakció történet</h3>
+    <ul id="transactions"></ul>
+  </section>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
