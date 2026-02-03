@@ -1,10 +1,11 @@
 /*--------------------Fejléc--------------------*/
 header{
 
-    background-color: black ;
+    background-color: rgba(0, 0, 0, 0.658) ;
     height: 90px;
     width: 100%;
     color: white;
+    padding: 0%;
 
 }
 #Hportfolio{
@@ -32,8 +33,9 @@ header{
 }
 #malacperselykep{
     float: right;
-    height: 90px;
+    height: 55px;
     margin-right: 40px;
+    margin-top:20px;
 }
 /*----------------------------------------------------*/
 
