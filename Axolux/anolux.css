@@ -1,0 +1,114 @@
+* {
+    box-sizing: border-box;
+    font-family: Inter, sans-serif;
+  }
+  
+  body {
+    background: radial-gradient(circle at top, #0d0f1a, #05060a);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+  }
+  
+  .wallet {
+    width: 420px;
+    background: linear-gradient(180deg, #0b0d17, #070812);
+    border-radius: 20px;
+    padding: 20px;
+  }
+  
+  .top {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .coin {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .icon {
+    font-size: 36px;
+  }
+  
+  .balance {
+    text-align: right;
+  }
+  
+  .positive {
+    color: #00ff9c;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  
+  .actions button {
+    flex: 1;
+    background: #11152a;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+  
+  .actions button:hover {
+    background: #1a1f3d;
+  }
+  
+  .chart-section {
+    background: #0a0d1e;
+    border-radius: 16px;
+    padding: 15px;
+  }
+  
+  canvas {
+    width: 100%;
+    height: 160px;
+  }
+  
+  .ranges {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .ranges button {
+    background: transparent;
+    border: none;
+    color: #aaa;
+    cursor: pointer;
+  }
+  
+  .ranges .active {
+    color: #00aaff;
+  }
+  
+  .history {
+    margin-top: 20px;
+  }
+  
+  .history ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .history li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #111;
+  }
+  
+  .green {
+    color: #00ff9c;
+  }
+  
+  .red {
+    color: #ff4d4d;
+  }
+  
