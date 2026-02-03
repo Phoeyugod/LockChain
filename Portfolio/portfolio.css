@@ -1,3 +1,44 @@
+/*--------------------Fejléc--------------------*/
+header{
+
+  background-color: rgba(0, 0, 0, 0.658) ;
+  height: 90px;
+  width: 100%;
+  color: white;
+  padding: 0%;
+
+}
+#Hportfolio{
+  
+  margin-bottom: 0%;
+  margin-top: 30px;
+  margin-left: 30px;
+  width: 250px;
+  background-color:black;
+  text-align: center;
+  border: black;
+}
+#PortfolioSz{
+  color: white;
+  font-size: x-large;
+  
+}
+
+#beallitaskep{
+  float: right;
+  margin-top: 17px; 
+  margin-bottom: auto;  
+  height: 60px;
+  margin-right: 40px;
+}
+#malacperselykep{
+  float: right;
+  height: 55px;
+  margin-right: 40px;
+  margin-top:20px;
+}
+/*----------------------------------------------------*/
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -10,6 +51,7 @@
     background: radial-gradient(circle at top, #1c2260, #070b1a);
     color: #fff;
     padding: 40px;
+    padding-top: 0%;
   }
   
 
