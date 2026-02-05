@@ -55,19 +55,57 @@ body {
 }
 
 /* gombok */
+/* AKCIÓ GOMBOK */
 .gombok {
   display: flex;
-  gap: 10px;
-  margin: 24px 0;
+  gap: 16px;
+  margin: 26px 0;
 }
 
-.gombok button {
-  background: #0d1733;
-  border: none;
+.akcio-gomb {
+  flex: 1;
+  background: linear-gradient(180deg, #0f1b3d, #0b1530);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 14px;
+  padding: 16px 0;
   color: white;
-  padding: 10px 16px;
-  border-radius: 10px;
   cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+
+  transition: 0.25s ease;
+}
+
+.akcio-gomb .ikon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #0d1733;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+}
+
+.akcio-gomb .felirat {
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+/* HOVER */
+.akcio-gomb:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(180deg, #152a6a, #0f1b3d);
+  box-shadow: 0 10px 30px rgba(45, 91, 255, 0.25);
+}
+
+.akcio-gomb:hover .ikon {
+  background: #2d5bff;
 }
 
 /* chart */
