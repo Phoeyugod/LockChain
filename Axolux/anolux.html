@@ -1,154 +1,80 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Crypto Wallet</title>
-  <link rel="stylesheet" href="anolux.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axolux Wallet</title>
+    <link rel="stylesheet" href="anolux.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-<div class="app">
+  <div class="oldal">
+      <div class="panel">
+  
+          <!-- fejléc -->
+          <div class="fejlec">
+              <div class="coin-info">
+                  <div class="ikon"></div>
+                  <div>
+                      <h1>Axolux (AXLX)</h1>
+                      <p class="ar">$39,500.00 <span class="novekedes">+5.3%</span></p>
+                  </div>
+              </div>
+  
+              <div class="egyenleg">
+                  <p>Egyenleg</p>
+                  <h2>0.5432 AXLX</h2>
+                  <span>$21,456.78</span>
+              </div>
+          </div>
+  
+          <!-- gombok -->
+          <div class="gombok">
+              <button>Küldés</button>
+              <button>Fogadás</button>
+              <button>Vásárlás</button>
+              <button>Eladás</button>
+              <button>Csere</button>
+          </div>
+  
+          <div class="chart-kartya">
 
-  <header class="header">
-    <div class="left">
-      <div class="coin-icon"></div>
-      <div>
-        <div class="coin-name">Axolux (AXLX)</div>
-        <div class="coin-price">$39,500.00 <span>+5.23%</span></div>
+            <div class="grafikon">
+                <canvas id="arfolyamGrafikon"></canvas>
+            </div>
+        
+            <div class="ido-intervallum">
+                <button class="aktiv" data-idotav="24h">24h</button>
+                <button data-idotav="7d">7d</button>
+                <button data-idotav="1m">1m</button>
+                <button data-idotav="1y">1y</button>
+            </div>
+        
+        </div>
+  
+          <!-- tranzakciók -->
+          <div class="tranzakciok">
+              <h3>Tranzakció Történet</h3>
+  
+              <div class="tranzakcio pozitiv">
+                  <span>Fogadott</span>
+                  <span>+0.0523 AXLX</span>
+              </div>
+              <div class="tranzakcio negativ">
+                  <span>Elküldött</span>
+                  <span>-0.0100 AXLX</span>
+              </div>
+              <div class="tranzakcio pozitiv">
+                  <span>Vásárolt</span>
+                  <span>+0.1500 AXLX</span>
+              </div>
+          </div>
+  
       </div>
-    </div>
-
-    <div class="right">
-      <div class="label">Egyenleg</div>
-      <div class="balance">0.5432 AXLX</div>
-      <div class="balance-usd">$21,456.78</div>
-    </div>
-  </header>
-
-  <div class="actions">
-    <button>Küldés</button>
-    <button>Fogadás</button>
-    <button>Vásárlás</button>
-    <button>Eladás</button>
-    <button>Csere</button>
   </div>
-
-  <div class="chart-card">
-    <canvas id="chart"></canvas>
-    <div class="ranges">
-      <span class="active">24h</span>
-      <span>7d</span>
-      <span>1m</span>
-      <span>1y</span>
-    </div>
-  </div>
-
-  <div class="tx">
-    <div class="tx-title">Tranzakció történet</div>
-
-    <div class="tx-item green">
-      <div><strong>Fogadott</strong><br><small>21 órája</small></div>
-      <div class="amount">+0.0523 AXLX<br><small>$2,065.55</small></div>
-    </div>
-
-    <div class="tx-item red">
-      <div><strong>Elküldött</strong><br><small>1 napja</small></div>
-      <div class="amount">-0.0100 AXLX<br><small>$395.00</small></div>
-    </div>
-
-    <div class="tx-item green">
-      <div><strong>Vásárolt</strong><br><small>3 napja</small></div>
-      <div class="amount">+0.2500 AXLX<br><small>$9,875.00</small></div>
-    </div>
-  </div>
-
-</div>
-
-<!-- 🔥 INLINE SCRIPT – PRÉMIUM PRICE CHART -->
-<script>
-const canvas = document.getElementById("chart");
-const ctx = canvas.getContext("2d");
-
-function resizeCanvas() {
-  const dpr = window.devicePixelRatio || 1;
-  canvas.width = canvas.offsetWidth * dpr;
-  canvas.height = canvas.offsetHeight * dpr;
-  ctx.setTransform(dpr,0,0,dpr,0,0);
-}
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
-
-const datasets = {
-  "24h": [26500,27000,26800,28000,29500,32000,34000,33000,36000,39500],
-  "7d":  [23000,24500,24000,26000,30000,34000,39500],
-  "1m":  [18000,20000,23000,26000,30000,35000,39500],
-  "1y":  [9000,12000,18000,24000,30000,39500]
-};
-
-function drawChart(data) {
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-
-  const w = canvas.offsetWidth;
-  const h = canvas.offsetHeight;
-  const max = Math.max(...data);
-  const min = Math.min(...data);
-  const pad = 12;
-
-  const pts = data.map((v,i)=>({
-    x: i * (w/(data.length-1)),
-    y: h - ((v-min)/(max-min))*(h-pad*2) - pad
-  }));
-
-  /* FILL */
-  const grad = ctx.createLinearGradient(0,0,0,h);
-  grad.addColorStop(0,"rgba(53,184,255,.35)");
-  grad.addColorStop(1,"rgba(53,184,255,0)");
-
-  ctx.beginPath();
-  ctx.moveTo(pts[0].x, h);
-  pts.forEach((p,i)=>{
-    if(i===0) ctx.lineTo(p.x,p.y);
-    else {
-      const prev = pts[i-1];
-      const cx = (prev.x+p.x)/2;
-      ctx.quadraticCurveTo(prev.x, prev.y, cx, (prev.y+p.y)/2);
-    }
-  });
-  ctx.lineTo(pts.at(-1).x, h);
-  ctx.closePath();
-  ctx.fillStyle = grad;
-  ctx.fill();
-
-  /* LINE */
-  ctx.beginPath();
-  ctx.moveTo(pts[0].x, pts[0].y);
-  pts.forEach((p,i)=>{
-    if(i>0){
-      const prev = pts[i-1];
-      const cx = (prev.x+p.x)/2;
-      ctx.quadraticCurveTo(prev.x, prev.y, cx, (prev.y+p.y)/2);
-    }
-  });
-
-  ctx.strokeStyle = "#35b8ff";
-  ctx.lineWidth = 2;
-  ctx.shadowColor = "#35b8ff";
-  ctx.shadowBlur = 14;
-  ctx.stroke();
-  ctx.shadowBlur = 0;
-}
-
-drawChart(datasets["24h"]);
-
-document.querySelectorAll(".ranges span").forEach(btn=>{
-  btn.addEventListener("click",()=>{
-    document.querySelector(".ranges .active").classList.remove("active");
-    btn.classList.add("active");
-    drawChart(datasets[btn.textContent]);
-  });
-});
-</script>
-
-</body>
+  <script src="anolux.js"></script>
+  </body>
+  
+  
 </html>
