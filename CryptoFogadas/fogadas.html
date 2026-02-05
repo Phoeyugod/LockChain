@@ -1,0 +1,49 @@
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="fogadas.css">
+
+            <title>Document</title>
+          </head>
+            <body>
+                <div class="oldal">
+                  <div class="kartya">
+                    <div class="fejlec">
+                      <div class="cim">Crypto fogadása</div>
+                      <div class="alcim">Olvasd be a QR-kódot, vagy oszd meg a címed</div>
+                    </div>
+              
+                    <div class="qr-resz">
+                        <div class="qr-kartya">
+                          <img class="qr-kep" src="/Képek/QRkod.png" alt="QR-kód">
+                        </div>
+                      </div>
+                      
+              
+                    <div class="cim-doboz">
+                      <div class="cim-felirat">Az Ön AXI X-címe</div>
+                      <input id="cimInput" class="cim-input" type="text" value="bc1qxy2kgdygir5qtzq2n0yr2493p83kkfjhx0wh" readonly >
+                      <div id="cimErtek" class="cim-ertek"></div>
+                    </div>
+              
+                    <div class="muveletek">
+                        <button id="masolasGomb" class="gomb gomb-szellem" type="button">
+                            <span class="ikon-masolas" aria-hidden="true"></span>
+                            <span>Cím másolása</span>
+                          </button>
+                      </button>
+              
+                      <button id="megosztasGomb" class="gomb gomb-elsoleges" type="button">
+                        Megosztás
+                      </button>
+              
+                      <div id="visszajelzes" class="visszajelzes" aria-live="polite"></div>
+                    </div>
+                  </div>
+                </div>
+              
+                <script src="fogadas.js"></script>
+          </body>
+          </html>
