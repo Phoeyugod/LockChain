@@ -1,0 +1,210 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #0b1533, #050b17 75%);
+  font-family: Inter, sans-serif;
+  color: white;
+}
+
+/* oldal konténer */
+.oldal {
+  width: 100%;
+  min-width: 1280px;
+  box-sizing: border-box;
+}
+
+/* TELJES SZÉLESSÉGŰ PANEL */
+.panel {
+
+  background: linear-gradient(180deg, #081126, #050b17);
+  padding: 28px 32px;
+  border-radius: 20px;
+}
+
+/* fejléc */
+.fejlec {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.coin-info {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.ikon {
+  width: 78px;
+  height: 80px;
+  border-radius: 50%;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(../Képek/Narvexcoin.png);
+}
+
+.ar {
+  color: #4cff9b;
+  font-weight: 600;
+}
+
+.egyenleg {
+  text-align: right;
+}
+
+/* gombok */
+/* AKCIÓ GOMBOK */
+.gombok {
+  display: flex;
+  gap: 16px;
+  margin: 26px 0;
+}
+
+.akcio-gomb {
+  flex: 1;
+  background: linear-gradient(180deg, #0f1b3d, #0b1530);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 14px;
+  padding: 16px 0;
+  color: white;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+
+  transition: 0.25s ease;
+}
+
+.akcio-gomb .ikon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #0d1733;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+}
+
+.akcio-gomb .felirat {
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+/* HOVER */
+.akcio-gomb:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(180deg, #152a6a, #0f1b3d);
+  box-shadow: 0 10px 30px rgba(45, 91, 255, 0.25);
+}
+
+.akcio-gomb:hover .ikon {
+  background: #2d5bff;
+}
+
+/* chart */
+.grafikon {
+  height: 260px;
+  margin-left: -32px;
+  margin-right: -32px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  position: relative;
+}
+.grafikon canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+.grafikon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 0%,
+      rgba(5,11,23,0.8) 100%
+  );
+  pointer-events: none;
+}
+
+/* idő választó */
+.ido-intervallum {
+  display: flex;
+  gap: 12px;
+  margin: 10px 0 20px;
+}
+
+.ido-intervallum span {
+  padding: 6px 14px;
+  background: #0d1733;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.ido-intervallum .aktiv {
+  background: #2d5bff;
+}
+
+/* tranzakciók */
+.tranzakciok h3 {
+  margin-bottom: 10px;
+}
+
+.tranzakcio {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  background: #0d1733;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+.pozitiv { color: #4cff9b; }
+.negativ { color: #ff6b6b; }
+/* CHART KÁRTYA */
+.chart-kartya {
+  background: linear-gradient(180deg, #0b1633, #070d1f);
+  border-radius: 18px;
+  padding: 20px 0 10px;
+  margin-bottom: 20px;
+}
+
+/* chart full-bleed a kártyán belül */
+.chart-kartya .grafikon {
+  height: 260px;
+  padding: 0 32px;
+}
+
+/* idő gombok */
+.ido-intervallum {
+  display: flex;
+  gap: 12px;
+  padding: 0 32px;
+  margin-top: 10px;
+}
+
+.ido-intervallum button {
+  background: #0d1733;
+  border: none;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: 0.2s;
+}
+
+.ido-intervallum button:hover {
+  opacity: 1;
+}
+
+.ido-intervallum .aktiv {
+  background: #2d5bff;
+  opacity: 1;
+}
