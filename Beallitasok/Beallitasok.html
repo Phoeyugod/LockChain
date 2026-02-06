@@ -1,0 +1,84 @@
+<body class="meret-kozepes">
+    <div class="oldal">
+      <div class="kontener">
+  
+        <div class="fejlec">
+          <h1 class="focim">Beállítások</h1>
+          <p class="alcim">Szabja testre pénztárca-élményét</p>
+        </div>
+  
+        <!-- Fülek -->
+        <div class="ful-sor">
+          <button class="ful-gomb aktiv" type="button" data-tab="kinezet">Kinézet</button>
+          <button class="ful-gomb" type="button" data-tab="tarca">Tárca</button>
+          <button class="ful-gomb" type="button" data-tab="vedelem">Védelem</button>
+          <button class="ful-gomb" type="button" data-tab="rolunk">Rólunk</button>
+        </div>
+  
+        <!-- TAB: Kinézet -->
+        <div id="tab-kinezet" class="tab-tartalom aktiv">
+  
+          <div class="panel">
+            <div class="szekcio-cim">Témák</div>
+  
+            <div class="tema-racs">
+              <div id="temaVilagos" class="tema-kartya" role="button" tabindex="0">
+                <div class="tema-jel"></div>
+                <div class="tema-minta vilagos"></div>
+                <div class="tema-felirat">Világos</div>
+              </div>
+  
+              <div id="temaSotet" class="tema-kartya aktiv" role="button" tabindex="0">
+                <div class="tema-jel"></div>
+                <div class="tema-minta sotet"></div>
+                <div class="tema-felirat">Sötét</div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="panel">
+            <div class="sor">
+              <div class="sor-cim">Betű méret</div>
+              <select id="betuMeretValaszto" class="valaszto">
+                <option value="kicsi">Kicsi</option>
+                <option value="kozepes" selected>Közepes</option>
+                <option value="nagy">Nagy</option>
+              </select>
+            </div>
+          </div>
+  
+        </div>
+  
+        <!-- TAB: Tárca -->
+        <div id="tab-tarca" class="tab-tartalom">
+          <div class="panel">
+            <div class="szekcio-cim">Tárca</div>
+            <div style="color: rgba(255,255,255,0.75); font-size: 13px;">
+              Ide jöhetnek a tárca beállításai (pl. alapértelmezett hálózat, címek, értesítések).
+            </div>
+          </div>
+        </div>
+  
+        <!-- TAB: Védelem -->
+        <div id="tab-vedelem" class="tab-tartalom">
+          <div class="panel">
+            <div class="szekcio-cim">Védelem</div>
+            <div style="color: rgba(255,255,255,0.75); font-size: 13px;">
+              Ide jöhetnek a biztonsági beállítások (PIN, 2FA, automatikus zárolás).
+            </div>
+          </div>
+        </div>
+  
+        <!-- TAB: Rólunk -->
+        <div id="tab-rolunk" class="tab-tartalom">
+          <div class="panel">
+            <div class="szekcio-cim">Rólunk</div>
+            <div style="color: rgba(255,255,255,0.75); font-size: 13px;">
+              Verzió, licenc, támogatás, kapcsolat, stb.
+            </div>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  
