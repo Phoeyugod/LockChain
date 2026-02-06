@@ -7,6 +7,13 @@
 
             <title>Document</title>
           </head>
+          
+          <header>
+            <a href="/Portfolio/portfolio.html" ><button id="Hportfolio"><h2 id="PortfolioSz">Portfólió</h2></button> </a>
+            <a href=""><img id="beallitaskep" src="/Képek/Beállítások.png" alt="beállítások"></a>
+            <a href="/Malacpersely/malacpersely.html"><img id="malacperselykep" src="/Képek/malackep.png" alt="Malacperselykep"></a> 
+         </header>
+
             <body>
                 <div class="oldal">
                   <div class="kartya">
@@ -17,7 +24,8 @@
               
                     <div class="qr-resz">
                         <div class="qr-kartya">
-                          <img class="qr-kep" src="/Képek/QRkod.png" alt="QR-kód">
+                          <img id="qrKep" class="qr-kep" src="/Képek/QRkod.png" alt="QR-kód">
+
                         </div>
                       </div>
                       
@@ -38,12 +46,56 @@
                       <button id="megosztasGomb" class="gomb gomb-elsoleges" type="button">
                         Megosztás
                       </button>
+
               
                       <div id="visszajelzes" class="visszajelzes" aria-live="polite"></div>
                     </div>
                   </div>
                 </div>
               
+
+
+
+                <!-- Megosztás menü (modal) -->
+                <div id="megosztasHatter" class="megosztas-hatter" aria-hidden="true">
+                  <div class="megosztas-modal" role="dialog" aria-modal="true">
+                    <div class="megosztas-fejlec">
+                      <div class="megosztas-cim">Megosztás</div>
+                      <button id="megosztasBezar" class="megosztas-bezar" type="button">×</button>
+                    </div>
+                
+                    <div class="megosztas-tartalom">
+                      <div class="megosztas-leiras">
+                        Válassz egy lehetőséget.
+                      </div>
+                
+                      <div class="megosztas-gombok">
+                        <button id="messengerGomb" class="megosztas-opcio" type="button">
+                          Messenger
+                          <span class="megosztas-alcim">cím másolása + megnyitás</span>
+                        </button>
+                
+                        <button id="instagramGomb" class="megosztas-opcio" type="button">
+                          Instagram
+                          <span class="megosztas-alcim">cím másolás + megnyitás</span>
+                        </button>
+                
+                        <button id="qrMegnyitasGomb" class="megosztas-opcio" type="button">
+                          QR-kód megnyitása
+                          <span class="megosztas-alcim">új lapon (menthető)</span>
+                        </button>
+                
+                        <button id="cimMasolasGomb2" class="megosztas-opcio" type="button">
+                          Cím másolása
+                          <span class="megosztas-alcim">vágólapra</span>
+                        </button>
+                      </div>
+                
+                      <div id="megosztasUzenet" class="megosztas-uzenet" aria-live="polite"></div>
+                    </div>
+                  </div>
+                </div>
+                
                 <script src="fogadas.js"></script>
           </body>
           </html>
