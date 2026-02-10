@@ -44,10 +44,11 @@
     <!-- CÍM -->
     <div class="card">
         <div class="input-group">
-            <input type="text" placeholder="Vevő címe">
+            <input id="address" type="text" placeholder="bc1qxy2kgdygjrsq...">
             <button>📷</button>
         </div>
     </div>
+    
 
     <!-- DÍJ -->
     <div class="card">
@@ -61,7 +62,38 @@
     </div>
 
     <!-- GOMB -->
-    <button class="submit-btn" button onclick="window.location.href='../Send/confirm.html'">Tranzakció Felülvizsgálata</button>
+    <button class="submit-btn" onclick="goToConfirm()" button onclick="window.location.href='../Send/confirm.html'">Tranzakció Felülvizsgálata</button>
+
+</div>
+
+<script>
+function goToConfirm() {
+    const amount = parseFloat(document.getElementById("amount").value) || 0;
+    const coin = selected; // a dropdownból választott coin
+    const usd = (amount * coins[coin].price).toFixed(2);
+
+    // Hálózati díj kinyerése a sliderből
+    const feeValue = parseFloat(document.querySelector('input[type="range"]').value).toFixed(2);
+
+    const txData = {
+    amount: amount,
+    symbol: coin,
+    name: coin === "NRVX" ? "Narvex" : "Axolux", // teljes név
+    usd: usd,
+    address: document.getElementById("address").value,
+    fee: feeValue,
+    network: "Normal (~10 min)"
+};
+
+
+    localStorage.setItem("txData", JSON.stringify(txData));
+    window.location.href = "confirm.html";
+}
+
+
+
+
+</script>
 
 </div>
 </div>

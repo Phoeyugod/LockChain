@@ -1,149 +1,94 @@
-:root{
-    --bg:#070A12;
-    --glass:rgba(18,22,40,.55);
-    --glass-2:rgba(10,12,22,.45);
-    --border:rgba(255,255,255,.14);
-
-    --text:rgba(255,255,255,.92);
-    --muted:rgba(255,255,255,.6);
-
-    --accent:#00F5D4;
-    --accent-2:#00B7FF;
-    --warn:#f5a700;
-
-    --radius:24px;
-    --radius-lg:32px;
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle at top,#0c1222,#070A12 65%);
+    font-family: system-ui,Segoe UI,sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* háttér */
-body{
-    margin:0;
-    min-height:100vh;
-    font-family:system-ui,Segoe UI,sans-serif;
-    background:
-        radial-gradient(circle at top,#0c1222,#070A12 65%);
-    color:var(--text);
+.card {
+    width: 520px;
+    background: rgba(18,22,40,.55);
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    padding: 30px;
+    border: 1px solid rgba(255,255,255,.15);
 }
 
-/* középre */
-.wrap{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:30px 14px;
+h1 { text-align: center; margin: 0; }
+p { text-align: center; opacity: .6; }
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,.1);
 }
 
-/* fő kártya */
-.confirm-card{
-    width:100%;
-    max-width:520px;
-    background:
-        radial-gradient(
-            140% 120% at 50% -30%,
-            rgba(0,245,212,.14),
-            transparent 60%
-        ),
-        var(--glass);
-    backdrop-filter:blur(22px);
-    border-radius:var(--radius-lg);
-    border:1px solid var(--border);
-    box-shadow:0 35px 90px rgba(0,0,0,.65);
-    padding:30px 26px 28px;
+.addr {
+    font-family: monospace;
+    font-size: .85em;
+    max-width: 260px;
+    word-break: break-all;
 }
 
-/* fejléc */
-.header{
-    text-align:center;
-    margin-bottom:26px;
+.warning {
+    margin: 18px 0;
+    padding: 12px;
+    background: rgba(245,167,0,.12);
+    border: 1px solid rgba(245,167,0,.35);
+    border-radius: 14px;
+    color: #f5a700;
+    text-align: center;
+    font-size: .85em;
 }
 
-.header h1{
-    margin:0;
-    font-size:1.25em;
-    font-weight:600;
+/* Küldés gomb */
+button.send-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.05em;
+    font-weight: 600;
+    background: linear-gradient(90deg,#00f5d4,#00b7ff);
+    cursor: pointer;
 }
 
-.header p{
-    margin:6px 0 0;
-    color:var(--muted);
-    font-size:.95em;
+/* Popup stílus */
+.popup {
+    display: none; /* alapból rejtve */
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
 }
 
-/* adatok */
-.summary{
-    background:var(--glass-2);
-    border-radius:var(--radius);
-    border:1px solid var(--border);
-    overflow:hidden;
+.popup-content {
+    background: rgba(18,22,40,0.9);
+    color: white;
+    padding: 30px 40px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 400px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.7);
 }
 
-.row{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:16px 18px;
-    border-bottom:1px solid rgba(255,255,255,.08);
-}
+.popup-content h2 { margin-top: 0; }
 
-.row:last-child{
-    border-bottom:none;
-}
-
-.label{
-    color:var(--muted);
-    font-size:.9em;
-}
-
-.value{
-    text-align:right;
-}
-
-.value strong{
-    font-weight:600;
-}
-
-.sub{
-    font-size:.85em;
-    color:var(--muted);
-    margin-top:2px;
-}
-
-/* cím */
-.address{
-    font-family:monospace;
-    font-size:.85em;
-    max-width:260px;
-    word-break:break-all;
-}
-
-/* figyelmeztetés */
-.warning{
-    margin:22px 0 18px;
-    background:rgba(245,167,0,.12);
-    border:1px solid rgba(245,167,0,.35);
-    color:var(--warn);
-    padding:12px 14px;
-    border-radius:14px;
-    font-size:.85em;
-    text-align:center;
-}
-
-/* CTA */
-.actions{
-    display:flex;
-    justify-content:center;
-}
-
-.send-btn{
-    width:70%;
-    padding:15px;
-    font-size:1.05em;
-    font-weight:600;
-    color:#001514;
-    border:none;
-    border-radius:var(--radius-lg);
-    cursor:pointer;
-    background:linear-gradient(90deg,var(--accent),var(--accent-2));
-    box-shadow:0 0 35px rgba(0,245,212,.45);
+.popup-content button {
+    margin-top: 20px;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 20px;
+    background: linear-gradient(90deg,#00f5d4,#00b7ff);
+    color: #001514;
+    font-weight: 600;
+    cursor: pointer;
 }

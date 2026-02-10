@@ -5,66 +5,72 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="confirm.css">
 <title>Tranzakció megerősítése</title>
+
 </head>
-
 <body>
-<div class="wrap">
-<div class="confirm-card">
 
-    <!-- fejléc -->
-    <div class="header">
-        <h1>Tranzakció megerősítése</h1>
-        <p>Kérjük tekintse át a tranzakció adatait</p>
+<div class="card">
+    <h1>Tranzakció megerősítése</h1>
+    <p>Ellenőrizze az adatokat</p>
+
+    <div class="row">
+        <div>Összeg</div>
+        <div id="amount"></div>
     </div>
 
-    <!-- adatok -->
-    <div class="summary">
-
-        <div class="row">
-            <div class="label">Összeg</div>
-            <div class="value">
-                <strong>0.5432 AXLX</strong>
-                <div class="sub">≈ $21,456.40</div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="label">Cím</div>
-            <div class="value address">
-                bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="label">Hálózati díj</div>
-            <div class="value">
-                <strong>$1.25</strong>
-                <div class="sub">Normal (~10 min)</div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="label">Total</div>
-            <div class="value">
-                <strong>0.5432 AXLX</strong>
-                <div class="sub">+ $1.25 fee</div>
-            </div>
-        </div>
-
+    <div class="row">
+        <div>Cím</div>
+        <div class="addr" id="address"></div>
     </div>
 
-    <!-- warning -->
+    <div class="row">
+        <div>Hálózati díj</div>
+        <div id="fee"></div>
+    </div>
+
+    <div class="row">
+        <div>Total</div>
+        <div id="total"></div>
+    </div>
+
     <div class="warning">
-        Kérjük, ellenőrizze a címet.  
         A kriptovaluta-tranzakciók nem vonhatók vissza.
     </div>
 
-    <!-- CTA -->
-    <div class="actions">
-        <button class="send-btn">Küldés</button>
-    </div>
+    <button class="send-btn">Küldés</button>
+</div>
 
+<!-- Popup -->
+<div id="popup" class="popup">
+  <div class="popup-content">
+    <h2>Tranzakció sikeres!</h2>
+    <p>A tranzakciót sikeresen elküldtük.</p>
+    <button id="okBtn">OK</button>
+  </div>
 </div>
-</div>
+
+<script>
+// Tranzakció adat betöltése
+const tx = JSON.parse(localStorage.getItem("txData"));
+if(!tx){
+    alert("Nincs tranzakció adat!");
+}else{
+    document.getElementById("amount").textContent = `${tx.amount} ${tx.name} (${tx.symbol}) (~$${tx.usd})`;
+    document.getElementById("address").textContent = tx.address;
+    document.getElementById("fee").textContent = `$${tx.fee} / ${tx.network}`;
+    document.getElementById("total").textContent = `${tx.amount} ${tx.name} (${tx.symbol}) + $${tx.fee}`;
+}
+
+// Küldés gomb kattintás
+document.querySelector(".send-btn").addEventListener("click", function() {
+    document.getElementById("popup").style.display = "flex";
+});
+
+// OK gomb a popupban
+document.getElementById("okBtn").addEventListener("click", function() {
+    window.location.href = "../Portfolio/portfolio.html"; // vissza a portfolio oldalra
+});
+</script>
+
 </body>
 </html>

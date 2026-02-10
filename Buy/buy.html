@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kripto Vásárlás</title>
+<link rel="stylesheet" href="../Send/send.css"> <!-- ugyanaz a stílus mint send.html -->
+</head>
+<body>
+<div class="page-wrap">
+  <div class="wallet-card">
+    <div class="container">
+
+      <!-- VALUTA -->
+      <div class="card">
+        <div class="dropdown" id="dropdown">
+          <button class="dropdown-btn" onclick="toggleDropdown()">
+            <span id="selectedCoin">Narvex (NRVX)</span>
+            <span>▾</span>
+          </button>
+          <div class="dropdown-menu">
+            <div class="dropdown-item active" onclick="selectCoin('NRVX')">Narvex <span>NRVX</span></div>
+            <div class="dropdown-item" onclick="selectCoin('AXLX')">Axolux <span>AXLX</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ÖSSZEG -->
+      <div class="card">
+        <div class="input-group">
+          <input type="number" id="amount" placeholder="0.0">
+          <button onclick="setMax()">Max</button>
+        </div>
+        <div class="usd-label">≈ $<span id="usd">0.00</span></div>
+      </div>
+
+      <!-- DÍJ -->
+      <div class="card">
+        <div class="slider-title">Hálózati díj</div>
+        <input type="range" min="0.5" max="2.8" step="0.01" value="1.25" oninput="updateFee(this.value)">
+        <div class="slider-labels">
+          <span>Slow $0.50</span>
+          <span>Fast $2.80</span>
+        </div>
+        <div class="slider-value">$<span id="fee">1.25</span></div>
+      </div>
+
+      <!-- GOMB -->
+      <button class="submit-btn" onclick="goToConfirm()">Vásárlás Ellenőrzése</button>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// Coin adatok
+const coins = {
+    NRVX: { balance: 0, price: 39500 },
+    AXLX: { balance: 0, price: 42100 }
+};
+let selected = 'NRVX';
+
+// Dropdown kezelése
+function toggleDropdown() {
+    document.getElementById('dropdown').classList.toggle('open');
+}
+
+function selectCoin(c) {
+    selected = c;
+    document.getElementById('selectedCoin').textContent =
+        c === 'NRVX' ? 'Narvex (NRVX)' : 'Axolux (AXLX)';
+
+    document.querySelectorAll('.dropdown-item').forEach(i => i.classList.remove('active'));
+    event.target.closest('.dropdown-item').classList.add('active');
+    document.getElementById('dropdown').classList.remove('open');
+    updateUSD();
+}
+
+// Max gomb
+function setMax() {
+    document.getElementById('amount').value = coins[selected].balance.toFixed(4);
+    updateUSD();
+}
+
+// USD számítás
+function updateUSD() {
+    const v = parseFloat(document.getElementById('amount').value) || 0;
+    document.getElementById('usd').textContent = (v * coins[selected].price).toFixed(2);
+}
+
+// Fee slider
+function updateFee(v) {
+    document.getElementById('fee').textContent = parseFloat(v).toFixed(2);
+}
+
+// Küldés a confirm oldalra
+function goToConfirm() {
+    const amount = parseFloat(document.getElementById('amount').value) || 0;
+    const coin = selected;
+    const usd = (amount * coins[coin].price).toFixed(2);
+    const feeValue = parseFloat(document.getElementById('fee').textContent).toFixed(2);
+
+    const txData = {
+        amount: amount,
+        symbol: coin,
+        name: coin === 'NRVX' ? 'Narvex' : 'Axolux',
+        usd: usd,
+        fee: feeValue,
+        network: 'Normal (~10 min)'
+    };
+
+    localStorage.setItem('txData', JSON.stringify(txData));
+    window.location.href = '../Send/confirm.html'; // átirányítás a megerősítésre
+}
+
+// Bezárás a dropdown-on kívül kattintva
+document.addEventListener('click', e => {
+    if(!document.getElementById('dropdown').contains(e.target)){
+        document.getElementById('dropdown').classList.remove('open');
+    }
+});
+
+document.getElementById('amount').addEventListener('input', updateUSD);
+</script>
+</body>
+</html>
