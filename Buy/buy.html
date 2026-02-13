@@ -13,6 +13,14 @@
 
       <!-- VALUTA -->
       <div class="card">
+        <div style="font-size:14px; opacity:.7;">Elérhető USD egyenleg</div>
+        <div style="font-size:20px; font-weight:600;">
+          $<span id="usdBalance">0.00</span>
+        </div>
+      </div>
+      
+
+      <div class="card">
         <div class="dropdown" id="dropdown">
           <button class="dropdown-btn" onclick="toggleDropdown()">
             <span id="selectedCoin">Narvex (NRVX)</span>
@@ -53,74 +61,105 @@
 </div>
 
 <script>
-// Coin adatok
-const coins = {
-    NRVX: { balance: 0, price: 39500 },
-    AXLX: { balance: 0, price: 42100 }
-};
-let selected = 'NRVX';
 
-// Dropdown kezelése
-function toggleDropdown() {
-    document.getElementById('dropdown').classList.toggle('open');
-}
-
-function selectCoin(c) {
-    selected = c;
-    document.getElementById('selectedCoin').textContent =
-        c === 'NRVX' ? 'Narvex (NRVX)' : 'Axolux (AXLX)';
-
-    document.querySelectorAll('.dropdown-item').forEach(i => i.classList.remove('active'));
-    event.target.closest('.dropdown-item').classList.add('active');
-    document.getElementById('dropdown').classList.remove('open');
-    updateUSD();
-}
-
-// Max gomb
-function setMax() {
-    document.getElementById('amount').value = coins[selected].balance.toFixed(4);
-    updateUSD();
-}
-
-// USD számítás
-function updateUSD() {
-    const v = parseFloat(document.getElementById('amount').value) || 0;
-    document.getElementById('usd').textContent = (v * coins[selected].price).toFixed(2);
-}
-
-// Fee slider
-function updateFee(v) {
-    document.getElementById('fee').textContent = parseFloat(v).toFixed(2);
-}
-
-// Küldés a confirm oldalra
-function goToConfirm() {
-    const amount = parseFloat(document.getElementById('amount').value) || 0;
-    const coin = selected;
-    const usd = (amount * coins[coin].price).toFixed(2);
-    const feeValue = parseFloat(document.getElementById('fee').textContent).toFixed(2);
-
-    const txData = {
-        amount: amount,
-        symbol: coin,
-        name: coin === 'NRVX' ? 'Narvex' : 'Axolux',
-        usd: usd,
-        fee: feeValue,
-        network: 'Normal (~10 min)'
-    };
-
-    localStorage.setItem('txData', JSON.stringify(txData));
-    window.location.href = '../Send/confirm.html'; // átirányítás a megerősítésre
-}
-
-// Bezárás a dropdown-on kívül kattintva
-document.addEventListener('click', e => {
-    if(!document.getElementById('dropdown').contains(e.target)){
-        document.getElementById('dropdown').classList.remove('open');
-    }
-});
-
-document.getElementById('amount').addEventListener('input', updateUSD);
-</script>
+  // ================= USD WALLET =================
+  let usdBalance = localStorage.getItem("usdBalance");
+  
+  if (!usdBalance) {
+      usdBalance = 5000;
+      localStorage.setItem("usdBalance", usdBalance);
+  } else {
+      usdBalance = parseFloat(usdBalance);
+  }
+  
+  function updateUSDBalanceDisplay() {
+      document.getElementById("usdBalance").textContent =
+          parseFloat(usdBalance).toFixed(2);
+  }
+  
+  // ================= COIN ADATOK =================
+  const coins = {
+      NRVX: { price: 395 },
+      AXLX: { price: 421 }
+  };
+  
+  let selected = 'NRVX';
+  
+  // ================= DROPDOWN =================
+  function toggleDropdown() {
+      document.getElementById('dropdown').classList.toggle('open');
+  }
+  
+  function selectCoin(c) {
+      selected = c;
+      document.getElementById('selectedCoin').textContent =
+          c === 'NRVX' ? 'Narvex (NRVX)' : 'Axolux (AXLX)';
+  
+      document.querySelectorAll('.dropdown-item').forEach(i => i.classList.remove('active'));
+      event.target.closest('.dropdown-item').classList.add('active');
+      document.getElementById('dropdown').classList.remove('open');
+      updateUSD();
+  }
+  
+  // ================= MAX =================
+  function setMax() {
+      const maxCoin = usdBalance / coins[selected].price;
+      document.getElementById('amount').value = maxCoin.toFixed(4);
+      updateUSD();
+  }
+  
+  // ================= USD SZÁMÍTÁS =================
+  function updateUSD() {
+      const v = parseFloat(document.getElementById('amount').value) || 0;
+      document.getElementById('usd').textContent =
+          (v * coins[selected].price).toFixed(2);
+  }
+  
+  // ================= FEE =================
+  function updateFee(v) {
+      document.getElementById('fee').textContent = parseFloat(v).toFixed(2);
+  }
+  
+  // ================= CONFIRM OLDALRA =================
+  function goToConfirm() {
+  
+      const amount = parseFloat(document.getElementById('amount').value) || 0;
+      const coin = selected;
+      const usd = amount * coins[coin].price;
+      const feeValue = parseFloat(document.getElementById('fee').textContent);
+      const totalCost = usd + feeValue;
+  
+      if (totalCost > usdBalance) {
+          alert("Nincs elegendő USD egyenleged!");
+          return;
+      }
+  
+      const txData = {
+          amount: amount,
+          symbol: coin,
+          name: coin === 'NRVX' ? 'Narvex' : 'Axolux',
+          usd: usd.toFixed(2),
+          fee: feeValue.toFixed(2),
+          network: 'Normal (~10 min)',
+          address: "LockChain Market"
+      };
+  
+      localStorage.setItem('txData', JSON.stringify(txData));
+      window.location.href = '../Send/confirm.html';
+  }
+  
+  document.addEventListener('click', e => {
+      if(!document.getElementById('dropdown').contains(e.target)){
+          document.getElementById('dropdown').classList.remove('open');
+      }
+  });
+  
+  document.getElementById('amount').addEventListener('input', updateUSD);
+  
+  updateUSDBalanceDisplay();
+  
+  </script>
+  
+  
 </body>
 </html>
