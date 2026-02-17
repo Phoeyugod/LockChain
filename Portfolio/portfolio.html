@@ -27,16 +27,16 @@
       </div>
     </div>
 
-    <div class="actions">
-      <button class="action">
+    <div class="actions" class="akcio-gomb">
+      <button class="action" onclick="window.location.href='../Send/send.html'">
         <span>✈️</span>
         Küldés
       </button>
-     <button class="action" button onclick="window.location.href='../CryptoFogadas/fogadas.html'">
+     <button class="action" onclick="window.location.href='../CryptoFogadas/fogadas.html'">
         <span>⬇️</span>
         Fogadás
       </button>
-      <button class="action">
+      <button class="action" onclick="window.location.href='../Buy/buy.html'">
         <span>$</span>
         Vásárlás
       </button>
@@ -79,6 +79,29 @@
     </div>
 
   </div>
+  <script>
 
+    let portfolio = JSON.parse(localStorage.getItem("portfolio")) || {
+        NRVX: 0,
+        AXLX: 0
+    };
+    
+    document.querySelectorAll(".asset").forEach(asset => {
+    
+        const symbol = asset.querySelector(".name span").textContent;
+    
+        if(symbol === "NRVX"){
+            asset.querySelector(".amount").textContent =
+                portfolio.NRVX.toFixed(4) + " NRVX";
+        }
+    
+        if(symbol === "AXLX"){
+            asset.querySelector(".amount").textContent =
+                portfolio.AXLX.toFixed(4) + " AXLX";
+        }
+    });
+    
+    </script>
+    
 </body>
 </html>

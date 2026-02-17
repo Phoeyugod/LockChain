@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="confirm.css">
+<title>Tranzakció megerősítése</title>
+
+</head>
+<body>
+
+<div class="card">
+    <h1>Tranzakció megerősítése</h1>
+    <p>Ellenőrizze az adatokat</p>
+
+    <div class="row">
+        <div>Összeg</div>
+        <div id="amount"></div>
+    </div>
+
+    <div class="row">
+        <div>Cím</div>
+        <div class="addr" id="address"></div>
+    </div>
+
+    <div class="row">
+        <div>Hálózati díj</div>
+        <div id="fee"></div>
+    </div>
+
+    <div class="row">
+        <div>Total</div>
+        <div id="total"></div>
+    </div>
+
+    <div class="warning">
+        A kriptovaluta-tranzakciók nem vonhatók vissza.
+    </div>
+
+    <button class="send-btn">Küldés</button>
+</div>
+
+<!-- Popup -->
+<div id="popup" class="popup">
+  <div class="popup-content">
+    <h2>Tranzakció sikeres!</h2>
+    <p>A tranzakciót sikeresen elküldtük.</p>
+    <button id="okBtn">OK</button>
+  </div>
+</div>
+
+<script>
+
+    // ================= ADAT BETÖLTÉS =================
+    const tx = JSON.parse(localStorage.getItem("txData"));
+    
+    if(!tx){
+        alert("Nincs tranzakció adat!");
+    }else{
+        document.getElementById("amount").textContent =
+            `${tx.amount} ${tx.name} (${tx.symbol}) (~$${tx.usd})`;
+    
+        document.getElementById("address").textContent = tx.address;
+        document.getElementById("fee").textContent =
+            `$${tx.fee} / ${tx.network}`;
+    
+        document.getElementById("total").textContent =
+            `$${(parseFloat(tx.usd) + parseFloat(tx.fee)).toFixed(2)}`;
+    }
+    
+    // ================= KÜLDÉS =================
+    document.querySelector(".send-btn").addEventListener("click", function() {
+    
+        if(!tx) return;
+    
+        // USD levonás
+        let usdBalance = parseFloat(localStorage.getItem("usdBalance"));
+        const totalCost = parseFloat(tx.usd) + parseFloat(tx.fee);
+        usdBalance -= totalCost;
+        localStorage.setItem("usdBalance", usdBalance);
+    
+        // Coin hozzáadás portfoliohoz
+        let portfolio = JSON.parse(localStorage.getItem("portfolio")) || {
+            NRVX: 0,
+            AXLX: 0
+        };
+    
+        portfolio[tx.symbol] += parseFloat(tx.amount);
+        localStorage.setItem("portfolio", JSON.stringify(portfolio));
+    
+        document.getElementById("popup").style.display = "flex";
+    });
+    
+    // ================= OK GOMB =================
+    document.getElementById("okBtn").addEventListener("click", function() {
+        window.location.href = "../Portfolio/portfolio.html";
+    });
+    
+    </script>
+    
+    
+</body>
+</html>

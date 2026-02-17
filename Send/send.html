@@ -4,126 +4,148 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="send.css">
-<title>Tranzakció oldal</title>
-<style>
+<title>Wallet – Tranzakció</title>
 
-</style>
+
 </head>
+
 <body>
+<div class="page-wrap">
+<div class="wallet-card">
 <div class="container">
 
-    <h2>Valuta Kiválasztása</h2>
-
-    <div class="coin-card selected" data-coin="NRVX">
-        <div class="coin-info">
-            <h3>Narvex</h3>
-            <p>NRVX</p>
+    <!-- VALUTA -->
+    <div class="card">
+        <div class="dropdown" id="dropdown">
+            <button class="dropdown-btn" onclick="toggleDropdown()">
+                <span id="selectedCoin">Narvex (NRVX)</span>
+                <span>▾</span>
+            </button>
+            <div class="dropdown-menu">
+                <div class="dropdown-item active" onclick="selectCoin('NRVX')">
+                    Narvex <span>NRVX</span>
+                </div>
+                <div class="dropdown-item" onclick="selectCoin('AXLX')">
+                    Axolux <span>AXLX</span>
+                </div>
+            </div>
         </div>
-        <div class="balance">0.5432 NRVX</div>
     </div>
 
-    <div class="coin-card" data-coin="AXLX">
-        <div class="coin-info">
-            <h3>Anolux</h3>
-            <p>AXLX</p>
-        </div>
-        <div class="balance">0.9876 AXLX</div>
-    </div>
-
-    <!-- Összeg kártya -->
+    <!-- ÖSSZEG -->
     <div class="card">
         <div class="input-group">
-            <input type="number" id="amount" placeholder="0.0" step="0.0001" value="0.0">
+            <input type="number" id="amount" placeholder="0.0">
             <button onclick="setMax()">Max</button>
         </div>
-        <div class="usd-label">≈ $<span id="usdAmount">0.00</span></div>
+        <div class="usd-label">≈ $<span id="usd">0.00</span></div>
     </div>
 
-    <!-- Vevő címe kártya -->
+    <!-- CÍM -->
     <div class="card">
         <div class="input-group">
-            <input type="text" id="receiver" placeholder="Vevő címe">
-            <button onclick="scanQR()">📷</button>
+            <input id="address" type="text" placeholder="bc1qxy2kgdygjrsq...">
+            <button>📷</button>
         </div>
     </div>
+    
 
-    <!-- Hálózati díj kártya -->
-    <div class="card slider-group">
-        <label>Hálózati díj</label>
-        <input type="range" id="feeSlider" min="0.5" max="2.8" step="0.01" value="1.25" oninput="updateFee()">
+    <!-- DÍJ -->
+    <div class="card">
+        <div class="slider-title">Hálózati díj</div>
+        <input type="range" min="0.5" max="2.8" step="0.01" value="1.25" oninput="updateFee(this.value)">
         <div class="slider-labels">
             <span>Slow $0.50</span>
             <span>Fast $2.80</span>
         </div>
-        <div class="slider-value" id="feeLabel">$1.25</div>
+        <div class="slider-value">$<span id="fee">1.25</span></div>
     </div>
 
-    <!-- Gomb -->
-    <button class="submit-btn" onclick="reviewTransaction()">Tranzakció Felülvizsgálata</button>
+    <!-- GOMB -->
+    <button class="submit-btn" onclick="goToConfirm()" button onclick="window.location.href='../Send/confirm.html'">Tranzakció Felülvizsgálata</button>
 
 </div>
 
 <script>
-const coins = {
-    NRVX:{balance:0.5432, price:39500},
-    AXLX:{balance:0.9876, price:42100}
+function goToConfirm() {
+    const amount = parseFloat(document.getElementById("amount").value) || 0;
+    const coin = selected; // a dropdownból választott coin
+    const usd = (amount * coins[coin].price).toFixed(2);
+
+    // Hálózati díj kinyerése a sliderből
+    const feeValue = parseFloat(document.querySelector('input[type="range"]').value).toFixed(2);
+
+    const txData = {
+    amount: amount,
+    symbol: coin,
+    name: coin === "NRVX" ? "Narvex" : "Axolux", // teljes név
+    usd: usd,
+    address: document.getElementById("address").value,
+    fee: feeValue,
+    network: "Normal (~10 min)"
 };
 
-let selectedCoin = 'NRVX';
 
-const coinCards = document.querySelectorAll('.coin-card');
-const amountInput = document.getElementById('amount');
-const usdAmountLabel = document.getElementById('usdAmount');
-const feeSlider = document.getElementById('feeSlider');
-const feeLabel = document.getElementById('feeLabel');
+    localStorage.setItem("txData", JSON.stringify(txData));
+    window.location.href = "confirm.html";
+}
 
-coinCards.forEach(card=>{
-    card.addEventListener('click',()=>{
-        coinCards.forEach(c=>c.classList.remove('selected'));
-        card.classList.add('selected');
-        selectedCoin = card.getAttribute('data-coin');
-        updateUSD();
-    });
-});
+
+
+
+</script>
+
+</div>
+</div>
+</div>
+
+<script>
+const coins={
+    NRVX:{balance:0.5432,price:39500},
+    AXLX:{balance:0.9876,price:42100}
+};
+let selected='NRVX';
+
+function toggleDropdown(){
+    document.getElementById('dropdown').classList.toggle('open');
+}
+
+function selectCoin(c){
+    selected=c;
+    document.getElementById('selectedCoin').textContent=
+        c==='NRVX'?'Narvex (NRVX)':'Axolux (AXLX)';
+
+    document.querySelectorAll('.dropdown-item')
+        .forEach(i=>i.classList.remove('active'));
+    event.target.closest('.dropdown-item').classList.add('active');
+
+    document.getElementById('dropdown').classList.remove('open');
+    updateUSD();
+}
 
 function setMax(){
-    amountInput.value = coins[selectedCoin].balance.toFixed(4);
+    document.getElementById('amount').value=
+        coins[selected].balance.toFixed(4);
     updateUSD();
 }
 
 function updateUSD(){
-    const amount = parseFloat(amountInput.value)||0;
-    usdAmountLabel.textContent = (amount * coins[selectedCoin].price).toFixed(2);
+    const v=parseFloat(document.getElementById('amount').value)||0;
+    document.getElementById('usd').textContent=
+        (v*coins[selected].price).toFixed(2);
 }
 
-function updateFee(){
-    feeLabel.textContent = "$" + parseFloat(feeSlider.value).toFixed(2);
+function updateFee(v){
+    document.getElementById('fee').textContent=parseFloat(v).toFixed(2);
 }
 
-function scanQR(){
-    alert("QR kód beolvasás funkció itt lenne.");
-}
-
-function reviewTransaction(){
-    const amount = parseFloat(amountInput.value)||0;
-    const receiver = document.getElementById('receiver').value;
-    const fee = parseFloat(feeSlider.value)||0;
-
-    if(amount<=0 || !receiver){
-        alert("Kérlek adj meg egy érvényes összeget és vevő címet.");
-        return;
+document.addEventListener('click',e=>{
+    if(!document.getElementById('dropdown').contains(e.target)){
+        document.getElementById('dropdown').classList.remove('open');
     }
-    if(amount > coins[selectedCoin].balance){
-        alert("Nincs elég " + selectedCoin + " a számlán.");
-        return;
-    }
+});
 
-    alert(`Összeg: ${amount} ${selectedCoin} ≈ $${(amount*coins[selectedCoin].price).toFixed(2)}\nVevő: ${receiver}\nHálózati díj: $${fee.toFixed(2)}`);
-}
-
-amountInput.addEventListener('input', updateUSD);
-updateUSD();
-updateFee();
+document.getElementById('amount').addEventListener('input',updateUSD);
 </script>
 </body>
 </html>

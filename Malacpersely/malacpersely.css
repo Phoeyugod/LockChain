@@ -129,9 +129,7 @@
         font-weight: 560;
       }
   
-      /* =========================================================
-         KÁRTYÁK – üveg hatás + kékség/lilás “aurával”
-         ========================================================= */
+
       .kartya{
         border-radius: var(--sarok-nagy);
         border: 1px solid var(--keret);
