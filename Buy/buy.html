@@ -63,14 +63,12 @@
 <script>
 
   // ================= USD WALLET =================
-  let usdBalance = localStorage.getItem("usdBalance");
-  
-  if (!usdBalance) {
-      usdBalance = 5000;
-      localStorage.setItem("usdBalance", usdBalance);
-  } else {
-      usdBalance = parseFloat(usdBalance);
-  }
+  let usdBalance = parseFloat(localStorage.getItem("usdBalance"));
+
+if (isNaN(usdBalance)) {
+    usdBalance = 5000;
+    localStorage.setItem("usdBalance", usdBalance);
+}
   
   function updateUSDBalanceDisplay() {
       document.getElementById("usdBalance").textContent =
