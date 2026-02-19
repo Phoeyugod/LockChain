@@ -1,13 +1,31 @@
  /* ===== Háttérszín ===== */
- .oldal {
-    min-height: 100%;
-    padding: 22px;
-    background:
-      radial-gradient(circle at 20% 30%, rgba(60, 80, 255, 0.25), rgba(0,0,0,0) 55%),
-      radial-gradient(circle at 85% 70%, rgba(0, 220, 255, 0.18), rgba(0,0,0,0) 55%),
-      radial-gradient(circle at 55% 55%, rgba(30, 35, 85, 0.75), rgba(5, 8, 25, 1) 70%),
-      linear-gradient(135deg, #070a1b 0%, #0b1130 45%, #0a0d22 100%);
-  }
+ html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #ffffff;
+
+  /* A háttér legyen a BODY-n, így nincs fehér “alj” */
+  background:
+    radial-gradient(circle at 20% 30%, rgba(60, 80, 255, 0.25), rgba(0,0,0,0) 55%),
+    radial-gradient(circle at 85% 70%, rgba(0, 220, 255, 0.18), rgba(0,0,0,0) 55%),
+    radial-gradient(circle at 55% 55%, rgba(30, 35, 85, 0.75), rgba(5, 8, 25, 1) 70%),
+    linear-gradient(135deg, #070a1b 0%, #0b1130 45%, #0a0d22 100%);
+
+  /* Biztos, hogy a háttér végig kitölt */
+  background-attachment: fixed;
+}
+
+.oldal {
+  /* Mindig töltse ki a teljes képernyőt */
+  min-height: 100vh;   /* IE11-ben is ok */
+  width: 100%;
+  padding: 22px;
+
+  /* háttér innen kikerül */
+  background: transparent;
+}
 
   /* ===== Központi konténer ===== */
   .kontener {
@@ -34,6 +52,7 @@
   /* ===== Fülek ===== */
   .ful-sor {
     margin-top: 10px;
+    margin-bottom: 30px;
     padding: 6px;
     border-radius: 999px;
     border: 1px solid rgba(255,255,255,0.14);
@@ -59,7 +78,7 @@
   }
   .ful-gomb:hover {
     background: rgba(255,255,255,0.06);
-    color: rgba(255,255,255,0.90);
+    color: rgba(255, 255, 255, 0.9);
   }
   .ful-gomb.aktiv {
     background: rgba(255,255,255,0.10);
@@ -70,6 +89,7 @@
 
   /* ===== Panel (üveges) ===== */
   .panel {
+    margin-bottom: 30px;
     margin-top: 14px;
     padding: 16px;
     border-radius: 16px;
@@ -179,8 +199,8 @@
     width: 100%;
     border-radius: 12px;
     border: 1px solid rgba(255,255,255,0.14);
-    background: rgba(255,255,255,0.06);
-    color: rgba(255,255,255,0.92);
+    background: rgba(0, 0, 0, 0.06);
+    color: rgba(97, 94, 94, 0.92);
     padding: 10px 12px;
     font-size: 13px;
     outline: none;
@@ -205,3 +225,123 @@
     .tema-minta { width: 92%; }
     .ful-sor { overflow-x: auto; }
   }
+
+  /* ===== Tárca fül stílusok (IE11-safe) ===== */
+
+.beallitas-sor{
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(0,0,0,0.12);
+  color: #fff;
+
+  padding: 18px 18px;
+  border-radius: 18px;
+
+  display: block;
+  margin: 0 0 18px 0;
+
+  box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+}
+
+.beallitas-sor:hover{
+  background: rgba(0,0,0,0.18);
+  border-color: rgba(255,255,255,0.14);
+}
+
+.sor-bal{
+  display: inline-block;
+  vertical-align: middle;
+  width: 88%;
+}
+
+.sor-jobb{
+  display: inline-block;
+  vertical-align: middle;
+  width: 10%;
+  text-align: right;
+  font-size: 22px;
+  color: rgba(255,255,255,0.85);
+}
+
+.sor-cim{
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: rgba(255,255,255,0.95);
+}
+
+.sor-leiras{
+  font-size: 12px;
+  color: rgba(255,255,255,0.62);
+}
+
+/* ===== Nyelv kártya ===== */
+.nyelv-kartya{
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(0,0,0,0.12);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+}
+
+.nyelv-cim{
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.95);
+  margin-bottom: 10px;
+}
+
+.nyelv-valaszto{
+  width: 100%;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.92);
+
+  padding: 12px 14px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.nyelv-ertek{
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.nyelv-nyil{
+  float: right;
+  font-size: 20px;
+  color: rgba(255,255,255,0.8);
+  margin-top: -2px;
+}
+
+/* Lenyló lista */
+.nyelv-lista{
+  display: none;
+  margin-top: 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(10, 12, 30, 0.55);
+  overflow: hidden;
+}
+
+.nyelv-lista.nyitva{ display: block; }
+
+.nyelv-opcio{
+  width: 100%;
+  display: block;
+  border: 0;
+  background: transparent;
+  color: rgba(255,255,255,0.92);
+  padding: 12px 14px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.nyelv-opcio:hover{
+  background: rgba(255,255,255,0.08);
+}
