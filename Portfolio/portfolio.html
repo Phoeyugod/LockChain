@@ -25,7 +25,7 @@
           <span class="change positive">+3.45%</span>
         </div>
       </div>
-    </div>
+    </div>   
 
     <div class="actions" class="akcio-gomb">
       <button class="action" onclick="window.location.href='../Send/send.html'">
@@ -40,9 +40,9 @@
         <span>$</span>
         Vásárlás
       </button>
-      <button class="action">
-        <span>$</span>
-        Eladás
+      <button class="action" onclick="window.location.href='../Sell/sell.html'">$ Eladás</button>
+        <span></span>
+        
       </button>
     </div>
   </div>
@@ -81,27 +81,46 @@
   </div>
   <script>
 
-    let portfolio = JSON.parse(localStorage.getItem("portfolio")) || {
-        NRVX: 0,
-        AXLX: 0
+    // ===== WALLET INIT =====
+    let wallet = JSON.parse(localStorage.getItem("wallet"));
+    
+    if (!wallet) {
+        wallet = {
+            usd: 10000,
+            AXLX: 5,
+            NRVX: 5
+        };
+        localStorage.setItem("wallet", JSON.stringify(wallet));
+    }
+    
+    // ===== COIN ÁRAK =====
+    const prices = {
+        AXLX: 395,
+        NRVX: 244
     };
     
+    // ===== COIN MENNYISÉG FRISSÍTÉS =====
     document.querySelectorAll(".asset").forEach(asset => {
     
         const symbol = asset.querySelector(".name span").textContent;
     
-        if(symbol === "NRVX"){
-            asset.querySelector(".amount").textContent =
-                portfolio.NRVX.toFixed(4) + " NRVX";
-        }
+        asset.querySelector(".amount").textContent =
+            wallet[symbol].toFixed(4) + " " + symbol;
     
-        if(symbol === "AXLX"){
-            asset.querySelector(".amount").textContent =
-                portfolio.AXLX.toFixed(4) + " AXLX";
-        }
     });
     
+    // ===== TELJES PORTFÓLIÓ ÉRTÉK =====
+    const total =
+        wallet.usd +
+        (wallet.AXLX * prices.AXLX) +
+        (wallet.NRVX * prices.NRVX);
+    
+    document.querySelector(".balance").innerHTML =
+        "$" + total.toFixed(2) +
+        ' <span class="change positive">+0.00%</span>';
+    
     </script>
+    
     
 </body>
 </html>
