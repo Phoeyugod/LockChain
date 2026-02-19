@@ -62,63 +62,38 @@
 
 <script>
 
-  // ================= USD WALLET =================
-  let usdBalance = parseFloat(localStorage.getItem("usdBalance"));
-
-if (isNaN(usdBalance)) {
-    usdBalance = 5000;
-    localStorage.setItem("usdBalance", usdBalance);
-}
+  // ===== WALLET INIT =====
+  let wallet = JSON.parse(localStorage.getItem("wallet"));
   
-  function updateUSDBalanceDisplay() {
-      document.getElementById("usdBalance").textContent =
-          parseFloat(usdBalance).toFixed(2);
+  if (!wallet) {
+      wallet = {
+          usd: 10000,
+          AXLX: 5,
+          NRVX: 5
+      };
+      localStorage.setItem("wallet", JSON.stringify(wallet));
   }
   
-  // ================= COIN ADATOK =================
+  // ===== USD KIÍRÁS =====
+  document.getElementById("usdBalance").textContent =
+      wallet.usd.toFixed(2);
+  
+  // ===== COIN ÁRAK =====
   const coins = {
-      NRVX: { price: 395 },
-      AXLX: { price: 421 }
+      NRVX: { price: 244 },
+      AXLX: { price: 395 }
   };
   
   let selected = 'NRVX';
   
-  // ================= DROPDOWN =================
-  function toggleDropdown() {
-      document.getElementById('dropdown').classList.toggle('open');
-  }
-  
-  function selectCoin(c) {
-      selected = c;
-      document.getElementById('selectedCoin').textContent =
-          c === 'NRVX' ? 'Narvex (NRVX)' : 'Axolux (AXLX)';
-  
-      document.querySelectorAll('.dropdown-item').forEach(i => i.classList.remove('active'));
-      event.target.closest('.dropdown-item').classList.add('active');
-      document.getElementById('dropdown').classList.remove('open');
-      updateUSD();
-  }
-  
-  // ================= MAX =================
-  function setMax() {
-      const maxCoin = usdBalance / coins[selected].price;
-      document.getElementById('amount').value = maxCoin.toFixed(4);
-      updateUSD();
-  }
-  
-  // ================= USD SZÁMÍTÁS =================
+  // ===== USD SZÁMÍTÁS =====
   function updateUSD() {
       const v = parseFloat(document.getElementById('amount').value) || 0;
       document.getElementById('usd').textContent =
           (v * coins[selected].price).toFixed(2);
   }
   
-  // ================= FEE =================
-  function updateFee(v) {
-      document.getElementById('fee').textContent = parseFloat(v).toFixed(2);
-  }
-  
-  // ================= CONFIRM OLDALRA =================
+  // ===== CONFIRM =====
   function goToConfirm() {
   
       const amount = parseFloat(document.getElementById('amount').value) || 0;
@@ -127,36 +102,27 @@ if (isNaN(usdBalance)) {
       const feeValue = parseFloat(document.getElementById('fee').textContent);
       const totalCost = usd + feeValue;
   
-      if (totalCost > usdBalance) {
+      if (totalCost > wallet.usd) {
           alert("Nincs elegendő USD egyenleged!");
           return;
       }
   
       const txData = {
+          type: "buy",
           amount: amount,
           symbol: coin,
-          name: coin === 'NRVX' ? 'Narvex' : 'Axolux',
-          usd: usd.toFixed(2),
-          fee: feeValue.toFixed(2),
-          network: 'Normal (~10 min)',
-          address: "LockChain Market"
+          usd: usd,
+          fee: feeValue
       };
   
       localStorage.setItem('txData', JSON.stringify(txData));
       window.location.href = '../Send/confirm.html';
   }
   
-  document.addEventListener('click', e => {
-      if(!document.getElementById('dropdown').contains(e.target)){
-          document.getElementById('dropdown').classList.remove('open');
-      }
-  });
-  
   document.getElementById('amount').addEventListener('input', updateUSD);
   
-  updateUSDBalanceDisplay();
-  
   </script>
+  
   
   
 </body>
