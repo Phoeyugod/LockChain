@@ -114,8 +114,113 @@
         <div id="tab-vedelem" class="tab-tartalom">
           <div class="panel">
             <div class="szekcio-cim">Védelem</div>
-            <div style="color: rgba(255,255,255,0.75); font-size: 13px;">
-              Ide jöhetnek a biztonsági beállítások (PIN, 2FA, automatikus zárolás).
+           <!-- TAB: Védelem -->
+        <div class="bizt-kartya">
+          <div class="bizt-fej">
+            <div class="bizt-szoveg">
+              <div class="bizt-cim" data-hu="PIN Védelem" data-en="PIN protection">PIN Védelem</div>
+              <div class="bizt-leiras" data-hu="Tranzakciókhoz PIN kód szükséges" data-en="Require a PIN for transactions">
+                Tranzakciókhoz PIN kód szükséges
+              </div>
+            </div>
+      
+            <button id="kapcPinVedelem" type="button" class="kapcsolo" aria-pressed="false">
+              <span class="kapcsolo-gomb"></span>
+            </button>
+          </div>
+      
+          <button id="pinValtoztatasGomb" type="button" class="bizt-akcio"
+                  data-hu="PIN Megváltoztatása" data-en="Change PIN">
+            PIN Megváltoztatása
+          </button>
+          <div id="pinPopup" class="pin-popup">
+            <div class="pin-popup-cim" data-hu="Új PIN beállítása" data-en="Set new PIN">Új PIN beállítása</div>
+          
+            <input
+              id="pinInput"
+              class="pin-popup-input"
+              type="text"
+              autocomplete="off"
+              placeholder="••••••"
+            >
+          
+            <div id="pinHiba" class="pin-popup-hiba" aria-live="polite"></div>
+          
+            <div class="pin-popup-gombok">
+              <button id="pinMentes" type="button" class="pin-popup-gomb pin-mentes"
+                data-hu="Mentés" data-en="Save">Mentés</button>
+              <button id="pinMegse" type="button" class="pin-popup-gomb pin-megse"
+                data-hu="Mégse" data-en="Cancel">Mégse</button>
+            </div>
+          </div>
+        </div>
+      
+        <!-- 2) 2FA kártya -->
+        <div class="bizt-kartya">
+          <div class="bizt-fej">
+            <div class="bizt-szoveg">
+              <div class="bizt-cim" data-hu="Kétfaktoros hitelesítés" data-en="Two-factor authentication">
+                Kétfaktoros hitelesítés
+              </div>
+              <div class="bizt-leiras" data-hu="Extra biztonsági réteg hozzáadása" data-en="Add an extra layer of security">
+                Extra biztonsági réteg hozzáadása
+              </div>
+            </div>
+      
+            <button id="kapc2fa" type="button" class="kapcsolo" aria-pressed="false">
+              <span class="kapcsolo-gomb"></span>
+            </button>
+          </div>
+        </div>
+      
+        <!-- 3) Paranoia mód kártya -->
+        <div class="bizt-kartya">
+          <div class="bizt-blokk-cim" data-hu="Paranoia mód" data-en="Paranoia mode">Paranoia mód</div>
+      
+          <div class="bizt-sor">
+            <div class="bizt-sor-bal">
+              <div class="bizt-cim-kicsi" data-hu="Mindig kérjen PIN-kódot" data-en="Always ask for PIN">
+                Mindig kérjen PIN-kódot
+              </div>
+              <div class="bizt-leiras" data-hu="PIN-kód kérése minden művelethez" data-en="Require a PIN for every action">
+                PIN-kód kérése minden művelethez
+              </div>
+            </div>
+            <button id="kapcMindigPin" type="button" class="kapcsolo kapcsolo-kicsi" aria-pressed="false">
+              <span class="kapcsolo-gomb"></span>
+            </button>
+          </div>
+      
+          <div class="bizt-sor">
+            <div class="bizt-sor-bal">
+              <div class="bizt-cim-kicsi" data-hu="Egyenlegek elrejtése" data-en="Hide balances">
+                Egyenlegek elrejtése
+              </div>
+              <div class="bizt-leiras" data-hu="Összegek elmosása alapértelmezés szerint" data-en="Blur amounts by default">
+                Összegek elmosása alapértelmezés szerint
+              </div>
+            </div>
+            <button id="kapcEgyenlegRejt" type="button" class="kapcsolo kapcsolo-kicsi" aria-pressed="false">
+              <span class="kapcsolo-gomb"></span>
+            </button>
+          </div>
+      
+          <div class="bizt-sor">
+            <div class="bizt-sor-bal">
+              <div class="bizt-cim-kicsi" data-hu="Hamis pénztárca PIN-kód" data-en="Decoy wallet PIN">
+                Hamis pénztárca PIN-kód
+              </div>
+              <div class="bizt-leiras" data-hu="Csali pénztárca létrehozása különböző PIN-kóddal" data-en="Create a decoy wallet with a different PIN">
+                Csali pénztárca létrehozása különböző PIN-kóddal
+              </div>
+            </div>
+            <button id="kapcCsaliPin" type="button" class="kapcsolo kapcsolo-kicsi" aria-pressed="false">
+              <span class="kapcsolo-gomb"></span>
+            </button>
+          </div>
+      
+        </div>
+      
             </div>
           </div>
         </div>

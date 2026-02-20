@@ -345,3 +345,204 @@ body {
 .nyelv-opcio:hover{
   background: rgba(255,255,255,0.08);
 }
+
+/* ===== Védelem fül stílusok ===== */
+
+.bizt-kartya{
+  padding: 18px 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(0,0,0,0.12);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+  margin: 0 0 18px 0;
+}
+
+.bizt-fej{
+  width: 100%;
+}
+
+.bizt-szoveg{
+  display: inline-block;
+  vertical-align: middle;
+  width: 78%;
+}
+
+.bizt-cim{
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.95);
+  margin-bottom: 4px;
+}
+
+.bizt-leiras{
+  font-size: 12px;
+  color: rgba(255,255,255,0.62);
+}
+
+.bizt-akcio{
+  margin-top: 14px;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.92);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+.bizt-akcio:hover{
+  background: rgba(255,255,255,0.10);
+}
+
+/* Paranoia blokk */
+.bizt-blokk-cim{
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: rgba(255,255,255,0.95);
+}
+
+.bizt-sor{
+  padding: 14px 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.bizt-sor:first-child{ border-top: 0; padding-top: 0; }
+
+.bizt-sor-bal{
+  display: inline-block;
+  vertical-align: middle;
+  width: 78%;
+}
+.bizt-cim-kicsi{
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.92);
+  margin-bottom: 4px;
+}
+
+/* ===== Kapcsoló (IE11-safe) ===== */
+.kapcsolo{
+  display: inline-block;
+  vertical-align: middle;
+  width: 44px;
+  height: 24px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.08);
+  cursor: pointer;
+  position: relative;
+  float: right;
+  margin-top: 5px;
+  outline: none;
+}
+
+.kapcsolo-kicsi{
+  margin-top: 2px;
+}
+
+.kapcsolo .kapcsolo-gomb{
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.35);
+}
+
+/* BEKAPCSOLT állapot */
+.kapcsolo.be{
+  border-color: rgba(0, 198, 212, 0.55);
+  background: rgba(0, 198, 212, 0.22);
+}
+
+.kapcsolo.be .kapcsolo-gomb{
+  left: 22px;
+
+}
+
+/* mobilon szépen */
+@media (max-width: 640px){
+  .bizt-szoveg, .bizt-sor-bal{ width: 74%; }
+}
+/* ===== PIN popup panel ===== */
+.pin-popup{
+  display: none;
+  margin-top: 12px;
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+}
+
+.pin-popup.nyitva{ display: block; }
+
+.pin-popup-cim{
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 10px;
+}
+
+.pin-popup-input{
+  width: 96%;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(0,0,0,0.18);
+  color: rgba(255,255,255,0.92);
+  padding: 12px 14px;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 6px;
+  outline: none;
+  
+}
+
+.pin-popup-input:focus{
+  border-color: rgba(0, 198, 212, 0.55);
+  box-shadow: 0 0 0 3px rgba(0, 198, 212, 0.16);
+}
+
+.pin-popup-hiba{
+  min-height: 18px;
+  margin-top: 10px;
+  font-size: 12px;
+  color: rgba(255, 160, 160, 0.95);
+}
+
+.pin-popup-gombok{
+  margin-top: 10px;
+  text-align: right;
+}
+
+.pin-popup-gomb{
+  display: inline-block;
+  vertical-align: middle;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.92);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.pin-popup-gomb + .pin-popup-gomb{
+  margin-left: 10px;
+}
+
+.pin-mentes{
+  border-color: rgba(0, 198, 212, 0.55);
+  background: rgba(0, 198, 212, 0.14);
+}
+
+.pin-mentes:hover{
+  background: rgba(0, 198, 212, 0.20);
+}
+
+.pin-megse:hover{
+  background: rgba(255,255,255,0.10);
+}
