@@ -145,4 +145,162 @@
   // induláskor: magyar feliratok beállítása (biztosra)
   setSzovegek(aktualisNyelv);
 })();
+(function () {
+  function $(id){ return document.getElementById(id); }
 
+  function get(k, def){
+    try {
+      var v = localStorage.getItem(k);
+      return (v === null) ? def : v;
+    } catch(e){ return def; }
+  }
+  function set(k, v){
+    try { localStorage.setItem(k, v); } catch(e){}
+  }
+
+  function applyToggle(btn, on){
+    if (!btn) return;
+    btn.className = on ? (btn.className.replace(/\bbe\b/g,'') + ' be') : btn.className.replace(/\bbe\b/g,'');
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+  }
+
+  function initToggle(id, key, defOn){
+    var btn = $(id);
+    if (!btn) return;
+
+    var stored = get(key, defOn ? '1' : '0');
+    var on = (stored === '1');
+
+    applyToggle(btn, on);
+
+    btn.onclick = function () {
+      var nowOn = (btn.getAttribute('aria-pressed') !== 'true');
+      applyToggle(btn, nowOn);
+      set(key, nowOn ? '1' : '0');
+    };
+  }
+
+  // Kapcsolók (kulcsok)
+  initToggle('kapcPinVedelem', 'app_pin_vedelem', false);
+  initToggle('kapc2fa',        'app_2fa',         false);
+  initToggle('kapcMindigPin',  'app_mindig_pin',  false);
+  initToggle('kapcEgyenlegRejt','app_egyenleg_rejt', false);
+  initToggle('kapcCsaliPin',   'app_csali_pin',   false);
+
+  // PIN változtatás (demo)
+(function () {
+  function $(id){ return document.getElementById(id); }
+
+  var pinToggleGomb = $('pinValtoztatasGomb');
+  var pinPopup = $('pinPopup');
+  var pinInput = $('pinInput');
+  var pinHiba = $('pinHiba');
+  var pinMentes = $('pinMentes');
+  var pinMegse = $('pinMegse');
+
+  function setHiba(szoveg){
+    if (pinHiba) pinHiba.innerHTML = szoveg || '';
+  }
+
+  function popupNyit(zar){
+    if (!pinPopup) return;
+    if (zar) {
+      pinPopup.className = 'pin-popup';
+      setHiba('');
+      if (pinInput) pinInput.value = '';
+      return;
+    }
+    // toggle
+    var nyitva = (pinPopup.className.indexOf('nyitva') !== -1);
+    pinPopup.className = nyitva ? 'pin-popup' : 'pin-popup nyitva';
+    setHiba('');
+    if (!nyitva && pinInput) {
+      pinInput.value = '';
+      pinInput.focus();
+    }
+  }
+
+  // Csak számot engedünk + max 6 (IE11-safe)
+  function tisztitPin(szoveg){
+    // nem számok törlése
+    var csakSzam = (szoveg || '').replace(/\D/g, '');
+    // max 6
+    if (csakSzam.length > 6) csakSzam = csakSzam.substring(0, 6);
+    return csakSzam;
+  }
+
+  if (pinToggleGomb) {
+    pinToggleGomb.onclick = function () {
+      popupNyit(false);
+    };
+  }
+
+  if (pinInput) {
+    // gépelés / beillesztés kezelése
+    pinInput.oninput = function () {
+      var uj = tisztitPin(pinInput.value);
+      if (pinInput.value !== uj) pinInput.value = uj;
+
+      // élő visszajelzés
+      if (uj.length === 0) setHiba('');
+      else if (uj.length < 6) setHiba('A PIN kódnak pontosan 6 számjegyűnek kell lennie.');
+      else setHiba('');
+    };
+
+    // keypress: ha nem szám, tiltjuk (IE11)
+    pinInput.onkeypress = function (e) {
+      e = e || window.event;
+      var code = e.which || e.keyCode;
+      if (code === 0) return true; // bizonyos billentyűknél
+
+      // engedjük: backspace(8) nem keypress-ben jön mindig, de ok
+      // számok: 48-57
+      if (code >= 48 && code <= 57) {
+        // ha már 6 szám megvan, ne engedjük tovább
+        var v = tisztitPin(pinInput.value);
+        if (v.length >= 6) {
+          if (e.preventDefault) e.preventDefault();
+          return false;
+        }
+        return true;
+      }
+
+      // Enter: mentés
+      if (code === 13) {
+        if (e.preventDefault) e.preventDefault();
+        if (pinMentes) pinMentes.click();
+        return false;
+      }
+
+      // minden más tiltás
+      if (e.preventDefault) e.preventDefault();
+      return false;
+    };
+  }
+
+  if (pinMegse) {
+    pinMegse.onclick = function () {
+      popupNyit(true);
+    };
+  }
+
+  if (pinMentes) {
+    pinMentes.onclick = function () {
+      var pin = tisztitPin(pinInput ? pinInput.value : '');
+      if (pin.length !== 6) {
+        setHiba('A PIN kódnak pontosan 6 számjegyűnek kell lennie.');
+        if (pinInput) pinInput.focus();
+        return;
+      }
+
+      // Mentés (demo): localStorage
+      try { localStorage.setItem('app_pin_kod', pin); } catch (e) {}
+
+      setHiba('PIN elmentve.');
+      // rövid idő után zárjuk
+      setTimeout(function () { popupNyit(true); }, 900);
+    };
+  }
+})();
+
+})();
