@@ -21,8 +21,10 @@
       <div>
         <div class="label">Total Portfólió Egyenleg</div>
         <div class="balance">
-          $29,291.00
-          <span class="change positive">+3.45%</span>
+          <div class="total-balance">
+            <h2 id="totalPortfolio"></h2>
+          </div>
+          <span class="change positive"></span>
         </div>
       </div>
     </div>   
@@ -50,75 +52,106 @@
   <!-- ===== ASSET LIST ===== -->
   <div class="asset-list">
 
-    <div class="asset" button onclick="window.location.href='../Axolux/anolux.html'"></button>
+    <div class="asset" onclick="window.location.href='../Axolux/anolux.html'">
       <div class="asset-left">
         <div class="icon axlux"></div>
         <div>
-           <div class="name">Axolux <span>AXLX</span></div>
-          <div class="amount">0.5432 AXLX</div>
+          <div class="name">Axolux <span>AXLX</span></div>
+          <div class="amount" id="axlxAmount"></div>
         </div>
       </div>
       <div class="asset-right">
-        <div class="price">$21,456.78</div>
+        <div class="price" id="axlxPrice"></div>
         <div class="percent positive">+5.23%</div>
       </div>
     </div>
-
-    <div class="asset" button onclick="window.location.href='../Narvex/narvex.html'">
+  
+    <div class="asset" onclick="window.location.href='../Narvex/narvex.html'">
       <div class="asset-left">
         <div class="icon narvex"></div>
         <div>
           <div class="name">Narvex <span>NRVX</span></div>
-          <div class="amount">3.2145 NRVX</div>
+          <div class="amount" id="nrvxAmount"></div>
         </div>
       </div>
       <div class="asset-right">
-        <div class="price">$7,834.22</div>
+        <div class="price" id="nrvxPrice"></div>
         <div class="percent negative">-2.15%</div>
       </div>
     </div>
-
+  
   </div>
   <script>
 
-    // ===== WALLET INIT =====
-    let wallet = JSON.parse(localStorage.getItem("wallet"));
-    
-    if (!wallet) {
-        wallet = {
-            usd: 10000,
-            AXLX: 5,
-            NRVX: 5
-        };
-        localStorage.setItem("wallet", JSON.stringify(wallet));
-    }
-    
-    // ===== COIN ÁRAK =====
-    const prices = {
-        AXLX: 395,
-        NRVX: 244
+    // ===== WALLET BETÖLTÉS =====
+function getWallet(){
+  let wallet = JSON.parse(localStorage.getItem("wallet"));
+
+  if(!wallet){
+    wallet = {
+      usd: 10000,
+      AXLX: 5,
+      NRVX: 5
     };
+    localStorage.setItem("wallet", JSON.stringify(wallet));
+  }
+
+  return wallet;
+}
+
+// Demo árak
+const prices = {
+  AXLX: 3950,
+  NRVX: 2440
+};
+
+function updatePortfolio(){
+
+  const wallet = getWallet();
+
+  // AXLX
+  const axlxAmount = wallet.AXLX;
+  const axlxValue = axlxAmount * prices.AXLX;
+
+  document.getElementById("axlxAmount").textContent =
+    axlxAmount.toFixed(3) + " AXLX";
+
+  document.getElementById("axlxPrice").textContent =
+    "$" + axlxValue.toLocaleString(undefined, {maximumFractionDigits: 2});
+
+  // NRVX
+  const nrvxAmount = wallet.NRVX;
+  const nrvxValue = nrvxAmount * prices.NRVX;
+
+  document.getElementById("nrvxAmount").textContent =
+    nrvxAmount.toFixed(3) + " NRVX";
+
+  document.getElementById("nrvxPrice").textContent =
+    "$" + nrvxValue.toLocaleString(undefined, {maximumFractionDigits: 2});
+
+// --- TOTAL ---
+const total =
+  wallet.usd +
+  axlxValue +
+  nrvxValue;
+
+document.getElementById("totalPortfolio").textContent =
+  "$" + total.toLocaleString(undefined, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
     
-    // ===== COIN MENNYISÉG FRISSÍTÉS =====
-    document.querySelectorAll(".asset").forEach(asset => {
-    
-        const symbol = asset.querySelector(".name span").textContent;
-    
-        asset.querySelector(".amount").textContent =
-            wallet[symbol].toFixed(4) + " " + symbol;
-    
-    });
-    
-    // ===== TELJES PORTFÓLIÓ ÉRTÉK =====
-    const total =
-        wallet.usd +
-        (wallet.AXLX * prices.AXLX) +
-        (wallet.NRVX * prices.NRVX);
-    
-    document.querySelector(".balance").innerHTML =
-        "$" + total.toFixed(2) +
-        ' <span class="change positive">+0.00%</span>';
-    
+}
+
+// első betöltés
+updatePortfolio();
+
+// ha másik tabon változik
+window.addEventListener("storage", function(e){
+  if(e.key === "wallet"){
+    updatePortfolio();
+  }
+});
     </script>
     
     

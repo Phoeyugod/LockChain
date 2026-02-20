@@ -1,6 +1,18 @@
 body{
-  padding-top: 110px;
-  
+
+  background:
+    radial-gradient(circle at 20% 30%, #1e2a78 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, #3b1e78 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, #0f1433 0%, #070b1f 100%);
+  background-size:200% 200%;
+  animation: backgroundMove 18s ease infinite;
+  color:white;
+}
+
+@keyframes backgroundMove{
+  0%{ background-position:0% 50%,100% 50%,50% 50%; }
+  50%{ background-position:100% 50%,0% 50%,50% 60%; }
+  100%{ background-position:0% 50%,100% 50%,50% 50%; }
 }
 
 /*--------------------Fejléc--------------------*/
@@ -79,13 +91,7 @@ header{
     font-family: system-ui, -apple-system, BlinkMacSystemFont;
   }
   
-  body {
-    min-height: 100vh;
-    background: radial-gradient(circle at top, #1c2260, #070b1a);
-    color: #fff;
-    padding-top: 0%;
-  }
-  
+
 
   
   /* ===== PORTFOLIO CARD ===== */
@@ -101,7 +107,7 @@ header{
   }
   
   .label {
-    font-size: 14px;
+    font-size: 30px;
     opacity: .85;
   }
   

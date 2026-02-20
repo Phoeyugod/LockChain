@@ -1,3 +1,5 @@
+
+
 const grafikonElem = document.getElementById('arfolyamGrafikon');
 
 /* ADATOK IDŐTÁVONKÉNT */
@@ -91,4 +93,59 @@ document.querySelectorAll('.ido-intervallum button').forEach(gomb => {
     chart.data.datasets[0].data = arfolyamAdatok[idotav];
     chart.update();
   });
+});
+// ===== WALLET BETÖLTÉS =====
+let wallet = JSON.parse(localStorage.getItem("wallet"));
+
+if(!wallet){
+  wallet = {
+    usd: 10000,
+    AXLX: 5,
+    NRVX: 5
+  };
+  localStorage.setItem("wallet", JSON.stringify(wallet));
+}
+
+// ===== ÁR =====
+const price = 3950; // demo ár
+
+// ===== KIÍRÁS FRISSÍTÉS =====
+function updateUI(){
+
+  // mindig friss wallet betöltés
+  wallet = JSON.parse(localStorage.getItem("wallet"));
+
+  const balance = wallet.NRVX;
+  const coinUsdValue = balance * price;
+
+  // COIN MENNYISÉG
+  document.querySelector(".egyenleg h2").textContent =
+    balance.toFixed(4) + " NRVX";
+
+  // COIN USD ÉRTÉKE
+  document.querySelector(".egyenleg span").textContent =
+    "$" + coinUsdValue.toFixed(2);
+
+  // VALÓDI USD EGYENLEG (ha van külön elem hozzá)
+  const usdElem = document.querySelector(".usd-egyenleg");
+  if(usdElem){
+    usdElem.textContent =
+      "USD egyenleg: $" + wallet.usd.toFixed(2);
+  }
+
+  // Ár
+  document.querySelector(".ar").innerHTML =
+    "$" + price.toLocaleString() +
+    ' <span class="novekedes">+5.3%</span>';
+}
+
+// első betöltés
+updateUI();
+
+// ha másik tabon változik
+window.addEventListener("storage", function(e){
+  if(e.key === "wallet"){
+    wallet = JSON.parse(e.newValue);
+    updateUI();
+  }
 });
