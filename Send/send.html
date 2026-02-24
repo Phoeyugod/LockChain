@@ -152,12 +152,13 @@
         }
     
         const txData = {
-            type: "send",
-            amount: amount,
-            symbol: selected,
-            usdValue: amount * coins[selected].price,
-            fee: parseFloat(document.getElementById("fee").innerText)
-        };
+    type: "send",
+    amount: amount,
+    symbol: selected,
+    usdValue: amount * coins[selected].price,
+    fee: parseFloat(document.getElementById("fee").innerText),
+    address: document.getElementById("address").value
+};
     
         localStorage.setItem("txData", JSON.stringify(txData));
     
