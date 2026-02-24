@@ -63,10 +63,38 @@
         localStorage.setItem("wallet", JSON.stringify(wallet));
     }
     
+    // ===== TRANZAKCIÓ ADAT =====
     const tx = JSON.parse(localStorage.getItem("txData"));
     
     if (!tx) {
         alert("Nincs tranzakció adat!");
+        window.location.href = "../Portfolio/portfolio.html";
+    }
+    
+    // ===== ADATOK MEGJELENÍTÉSE =====
+    if (tx) {
+    
+        document.getElementById("amount").innerText =
+            tx.amount + " " + tx.symbol;
+    
+        document.getElementById("address").innerText =
+            tx.address ? tx.address : "—";
+    
+        document.getElementById("fee").innerText =
+            "$" + (tx.fee || 0).toFixed(2);
+    
+        let total = 0;
+    
+        if (tx.type === "buy") {
+            total = tx.usd + tx.fee;
+        }
+    
+        if (tx.type === "send") {
+            total = tx.usdValue + tx.fee;
+        }
+    
+        document.getElementById("total").innerText =
+            "$" + total.toFixed(2);
     }
     
     // ===== VÉGREHAJTÁS =====
@@ -76,23 +104,34 @@
     
             const totalCost = tx.usd + tx.fee;
     
+            if (wallet.usd < totalCost) {
+                alert("Nincs elegendő USD egyenleg!");
+                return;
+            }
+    
             wallet.usd -= totalCost;
             wallet[tx.symbol] += tx.amount;
-    
         }
     
         if (tx.type === "send") {
     
-            wallet[tx.symbol] -= tx.amount;
+            if (wallet[tx.symbol] < tx.amount) {
+                alert("Nincs elegendő coin!");
+                return;
+            }
     
+            wallet[tx.symbol] -= tx.amount;
         }
     
         localStorage.setItem("wallet", JSON.stringify(wallet));
     
-        document.getElementById("popup").style.display = "flex";
+        // tranzakció adat törlése
+        localStorage.removeItem("txData");
     
+        document.getElementById("popup").style.display = "flex";
     });
     
+    // ===== OK GOMB =====
     document.getElementById("okBtn").addEventListener("click", function () {
         window.location.href = "../Portfolio/portfolio.html";
     });

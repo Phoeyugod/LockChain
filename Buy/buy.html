@@ -74,33 +74,108 @@
       localStorage.setItem("wallet", JSON.stringify(wallet));
   }
   
-  // ===== USD KIÍRÁS =====
+  // USD egyenleg kiírás
   document.getElementById("usdBalance").textContent =
-      wallet.usd.toFixed(2);
+      Number(wallet.usd).toFixed(2);
   
   // ===== COIN ÁRAK =====
   const coins = {
-      NRVX: { price: 244 },
-      AXLX: { price: 395 }
+      NRVX: { price: 2440 },
+      AXLX: { price: 3950 }
   };
   
-  let selected = 'NRVX';
+  let selected = "NRVX";
+  
+  // ===== DROPDOWN =====
+  function toggleDropdown() {
+      document.getElementById("dropdown").classList.toggle("open");
+  }
+  
+  function selectCoin(symbol) {
+  
+      selected = symbol;
+  
+      document.getElementById("selectedCoin").innerText =
+          symbol === "NRVX"
+              ? "Narvex (NRVX)"
+              : "Axolux (AXLX)";
+  
+      document.querySelectorAll(".dropdown-item")
+          .forEach(i => i.classList.remove("active"));
+  
+      const items = document.querySelectorAll(".dropdown-item");
+      items.forEach(item => {
+          if (item.innerText.includes(symbol)) {
+              item.classList.add("active");
+          }
+      });
+  
+      toggleDropdown();
+      updateUSD();
+  }
   
   // ===== USD SZÁMÍTÁS =====
   function updateUSD() {
-      const v = parseFloat(document.getElementById('amount').value) || 0;
-      document.getElementById('usd').textContent =
-          (v * coins[selected].price).toFixed(2);
+  
+      const amount =
+          Number(document.getElementById("amount").value) || 0;
+  
+      const usdValue =
+          amount * coins[selected].price;
+  
+      document.getElementById("usd").textContent =
+          usdValue.toFixed(2);
+  }
+  
+  document.getElementById("amount")
+      .addEventListener("input", updateUSD);
+  
+  // ===== FEE =====
+  function updateFee(value) {
+      document.getElementById("fee").innerText =
+          Number(value).toFixed(2);
+  }
+  
+  // ===== MAX =====
+  function setMax() {
+  
+      const fee =
+          Number(document.getElementById("fee").innerText);
+  
+      const maxUsd = wallet.usd - fee;
+  
+      if (maxUsd <= 0) {
+          alert("Nincs elég USD a díj levonása után.");
+          return;
+      }
+  
+      const maxCoin =
+          maxUsd / coins[selected].price;
+  
+      document.getElementById("amount").value =
+          maxCoin.toFixed(6);
+  
+      updateUSD();
   }
   
   // ===== CONFIRM =====
   function goToConfirm() {
   
-      const amount = parseFloat(document.getElementById('amount').value) || 0;
-      const coin = selected;
-      const usd = amount * coins[coin].price;
-      const feeValue = parseFloat(document.getElementById('fee').textContent);
-      const totalCost = usd + feeValue;
+      const amount =
+          Number(document.getElementById("amount").value);
+  
+      if (!amount || amount <= 0) {
+          alert("Adj meg érvényes mennyiséget!");
+          return;
+      }
+  
+      const usd =
+          amount * coins[selected].price;
+  
+      const fee =
+          Number(document.getElementById("fee").innerText);
+  
+      const totalCost = usd + fee;
   
       if (totalCost > wallet.usd) {
           alert("Nincs elegendő USD egyenleged!");
@@ -109,21 +184,18 @@
   
       const txData = {
           type: "buy",
-          amount: amount,
-          symbol: coin,
-          usd: usd,
-          fee: feeValue
+          amount: Number(amount),
+          symbol: selected,
+          usd: Number(usd),
+          fee: Number(fee),
+          total: Number(totalCost)
       };
   
-      localStorage.setItem('txData', JSON.stringify(txData));
-      window.location.href = '../Send/confirm.html';
+      localStorage.setItem("txData", JSON.stringify(txData));
+  
+      window.location.href = "../Send/confirm.html";
   }
   
-  document.getElementById('amount').addEventListener('input', updateUSD);
-  
   </script>
-  
-  
-  
 </body>
 </html>

@@ -80,6 +80,7 @@
         localStorage.setItem("wallet", JSON.stringify(wallet));
     }
     
+    // ===== COIN PRICES =====
     const coins = {
         NRVX: { price: 244 },
         AXLX: { price: 395 }
@@ -87,9 +88,63 @@
     
     let selected = 'NRVX';
     
+    // ===== DROPDOWN =====
+    function toggleDropdown() {
+        document.getElementById("dropdown").classList.toggle("open");
+    }
+    
+    function selectCoin(symbol) {
+    
+        selected = symbol;
+    
+        // cím frissítés
+        document.getElementById("selectedCoin").innerText =
+            symbol === "NRVX" ? "Narvex (NRVX)" : "Axolux (AXLX)";
+    
+        // active class váltás
+        document.querySelectorAll(".dropdown-item")
+            .forEach(item => item.classList.remove("active"));
+    
+        event.target.closest(".dropdown-item").classList.add("active");
+    
+        toggleDropdown();
+        updateUSD();
+    }
+    
+    // ===== USD SZÁMOLÁS =====
+    document.getElementById("amount").addEventListener("input", updateUSD);
+    
+    function updateUSD() {
+        const amount = parseFloat(document.getElementById("amount").value) || 0;
+        const usdValue = amount * coins[selected].price;
+    
+        document.getElementById("usd").innerText =
+            usdValue.toFixed(2);
+    }
+    
+    // ===== MAX =====
+    function setMax() {
+        document.getElementById("amount").value =
+            wallet[selected].toFixed(4);
+    
+        updateUSD();
+    }
+    
+    // ===== FEE SLIDER =====
+    function updateFee(value) {
+        document.getElementById("fee").innerText =
+            parseFloat(value).toFixed(2);
+    }
+    
+    // ===== CONFIRM =====
     function goToConfirm() {
     
         const amount = parseFloat(document.getElementById("amount").value) || 0;
+    
+        if (amount <= 0) {
+            alert("Adj meg mennyiséget!");
+            return;
+        }
     
         if (amount > wallet[selected]) {
             alert("Nincs ennyi coinod!");
@@ -97,12 +152,16 @@
         }
     
         const txData = {
-            type: "send",
-            amount: amount,
-            symbol: selected
-        };
+    type: "send",
+    amount: amount,
+    symbol: selected,
+    usdValue: amount * coins[selected].price,
+    fee: parseFloat(document.getElementById("fee").innerText),
+    address: document.getElementById("address").value
+};
     
         localStorage.setItem("txData", JSON.stringify(txData));
+    
         window.location.href = "confirm.html";
     }
     
