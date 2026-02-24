@@ -9,81 +9,86 @@
 
 <body>
 
-  <header>
-    <a href="/Portfolio/portfolio.html" ><button id="Hportfolio"><h2 id="PortfolioSz">Portfólió</h2></button> </a>
-    <a href="/Beallitasok/Beallitasok.html"><img id="beallitaskep" src="/Képek/Beállítások.png" alt="beállítások"></a>
-    <a href="/Malacpersely/malacpersely.html"><img id="malacperselykep" src="/Képek/malackep.png" alt="Malacperselykep"></a> 
- </header>
+<header>
+  <a href="/Portfolio/portfolio.html"><button id="Hportfolio"><h2 id="PortfolioSz">Portfólió</h2></button></a>
+  <a href="/Beallitasok/Beallitasok.html"><img id="beallitaskep" src="/Képek/Beállítások.png"></a>
+  <a href="/Malacpersely/malacpersely.html"><img id="malacperselykep" src="/Képek/malackep.png"></a> 
+</header>
 
-  <!-- ===== PORTFOLIO CARD ===== -->
-  <div class="portfolio-card">
-    <div class="portfolio-top">
+<div class="portfolio-card">
+  <div class="portfolio-top">
+    <div>
+      <div class="label">Total Portfólió Egyenleg</div>
+
+      <div class="balance">
+        <div class="total-balance">
+          <h2 id="totalPortfolio"></h2>
+        </div>
+      </div>
+
+      <!-- STATISZTIKA -->
+      <div class="portfolio-stats">
+        <div class="stat-row">
+          <span>USD</span>
+          <span id="usdStat"></span>
+        </div>
+        <div class="stat-row">
+          <span>Axolux (AXLX)</span>
+          <span id="axlxStat"></span>
+        </div>
+        <div class="stat-row">
+          <span>Narvex (NRVX)</span>
+          <span id="nrvxStat"></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="action" onclick="window.location.href='../Send/send.html'">✈️ Küldés</button>
+    <button class="action" onclick="window.location.href='../CryptoFogadas/fogadas.html'">⬇️ Fogadás</button>
+    <button class="action" onclick="window.location.href='../Buy/buy.html'">$ Vásárlás</button>
+    <button class="action" onclick="window.location.href='../Sell/sell.html'">$ Eladás</button>
+  </div>
+</div>
+
+<!-- ASSET LIST -->
+<div class="asset-list">
+
+  <div class="asset" onclick="window.location.href='../Axolux/anolux.html'">
+    <div class="asset-left">
+      <div class="icon axlux"></div>
       <div>
-        <div class="label">Total Portfólió Egyenleg</div>
-        <div class="balance">
-          <div class="total-balance">
-            <h2 id="totalPortfolio"></h2>
-          </div>
-          <span class="change positive"></span>
-        </div>
+        <div class="name">Axolux <span>AXLX</span></div>
+        <div class="amount" id="axlxAmount"></div>
       </div>
-    </div>   
-
-    <div class="actions" class="akcio-gomb">
-      <button class="action" onclick="window.location.href='../Send/send.html'">
-        <span>✈️</span>
-        Küldés
-      </button>
-     <button class="action" onclick="window.location.href='../CryptoFogadas/fogadas.html'">
-        <span>⬇️</span>
-        Fogadás
-      </button>
-      <button class="action" onclick="window.location.href='../Buy/buy.html'">
-        <span>$</span>
-        Vásárlás
-      </button>
-      <button class="action" onclick="window.location.href='../Sell/sell.html'">$ Eladás</button>
-        <span></span>
-        
-      </button>
+    </div>
+    <div class="asset-right">
+      <div class="price" id="axlxPrice"></div>
+      <div class="percent positive">+5.23%</div>
     </div>
   </div>
 
-  <!-- ===== ASSET LIST ===== -->
-  <div class="asset-list">
-
-    <div class="asset" onclick="window.location.href='../Axolux/anolux.html'">
-      <div class="asset-left">
-        <div class="icon axlux"></div>
-        <div>
-          <div class="name">Axolux <span>AXLX</span></div>
-          <div class="amount" id="axlxAmount"></div>
-        </div>
-      </div>
-      <div class="asset-right">
-        <div class="price" id="axlxPrice"></div>
-        <div class="percent positive">+5.23%</div>
+  <div class="asset" onclick="window.location.href='../Narvex/narvex.html'">
+    <div class="asset-left">
+      <div class="icon narvex"></div>
+      <div>
+        <div class="name">Narvex <span>NRVX</span></div>
+        <div class="amount" id="nrvxAmount"></div>
       </div>
     </div>
-  
-    <div class="asset" onclick="window.location.href='../Narvex/narvex.html'">
-      <div class="asset-left">
-        <div class="icon narvex"></div>
-        <div>
-          <div class="name">Narvex <span>NRVX</span></div>
-          <div class="amount" id="nrvxAmount"></div>
-        </div>
-      </div>
-      <div class="asset-right">
-        <div class="price" id="nrvxPrice"></div>
-        <div class="percent negative">-2.15%</div>
-      </div>
+    <div class="asset-right">
+      <div class="price" id="nrvxPrice"></div>
+      <div class="percent negative">-2.15%</div>
     </div>
-  
   </div>
-  <script>
 
-    // ===== WALLET BETÖLTÉS =====
+</div>
+
+<script>
+
+// ===== WALLET =====
 function getWallet(){
   let wallet = JSON.parse(localStorage.getItem("wallet"));
 
@@ -99,7 +104,7 @@ function getWallet(){
   return wallet;
 }
 
-// Demo árak
+// ===== DEMO ÁRAK =====
 const prices = {
   AXLX: 3950,
   NRVX: 2440
@@ -109,51 +114,55 @@ function updatePortfolio(){
 
   const wallet = getWallet();
 
-  // AXLX
-  const axlxAmount = wallet.AXLX;
-  const axlxValue = axlxAmount * prices.AXLX;
+  const axlxValue = wallet.AXLX * prices.AXLX;
+  const nrvxValue = wallet.NRVX * prices.NRVX;
 
+  // ===== TOTAL =====
+  const total = wallet.usd + axlxValue + nrvxValue;
+
+  document.getElementById("totalPortfolio").textContent =
+    "$" + total.toLocaleString(undefined,{
+      minimumFractionDigits:2,
+      maximumFractionDigits:2
+    });
+
+  // ===== STAT =====
+  document.getElementById("usdStat").textContent =
+    "$" + wallet.usd.toLocaleString(undefined,{minimumFractionDigits:2});
+
+  document.getElementById("axlxStat").textContent =
+    wallet.AXLX.toFixed(3) + 
+    " AXLX ($" + axlxValue.toLocaleString(undefined,{maximumFractionDigits:2}) + ")";
+
+  document.getElementById("nrvxStat").textContent =
+    wallet.NRVX.toFixed(3) + 
+    " NRVX ($" + nrvxValue.toLocaleString(undefined,{maximumFractionDigits:2}) + ")";
+
+  // ===== ASSET LIST FRISSÍTÉS =====
   document.getElementById("axlxAmount").textContent =
-    axlxAmount.toFixed(3) + " AXLX";
+    wallet.AXLX.toFixed(3) + " AXLX";
 
   document.getElementById("axlxPrice").textContent =
-    "$" + axlxValue.toLocaleString(undefined, {maximumFractionDigits: 2});
-
-  // NRVX
-  const nrvxAmount = wallet.NRVX;
-  const nrvxValue = nrvxAmount * prices.NRVX;
+    "$" + axlxValue.toLocaleString(undefined,{maximumFractionDigits:2});
 
   document.getElementById("nrvxAmount").textContent =
-    nrvxAmount.toFixed(3) + " NRVX";
+    wallet.NRVX.toFixed(3) + " NRVX";
 
   document.getElementById("nrvxPrice").textContent =
-    "$" + nrvxValue.toLocaleString(undefined, {maximumFractionDigits: 2});
-
-// --- TOTAL ---
-const total =
-  wallet.usd +
-  axlxValue +
-  nrvxValue;
-
-document.getElementById("totalPortfolio").textContent =
-  "$" + total.toLocaleString(undefined, {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-  });
-    
+    "$" + nrvxValue.toLocaleString(undefined,{maximumFractionDigits:2});
 }
 
-// első betöltés
+// Első betöltés
 updatePortfolio();
 
-// ha másik tabon változik
+// Ha másik oldalon változik
 window.addEventListener("storage", function(e){
   if(e.key === "wallet"){
     updatePortfolio();
   }
 });
-    </script>
-    
-    
+
+</script>
+
 </body>
 </html>

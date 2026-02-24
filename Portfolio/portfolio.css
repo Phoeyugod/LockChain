@@ -245,4 +245,22 @@ header{
     font-size: 13px;
     margin-top: 2px;
   }
+  .portfolio-stats{
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,.25);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
   
+  .stat-row{
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    opacity: .9;
+  }
+  
+  .stat-row span:last-child{
+    font-weight: 500;
+  }
