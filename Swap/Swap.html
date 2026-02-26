@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coin Csere</title>
+<link rel="stylesheet" href="../Send/send.css">
+</head>
+
+<body>
+<div class="page-wrap">
+<div class="wallet-card">
+<div class="container">
+
+    <!-- FROM -->
+    <div class="card">
+        <div style="font-size:14px; opacity:.7;">Cserélsz</div>
+        <div style="font-size:18px; font-weight:600;">
+            Elérhető: <span id="fromBalance"></span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="dropdown" id="fromDropdown">
+            <button class="dropdown-btn" onclick="toggleDropdown('from')">
+                <span id="fromCoinLabel">Narvex (NRVX)</span>
+                <span>▾</span>
+            </button>
+            <div class="dropdown-menu">
+                <div class="dropdown-item active" onclick="selectCoin('from','NRVX')">Narvex <span>NRVX</span></div>
+                <div class="dropdown-item" onclick="selectCoin('from','AXLX')">Axolux <span>AXLX</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AMOUNT -->
+    <div class="card">
+        <div class="input-group">
+            <input type="number" id="fromAmount" placeholder="0.0">
+            <button onclick="setMax()">Max</button>
+        </div>
+    </div>
+
+    <!-- ARROW -->
+    <div style="text-align:center; font-size:22px;">⇅</div>
+
+    <!-- TO -->
+    <div class="card">
+        <div style="font-size:14px; opacity:.7;">Kapod</div>
+        <div style="font-size:18px; font-weight:600;">
+            ≈ <span id="toAmount">0.0000</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="dropdown" id="toDropdown">
+            <button class="dropdown-btn" onclick="toggleDropdown('to')">
+                <span id="toCoinLabel">Axolux (AXLX)</span>
+                <span>▾</span>
+            </button>
+            <div class="dropdown-menu">
+                <div class="dropdown-item active" onclick="selectCoin('to','AXLX')">Axolux <span>AXLX</span></div>
+                <div class="dropdown-item" onclick="selectCoin('to','NRVX')">Narvex <span>NRVX</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GOMB -->
+    <button class="submit-btn" onclick="goToConfirm()">Csere Ellenőrzése</button>
+
+</div>
+</div>
+</div>
+
+<script>
+
+// ===== WALLET =====
+let wallet = JSON.parse(localStorage.getItem("wallet"));
+
+if (!wallet) {
+    wallet = { usd:10000, AXLX:5, NRVX:5 };
+    localStorage.setItem("wallet", JSON.stringify(wallet));
+}
+
+// ===== ÁRAK =====
+const prices = {
+    NRVX: 244,
+    AXLX: 395
+};
+
+let fromCoin = "NRVX";
+let toCoin = "AXLX";
+
+// ===== BALANCE =====
+function updateBalance(){
+    document.getElementById("fromBalance").innerText =
+        wallet[fromCoin].toFixed(4) + " " + fromCoin;
+}
+updateBalance();
+
+// ===== DROPDOWN =====
+function toggleDropdown(type){
+    document.getElementById(type+"Dropdown")
+        .classList.toggle("open");
+}
+
+function selectCoin(type, symbol){
+
+    if(type === "from") fromCoin = symbol;
+    if(type === "to") toCoin = symbol;
+
+    if(fromCoin === toCoin){
+        alert("Nem lehet ugyanarra a coinra cserélni!");
+        return;
+    }
+
+    document.getElementById(type+"CoinLabel").innerText =
+        (symbol === "NRVX" ? "Narvex (NRVX)" : "Axolux (AXLX)");
+
+    document.querySelectorAll("#"+type+"Dropdown .dropdown-item")
+        .forEach(i=>i.classList.remove("active"));
+
+    event.target.closest(".dropdown-item")
+        .classList.add("active");
+
+    toggleDropdown(type);
+    updateBalance();
+    calculateSwap();
+}
+
+// ===== SZÁMOLÁS =====
+function calculateSwap(){
+
+    const amount =
+        Number(document.getElementById("fromAmount").value) || 0;
+
+    const usdValue =
+        amount * prices[fromCoin];
+
+    const receive =
+        usdValue / prices[toCoin];
+
+    document.getElementById("toAmount").innerText =
+        receive.toFixed(6) + " " + toCoin;
+}
+
+document.getElementById("fromAmount")
+    .addEventListener("input", calculateSwap);
+
+// ===== MAX =====
+function setMax(){
+    document.getElementById("fromAmount").value =
+        wallet[fromCoin].toFixed(6);
+    calculateSwap();
+}
+
+// ===== CONFIRM =====
+function goToConfirm(){
+
+    const amount =
+        Number(document.getElementById("fromAmount").value);
+
+    if(amount <= 0){
+        alert("Adj meg mennyiséget!");
+        return;
+    }
+
+    if(amount > wallet[fromCoin]){
+        alert("Nincs elég coinod!");
+        return;
+    }
+
+    const usdValue = amount * prices[fromCoin];
+    const receive = usdValue / prices[toCoin];
+
+    const txData = {
+        type:"swap",
+        from: fromCoin,
+        to: toCoin,
+        amount: amount,
+        receive: receive
+    };
+
+    localStorage.setItem("txData", JSON.stringify(txData));
+
+    window.location.href="../Send/confirm.html";
+}
+
+</script>
+
+</body>
+</html>

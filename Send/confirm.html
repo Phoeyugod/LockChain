@@ -113,6 +113,17 @@
             wallet[tx.symbol] += tx.amount;
         }
     
+        if (tx.type === "swap") {
+
+        if (wallet[tx.from] < tx.amount) {
+            alert("Nincs elegendő coin!");
+            return;
+        }
+
+        wallet[tx.from] -= tx.amount;
+        wallet[tx.to] += tx.receive;
+        }
+
         if (tx.type === "send") {
     
             if (wallet[tx.symbol] < tx.amount) {
@@ -125,16 +136,17 @@
     
         localStorage.setItem("wallet", JSON.stringify(wallet));
     
-        // tranzakció adat törlése
+        
         localStorage.removeItem("txData");
     
         document.getElementById("popup").style.display = "flex";
     });
     
-    // ===== OK GOMB =====
+   
     document.getElementById("okBtn").addEventListener("click", function () {
         window.location.href = "../Portfolio/portfolio.html";
     });
+    
     
     </script>
     
