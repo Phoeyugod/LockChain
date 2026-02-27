@@ -131,4 +131,124 @@
       </main>
 
 </body>
+<script>
+
+  // ===== WALLET KEZELÉS =====
+  function getWallet(){
+    let wallet = JSON.parse(localStorage.getItem("wallet"));
+    if(!wallet){
+      wallet = { usd:10000, AXLX:5, NRVX:5 };
+      localStorage.setItem("wallet", JSON.stringify(wallet));
+    }
+    return wallet;
+  }
+  
+  function saveWallet(wallet){
+    localStorage.setItem("wallet", JSON.stringify(wallet));
+  }
+  
+  // ===== MALACPERSLEY ADAT =====
+  function getPiggy(){
+    let piggy = JSON.parse(localStorage.getItem("piggy"));
+    if(!piggy){
+      piggy = {
+        AXLX: 0
+      };
+      localStorage.setItem("piggy", JSON.stringify(piggy));
+    }
+    return piggy;
+  }
+  
+  function savePiggy(piggy){
+    localStorage.setItem("piggy", JSON.stringify(piggy));
+  }
+  
+  
+  const AXLX_PRICE = 3950;
+  
+  
+  function updatePiggyUI(){
+  
+    const piggy = getPiggy();
+  
+    const usdValue = piggy.AXLX * AXLX_PRICE;
+  
+    document.querySelector(".teljes-megtakaritas .ertek").textContent =
+      piggy.AXLX.toFixed(4) + " AXLX";
+  
+    document.querySelector(".teljes-megtakaritas .usd").textContent =
+      "$" + usdValue.toLocaleString(undefined,{maximumFractionDigits:2});
+  }
+  
+  updatePiggyUI();
+  
+  
+  
+  document.querySelector(".befizetes").addEventListener("click", function(){
+  
+    const input = this.closest(".mini-kartya")
+      .querySelector("input");
+  
+    const amount = parseFloat(input.value.replace(",", "."));
+  
+    if(!amount || amount <= 0){
+      alert("Adj meg érvényes összeget!");
+      return;
+    }
+  
+    const wallet = getWallet();
+    const piggy = getPiggy();
+  
+    if(wallet.AXLX < amount){
+      alert("Nincs elég AXLX coinod!");
+      return;
+    }
+  
+    wallet.AXLX -= amount;
+    piggy.AXLX += amount;
+  
+    saveWallet(wallet);
+    savePiggy(piggy);
+  
+    input.value = "";
+    updatePiggyUI();
+  
+    alert("Sikeres befizetés!");
+  });
+  
+  
+  
+  document.querySelector(".jovairas").addEventListener("click", function(){
+  
+    const input = this.closest(".mini-kartya")
+      .querySelector("input");
+  
+    const amount = parseFloat(input.value.replace(",", "."));
+  
+    if(!amount || amount <= 0){
+      alert("Adj meg érvényes összeget!");
+      return;
+    }
+  
+    const wallet = getWallet();
+    const piggy = getPiggy();
+  
+    if(piggy.AXLX < amount){
+      alert("Nincs ennyi a malacperselyben!");
+      return;
+    }
+  
+    piggy.AXLX -= amount;
+    wallet.AXLX += amount;
+  
+    saveWallet(wallet);
+    savePiggy(piggy);
+  
+    input.value = "";
+    updatePiggyUI();
+  
+    alert("Sikeres jóváírás!");
+  });
+  
+  </script>
 </html>
