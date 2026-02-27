@@ -17,44 +17,92 @@
   
         <!-- Fülek -->
         <div class="ful-sor">
-          <button class="ful-gomb aktiv" type="button" data-tab="kinezet">Kinézet</button>
-          <button class="ful-gomb" type="button" data-tab="tarca">Tárca</button>
-          <button class="ful-gomb" type="button" data-tab="vedelem">Védelem</button>
-          <button class="ful-gomb" type="button" data-tab="rolunk">Rólunk</button>
+
+          <button class="ful-gomb aktiv"
+                  type="button"
+                  data-tab="kinezet"
+                  data-hu="Kinézet"
+                  data-en="Appearance">
+            Kinézet
+          </button>
+        
+          <button class="ful-gomb"
+                  type="button"
+                  data-tab="tarca"
+                  data-hu="Tárca"
+                  data-en="Wallet">
+            Tárca
+          </button>
+        
+          <button class="ful-gomb"
+                  type="button"
+                  data-tab="vedelem"
+                  data-hu="Védelem"
+                  data-en="Security">
+            Védelem
+          </button>
+        
+          <button class="ful-gomb"
+                  type="button"
+                  data-tab="rolunk"
+                  data-hu="Rólunk"
+                  data-en="About">
+            Rólunk
+          </button>
+        
         </div>
   
         <!-- TAB: Kinézet -->
         <div id="tab-kinezet" class="tab-tartalom aktiv">
-  
+
           <div class="panel">
-            <div class="szekcio-cim">Témák</div>
-  
+            <div class="szekcio-cim"
+                 data-hu="Témák"
+                 data-en="Themes">Témák</div>
+        
             <div class="tema-racs">
+        
               <div id="temaVilagos" class="tema-kartya" role="button" tabindex="0">
                 <div class="tema-jel"></div>
                 <div class="tema-minta vilagos"></div>
-                <div class="tema-felirat">Világos</div>
+                <div class="tema-felirat"
+                     data-hu="Világos"
+                     data-en="Light">Világos</div>
               </div>
-  
+        
               <div id="temaSotet" class="tema-kartya aktiv" role="button" tabindex="0">
                 <div class="tema-jel"></div>
                 <div class="tema-minta sotet"></div>
-                <div class="tema-felirat">Sötét</div>
+                <div class="tema-felirat"
+                     data-hu="Sötét"
+                     data-en="Dark">Sötét</div>
               </div>
+        
             </div>
           </div>
-  
+        
           <div class="panel">
             <div class="sor">
-              <div class="sor-cim">Betű méret</div>
+              <div class="sor-cim"
+                   data-hu="Betű méret"
+                   data-en="Font size">Betű méret</div>
+        
               <select id="betuMeretValaszto" class="valaszto">
-                <option value="kicsi">Kicsi</option>
-                <option value="kozepes" selected>Közepes</option>
-                <option value="nagy">Nagy</option>
+                <option value="kicsi"
+                        data-hu="Kicsi"
+                        data-en="Small">Kicsi</option>
+        
+                <option value="kozepes" selected
+                        data-hu="Közepes"
+                        data-en="Medium">Közepes</option>
+        
+                <option value="nagy"
+                        data-hu="Nagy"
+                        data-en="Large">Nagy</option>
               </select>
             </div>
           </div>
-  
+        
         </div>
   
         <!-- TAB: Tárca -->

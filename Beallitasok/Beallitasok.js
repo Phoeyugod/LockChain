@@ -312,4 +312,38 @@ window.setSzovegek = function(lang){
       ? elems[i].getAttribute('data-en')
       : elems[i].getAttribute('data-hu');
   }
+
+  window.setSzovegek = function(lang){
+    var elems = document.querySelectorAll('[data-hu][data-en]');
+  
+    for (var i = 0; i < elems.length; i++){
+      var ujSzoveg =
+        (lang === 'en')
+        ? elems[i].getAttribute('data-en')
+        : elems[i].getAttribute('data-hu');
+  
+      if (elems[i].tagName.toLowerCase() === 'option') {
+        elems[i].text = ujSzoveg;
+      } else {
+        elems[i].innerHTML = ujSzoveg;
+      }
+    }
+  };
+
+  window.setSzovegek = function(lang){
+    var elems = document.querySelectorAll('[data-hu][data-en]');
+  
+    for (var i = 0; i < elems.length; i++){
+      var ujSzoveg =
+        (lang === 'en')
+        ? elems[i].getAttribute('data-en')
+        : elems[i].getAttribute('data-hu');
+  
+      if (elems[i].tagName.toLowerCase() === 'option') {
+        elems[i].text = ujSzoveg;
+      } else {
+        elems[i].innerHTML = ujSzoveg;
+      }
+    }
+  };
 };
