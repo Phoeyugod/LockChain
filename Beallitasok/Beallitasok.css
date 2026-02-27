@@ -547,3 +547,73 @@ body {
 .pin-megse:hover{
   background: rgba(255,255,255,0.10);
 }
+/* ===== Rólunk fül ===== */
+#tab-rolunk{
+  text-align: center;
+}
+.rolunk-kartya{
+  padding: 22px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(0,0,0,0.12);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+  margin-bottom: 22px;
+  width: 70%;
+}
+
+.rolunk-kartya.kozep{
+  text-align: center;
+  width: 70%;
+}
+
+
+.rolunk-cim{
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 18px;
+  text-align: center;
+  color: rgba(255,255,255,0.95);
+}
+
+.rolunk-alcim{
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: rgba(255,255,255,0.92);
+}
+
+.rolunk-szoveg{
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.75);
+}
+
+.rolunk-kisblokk{
+  margin-top: 22px;
+}
+
+.rolunk-kis-szoveg{
+  font-size: 12px;
+  color: rgba(255,255,255,0.60);
+}
+
+.rolunk-lablec{
+  margin-top: 16px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.55);
+}
+/* ===== CSAK A RÓLUNK FÜL JAVÍTÁSA ===== */
+
+#tab-rolunk{
+  width: 100%;
+}
+
+#tab-rolunk .panel{
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+#tab-rolunk .rolunk-kartya{
+  max-width: 750px;
+  margin: 20px auto;
+}

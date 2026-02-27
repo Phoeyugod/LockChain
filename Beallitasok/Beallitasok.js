@@ -304,3 +304,12 @@
 })();
 
 })();
+window.setSzovegek = function(lang){
+  var elems = document.querySelectorAll('[data-hu][data-en]');
+  for (var i=0; i<elems.length; i++){
+    elems[i].innerHTML =
+      (lang === 'en')
+      ? elems[i].getAttribute('data-en')
+      : elems[i].getAttribute('data-hu');
+  }
+};
