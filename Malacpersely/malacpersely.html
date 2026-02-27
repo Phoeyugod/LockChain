@@ -17,14 +17,14 @@
     
     <main class="tartalom">
 
-        <!-- ===== Fejléc rész: ikon + cím + alcím ===== -->
+        
         <header class="fejlec">
             <img id="malackep" src="/Képek/malackep.png" alt="Malacpersely">
           <h1 class="cim">Malacpersely</h1>
           <p class="alcim">Automatikus megtakarítások kriptoportfóliójának bővítéséhez</p>
         </header>
     
-        <!-- ===== Teljes megtakarítás ===== -->
+        
         <section class="teljes-megtakaritas" aria-label="Teljes megtakarítás">
           <div class="felirat">Teljes megtakarítás</div>
     
@@ -36,7 +36,7 @@
           <div class="usd"></div>
         </section>
     
-        <!-- ===== Engedélyezés kártya ===== -->
+        
         <section class="kartya szekcio">
           <div class="szekcio-fej">
             <div>
@@ -52,7 +52,7 @@
           </div>
         </section>
     
-        <!-- ===== Kerekítés kártya ===== -->
+        
         <section class="kartya szekcio">
           <div class="szekcio-fej">
             <div>
@@ -73,7 +73,7 @@
           </div>
         </section>
     
-        <!-- ===== Időszakos kártya ===== -->
+        
         <section class="kartya szekcio">
           <div class="szekcio-fej">
             <div>
@@ -105,7 +105,7 @@
           </div>
         </section>
     
-        <!-- ===== Alsó műveletek ===== -->
+        
         <section class="also-racs" aria-label="Műveletek">
           <div class="kartya mini-kartya">
             <h2 class="mini-cim">Befizetés</h2>
@@ -133,7 +133,7 @@
 </body>
 <script>
 
-  // ===== WALLET KEZELÉS =====
+  
   function getWallet(){
     let wallet = JSON.parse(localStorage.getItem("wallet"));
     if(!wallet){
@@ -147,7 +147,7 @@
     localStorage.setItem("wallet", JSON.stringify(wallet));
   }
   
-  // ===== MALACPERSLEY ADAT =====
+  
   function getPiggy(){
     let piggy = JSON.parse(localStorage.getItem("piggy"));
     if(!piggy){
@@ -166,7 +166,7 @@
   
   const AXLX_PRICE = 3950;
   
-  // ===== TELJES MEGTAKARÍTÁS FRISSÍTÉS =====
+  
   function updatePiggyUI(){
   
     const piggy = getPiggy();
