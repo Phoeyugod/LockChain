@@ -369,3 +369,84 @@
         color: rgba(255,255,255,.92);
         border: 1px solid rgba(255,255,255,.14);
       }
+
+      /* ===== Vissza nyíl ===== */
+.vissza-gomb{
+  position: fixed;
+  top: 20px;
+  left: 20px;
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.14);
+
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(6px);
+
+  color: rgba(255,255,255,0.9);
+  text-decoration: none;
+  font-size: 22px;
+  line-height: 42px;
+  text-align: center;
+
+  cursor: pointer;
+  z-index: 999;
+
+  box-shadow: 0 10px 20px rgba(0,0,0,0.35);
+  transition: all 0.2s ease;
+}
+
+.vissza-gomb:hover{
+  background: rgba(0,0,0,0.35);
+  border-color: rgba(0, 198, 212, 0.55);
+  color: #00c6d4;
+
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.45);
+}
+
+.vissza-gomb:active{
+  transform: scale(0.95);
+}
+/* ===== Vissza nyíl ===== */
+.vissza-gomb{
+  position: fixed;
+  top: 20px;
+  left: 20px;
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.14);
+
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(6px);
+
+  color: rgba(255,255,255,0.9);
+  text-decoration: none;
+  font-size: 22px;
+  line-height: 42px;
+  text-align: center;
+
+  cursor: pointer;
+  z-index: 999;
+
+  box-shadow: 0 10px 20px rgba(0,0,0,0.35);
+  transition: all 0.2s ease;
+}
+
+.vissza-gomb:hover{
+  background: rgba(0,0,0,0.35);
+  border-color: rgba(0, 198, 212, 0.55);
+  color: #00c6d4;
+
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.45);
+}
+
+.vissza-gomb:active{
+  transform: scale(0.95);
+}
