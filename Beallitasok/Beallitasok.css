@@ -2,6 +2,8 @@
  html, body { height: 100%; }
 
 body {
+ height: 100%;
+  min-height: 100vh;
   margin: 0;
   font-family: "Segoe UI", Arial, sans-serif;
   color: #ffffff;
@@ -22,6 +24,8 @@ body {
   min-height: 100vh;   /* IE11-ben is ok */
   width: 100%;
   padding: 22px;
+  height: 100%;
+
 
   /* háttér innen kikerül */
   background: transparent;
@@ -616,4 +620,132 @@ body {
 #tab-rolunk .rolunk-kartya{
   max-width: 750px;
   margin: 20px auto;
+}
+
+/*Világos téma*/
+body.tema-vilagos {   
+
+  height: 100%;
+   min-height: 100vh;
+  margin: 0;
+  color: #000000;
+
+  background: linear-gradient(
+    to bottom right,
+    #e0ebf2,
+    #b8bfdc,
+    #8c85cf,
+    #6f63c7
+    
+  );
+  background-attachment: fixed;
+}
+
+body.tema-vilagos .panel,
+body.tema-vilagos .beallitas-sor,
+body.tema-vilagos .nyelv-kartya,
+body.tema-vilagos .bizt-kartya,
+body.tema-vilagos .rolunk-kartya {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+body.tema-vilagos .alcim,
+body.tema-vilagos .sor-leiras,
+body.tema-vilagos .bizt-leiras {
+  color: rgba(0,0,0,0.6);
+}
+body.tema-vilagos * {
+  color: #1d1b1b !important;
+}
+body.tema-vilagos .ful-sor {
+  background: rgba(255,255,255,0.4);
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+body.tema-vilagos .ful-gomb {
+  color: rgba(0,0,0,0.7);
+}
+
+body.tema-vilagos .ful-gomb.aktiv {
+  background: rgba(0,0,0,0.08);
+  color: #000;
+}
+body.tema-vilagos .valaszto {
+  background: rgba(255,255,255,0.6);
+  color: #000;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+body.tema-vilagos .beallitas-sor:hover,
+body.tema-vilagos .bizt-kartya:hover {
+  background: rgba(255,255,255,0.75);
+}
+body.tema-vilagos .kapcsolo {
+  background: rgba(0,0,0,0.15);
+  border: 1px solid rgba(0,0,0,0.2);
+}
+body.tema-vilagos .kapcsolo.be {
+  background: linear-gradient(135deg, #00c6d4, #4facfe);
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 198, 212, 0.4);
+}
+body.tema-vilagos .kapcsolo .kapcsolo-gomb {
+  background: #ffffff;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+}
+body.tema-vilagos .kapcsolo:hover {
+  transform: scale(1.05);
+}
+body.tema-vilagos .kapcsolo:not(.be) {
+  background: rgba(0,0,0,0.2);
+}
+body.tema-vilagos .bizt-akcio,
+body.tema-vilagos .pin-popup-gomb {
+  background: linear-gradient(135deg, #b1b5db, #b8b0f0);
+  color: #fff;
+  border: none;
+  box-shadow: 0 6px 16px rgba(90, 100, 255, 0.3);
+}
+body.tema-vilagos .bizt-akcio:hover,
+body.tema-vilagos .pin-popup-gomb:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(90, 100, 255, 0.4);
+}
+body.tema-vilagos .pin-megse {
+  background: rgba(0,0,0,0.08);
+  color: #000;
+  border: 1px solid rgba(0,0,0,0.15);
+}
+body.tema-vilagos .pin-megse:hover {
+  background: rgba(0,0,0,0.15);
+}
+body.tema-vilagos .pin-mentes {
+  background: linear-gradient(135deg, #00c6d4, #4facfe);
+  box-shadow: 0 6px 16px rgba(0, 198, 212, 0.35);
+}
+body.tema-vilagos button {
+  transition: all 0.2s ease;
+  font-weight: 600;
+}
+body.tema-vilagos .nyelv-valaszto {
+  background: linear-gradient(135deg, #eef2ff, #dcd6f7);
+  border: 1px solid rgba(0,0,0,0.1);
+  color: #000;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+body.tema-vilagos .nyelv-valaszto:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+  background: linear-gradient(135deg, #e6ebff, #cfc7f5);
+}
+body.tema-vilagos .nyelv-lista {
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+body.tema-vilagos .nyelv-nyil {
+  color: rgba(0,0,0,0.7);
+  font-weight: bold;
 }

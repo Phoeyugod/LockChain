@@ -41,9 +41,16 @@
     function temaAktiv(vilagos) {
       temaVilagos.className = vilagos ? 'tema-kartya aktiv' : 'tema-kartya';
       temaSotet.className = vilagos ? 'tema-kartya' : 'tema-kartya aktiv';
-
-      // (Opcionális) Itt tudnád ténylegesen átállítani a témát:
-      // pl. body class, vagy külön CSS fájl csere.
+    
+      var body = document.body;
+    
+      if (vilagos) {
+        body.className += ' tema-vilagos';
+        body.className = body.className.replace('tema-sotet', '');
+      } else {
+        body.className += ' tema-sotet';
+        body.className = body.className.replace('tema-vilagos', '');
+      }
     }
 
     temaVilagos.onclick = function () { temaAktiv(true); };
