@@ -621,3 +621,178 @@ body {
   max-width: 750px;
   margin: 20px auto;
 }
+
+/* ===== VILÁGOS TÉMA FIX ===== */
+
+body.tema-vilagos {
+  color: #111 !important;
+
+  background:
+    radial-gradient(circle at 20% 30%, rgba(120,150,255,0.25), transparent 55%),
+    radial-gradient(circle at 80% 70%, rgba(170,120,255,0.25), transparent 55%),
+    linear-gradient(135deg, #e9f0ff 0%, #dcd6f7 50%, #c9d6ff 100%) !important;
+}
+
+/* ===== SZÖVEGEK ===== */
+body.tema-vilagos .focim,
+body.tema-vilagos .sor-cim,
+body.tema-vilagos .bizt-cim,
+body.tema-vilagos .rolunk-cim,
+body.tema-vilagos .rolunk-alcim {
+  color: #000 !important;
+}
+
+body.tema-vilagos .alcim,
+body.tema-vilagos .szekcio-cim,
+body.tema-vilagos .sor-leiras,
+body.tema-vilagos .bizt-leiras,
+body.tema-vilagos .rolunk-szoveg,
+body.tema-vilagos .rolunk-kis-szoveg,
+body.tema-vilagos .rolunk-lablec {
+  color: #444 !important;
+}
+
+/* ===== KÁRTYÁK ===== */
+body.tema-vilagos .panel,
+body.tema-vilagos .beallitas-sor,
+body.tema-vilagos .nyelv-kartya,
+body.tema-vilagos .bizt-kartya,
+body.tema-vilagos .rolunk-kartya {
+  background: rgba(255,255,255,0.85) !important;
+  border: 1px solid rgba(0,0,0,0.1) !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
+}
+
+/* ===== TAB ===== */
+body.tema-vilagos .ful-sor {
+  background: rgba(255,255,255,0.6) !important;
+  border: 1px solid rgba(0,0,0,0.1) !important;
+}
+
+body.tema-vilagos .ful-gomb {
+  color: rgba(0,0,0,0.7) !important;
+}
+
+body.tema-vilagos .ful-gomb.aktiv {
+  background: rgba(0,0,0,0.08) !important;
+  color: #000 !important;
+}
+
+/* ===== SELECT ===== */
+body.tema-vilagos .valaszto {
+  background: #fff !important;
+  color: #000 !important;
+  border: 1px solid rgba(0,0,0,0.2) !important;
+}
+
+/* ===== NYELV ===== */
+body.tema-vilagos .nyelv-valaszto {
+  background: #fff !important;
+  color: #000 !important;
+}
+
+body.tema-vilagos .nyelv-lista {
+  background: #fff !important;
+}
+
+/* ===== KAPCSOLÓ ===== */
+body.tema-vilagos .kapcsolo {
+  background: #ddd !important;
+}
+
+body.tema-vilagos .kapcsolo-gomb {
+  background: #333 !important;
+}
+
+/* ===== INPUT ===== */
+body.tema-vilagos .pin-popup {
+  background: rgba(255,255,255,0.95) !important;
+}
+
+body.tema-vilagos .pin-popup-input {
+  background: #fff !important;
+  color: #000 !important;
+  border: 1px solid rgba(0,0,0,0.2) !important;
+}
+
+/* ===== GOMBOK ===== */
+body.tema-vilagos .bizt-akcio,
+body.tema-vilagos .pin-popup-gomb {
+  background: #fff !important;
+  color: #000 !important;
+  border: 1px solid rgba(0,0,0,0.2) !important;
+}
+
+/* ===== NYILAK / IKONOK ===== */
+body.tema-vilagos .sor-jobb,
+body.tema-vilagos .nyelv-nyil {
+  color: #000 !important;
+}
+
+
+/* NYELV KÁRTYA JAVÍTÁS */
+
+/* ugyanaz a kinézet mint a többi sor */
+.nyelv-kartya {
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+/* felső cím igazítás */
+.nyelv-fejlec {
+  padding: 16px 18px 0 18px;
+}
+
+/* a kattintható sor legyen ugyanolyan mint a többi */
+.nyelv-valaszto {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 18px;
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  background: transparent;
+  position: relative;
+}
+
+/* érték (Magyar) balra */
+.nyelv-ertek {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* nyíl jobbra */
+.nyelv-nyil {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+}
+
+/* lenyíló lista igazítás */
+.nyelv-lista {
+  margin: 0 12px 12px 12px;
+}
+
+/* ===== VILÁGOS TÉMA FIX ===== */
+body.tema-vilagos .nyelv-kartya {
+  background: rgba(255,255,255,0.85) !important;
+}
+
+body.tema-vilagos .nyelv-valaszto {
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+
+body.tema-vilagos .nyelv-ertek {
+  color: #000;
+}
+
+body.tema-vilagos .nyelv-nyil {
+  color: #000;
+}
+div.tema-vilagos .nyelv-cim{
+  color: #000 !important;
+
+}
