@@ -300,3 +300,56 @@ header{
     transform: translateY(-3px) scale(1.05);
     filter: drop-shadow(0 0 18px rgba(0,255,214,0.6));
   }
+  body.tema-vilagos {
+    background: radial-gradient(circle at 20% 30%, rgba(120, 150, 255, 0.25), transparent 55%), radial-gradient(circle at 80% 70%, rgba(170, 120, 255, 0.25), transparent 55%), linear-gradient(135deg, #e9f0ff 0%, #dcd6f7 50%, #c9d6ff 100%) !important;
+    color: #000;
+  }
+  body.tema-vilagos header {
+    background: rgba(255,255,255,0.9);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  }
+  body.tema-vilagos .wallet-card {
+    background: #ffffff;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+  }
+  body.tema-vilagos .card {
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  }
+  body.tema-vilagos input {
+    background: #f1f3f9;
+    color: #000;
+    border: 1px solid rgba(0,0,0,0.15);
+  }
+  
+  body.tema-vilagos input::placeholder {
+    color: #777;
+  }
+  body.tema-vilagos .dropdown-btn {
+    background: #f1f3f9;
+    color: #000;
+  }
+  
+  body.tema-vilagos .dropdown-menu {
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+  
+  body.tema-vilagos .dropdown-item:hover {
+    background: rgba(0,0,0,0.05);
+  }
+  body.tema-vilagos input[type="range"] {
+    accent-color: #3b82f6;
+  }
+  body.tema-vilagos .submit-btn {
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    color: #fff;
+    box-shadow: 0 10px 25px rgba(59,130,246,0.3);
+  }
+  body.tema-vilagos .usd-label,
+body.tema-vilagos .slider-title,
+body.tema-vilagos .slider-labels {
+  color: #555;
+}

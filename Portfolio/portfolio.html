@@ -87,7 +87,32 @@
 </div>
 
 <script>
+(function () {
+  var tema = localStorage.getItem("tema");
 
+  if (tema === "vilagos") {
+    document.body.classList.add("tema-vilagos");
+  } else {
+    document.body.classList.remove("tema-vilagos");
+  }
+})();
+(function () {
+  var tema = localStorage.getItem("tema");
+  var ikon = document.getElementById("beallitaskep");
+
+  if (tema === "vilagos") {
+    document.body.classList.add("tema-vilagos");
+
+    if (ikon) {
+      ikon.src = "/Képek/feketefogaskerek.png";
+    }
+
+  } else {
+    if (ikon) {
+      ikon.src = "/Képek/Beállítások.png";
+    }
+  }
+})();
 // ===== WALLET =====
 function getWallet(){
   let wallet = JSON.parse(localStorage.getItem("wallet"));

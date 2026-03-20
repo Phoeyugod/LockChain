@@ -796,3 +796,7 @@ div.tema-vilagos .nyelv-cim{
   color: #000 !important;
 
 }
+body.tema-vilagos {
+  background: #ffffff;
+  color: #000;
+}

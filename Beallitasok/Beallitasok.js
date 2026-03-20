@@ -357,3 +357,22 @@ window.setSzovegek = function(lang){
   }
 };
 };
+var temaVilagos = document.getElementById("temaVilagos");
+var temaSotet = document.getElementById("temaSotet");
+
+var temaVilagos = document.getElementById("temaVilagos");
+var temaSotet = document.getElementById("temaSotet");
+
+temaVilagos.onclick = function () {
+  document.body.classList.add("tema-vilagos");
+  document.body.classList.remove("tema-sotet");
+
+  localStorage.setItem("tema", "vilagos");
+};
+
+temaSotet.onclick = function () {
+  document.body.classList.remove("tema-vilagos");
+  document.body.classList.add("tema-sotet");
+
+  localStorage.setItem("tema", "sotet");
+};
