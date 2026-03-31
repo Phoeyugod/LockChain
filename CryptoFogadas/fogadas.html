@@ -112,5 +112,24 @@
                 </div>
                 
                 <script src="fogadas.js"></script>
+                <script>
+                  (function () {
+                    var tema = localStorage.getItem("tema");
+                    var ikon = document.getElementById("beallitaskep");
+                  
+                    if (tema === "vilagos") {
+                      document.body.classList.add("tema-vilagos");
+                      document.body.classList.remove("tema-sotet");
+                  
+                      if (ikon) ikon.src = "/Képek/feketefogaskerek.png";
+                  
+                    } else {
+                      document.body.classList.add("tema-sotet");
+                      document.body.classList.remove("tema-vilagos");
+                  
+                      if (ikon) ikon.src = "/Képek/Beállítások.png";
+                    }
+                  })();
+                  </script>
           </body>
           </html>

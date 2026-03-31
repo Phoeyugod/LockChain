@@ -375,3 +375,79 @@ header{
   transform: translateY(-3px) scale(1.05);
   filter: drop-shadow(0 0 18px rgba(0,255,214,0.6));
 }
+/* ===== VILÁGOS TÉMA ===== */
+
+body.tema-vilagos .oldal{
+  color: #111 !important;
+  background:
+  radial-gradient(circle at 20% 30%, rgba(120, 150, 255, 0.25), transparent 55%), radial-gradient(circle at 80% 70%, rgba(170, 120, 255, 0.25), transparent 55%), linear-gradient(135deg, #e9f0ff 0%, #dcd6f7 50%, #c9d6ff 100%) !important;
+}
+
+/* KÁRTYA */
+body.tema-vilagos .kartya {
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+/* SZÖVEG */
+body.tema-vilagos .cim {
+  color: #000;
+}
+
+body.tema-vilagos .alcim {
+  color: #555;
+}
+
+/* INPUT */
+body.tema-vilagos .cim-input {
+  background: #fff;
+  color: #000;
+  border: 1px solid rgba(0,0,0,0.2);
+}
+
+/* DOBOZ */
+body.tema-vilagos .cim-doboz {
+  background: rgba(255,255,255,0.8);
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* GOMBOK */
+body.tema-vilagos .gomb-szellem {
+  background: rgba(0,0,0,0.05);
+  color: #000;
+  border: 1px solid rgba(0,0,0,0.2);
+}
+
+body.tema-vilagos .gomb-elsoleges {
+  background: #00bcd4;
+  color: #00363a;
+}
+
+/* MODAL */
+body.tema-vilagos .megosztas-modal {
+  background: #ffffff;
+  color: #000;
+}
+
+body.tema-vilagos .megosztas-opcio {
+  background: rgba(0,0,0,0.05);
+  color: #000;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+body.tema-vilagos .megosztas-alcim {
+  color: #555;
+}
+
+/* HEADER */
+body.tema-vilagos header {
+  background: rgba(255,255,255,0.85);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+/* IKONOK */
+body.tema-vilagos #beallitaskep,
+body.tema-vilagos #malacperselykep {
+  filter: none;
+}
