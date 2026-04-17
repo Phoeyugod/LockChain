@@ -1,15 +1,4 @@
 (function () {
-  var mentettTema = localStorage.getItem("tema");
-
-  if (mentettTema === "vilagos") {
-    document.body.classList.add("tema-vilagos");
-    document.body.classList.remove("tema-sotet");
-  } else {
-    document.body.classList.add("tema-sotet");
-    document.body.classList.remove("tema-vilagos");
-  }
-})();
-(function () {
   // IE11 safe helper
   function $(sel) { return document.querySelector(sel); }
   function $all(sel) { return document.querySelectorAll(sel); }
@@ -52,20 +41,23 @@
   function temaAktiv(vilagos) {
     var body = document.body;
   
-    body.classList.remove("tema-vilagos", "tema-sotet");
+    // töröljük a régi témát
+    body.className = body.className
+      .replace(/\btema-vilagos\b/g, '')
+      .replace(/\btema-sotet\b/g, '')
+      .trim();
   
     if (vilagos) {
-      body.classList.add("tema-vilagos");
-      localStorage.setItem("tema", "vilagos");
+      body.className += ' tema-vilagos';
     } else {
-      body.classList.add("tema-sotet");
-      localStorage.setItem("tema", "sotet");
+      body.className += ' tema-sotet';
     }
   
     temaVilagos.className = vilagos ? 'tema-kartya aktiv' : 'tema-kartya';
     temaSotet.className = vilagos ? 'tema-kartya' : 'tema-kartya aktiv';
   }
-
+  temaVilagos.onclick = function () { temaAktiv(true); };
+  temaSotet.onclick = function () { temaAktiv(false); };
 
   // billentyű (Enter/Space) a kártyákra
   function kartyaKey(e, vilagos) {
@@ -205,122 +197,125 @@ initToggle('kapcMindigPin',  'app_mindig_pin',  false);
 initToggle('kapcEgyenlegRejt','app_egyenleg_rejt', false);
 initToggle('kapcCsaliPin',   'app_csali_pin',   false);
 
-// PIN változtatás (demo)
+// PIN változtatás helyett Email kezelő (IE11 kompatibilis)
 (function () {
-function $(id){ return document.getElementById(id); }
+  function $(id) { return document.getElementById(id); }
 
-var pinToggleGomb = $('pinValtoztatasGomb');
-var pinPopup = $('pinPopup');
-var pinInput = $('pinInput');
-var pinHiba = $('pinHiba');
-var pinMentes = $('pinMentes');
-var pinMegse = $('pinMegse');
+  // Változók definiálása
+  var pinToggleGomb = $('pinValtoztatasGomb');
+  var pinPopup      = $('pinPopup');
+  var pinInput      = $('pinInput');
+  var pinHiba       = $('pinHiba');
+  var pinMentes     = $('pinMentes');
+  var pinMegse      = $('pinMegse');
 
-function setHiba(szoveg){
-  if (pinHiba) pinHiba.innerHTML = szoveg || '';
-}
+  // Email ellenőrző minta
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-function popupNyit(zar){
-  if (!pinPopup) return;
-  if (zar) {
-    pinPopup.className = 'pin-popup';
-    setHiba('');
-    if (pinInput) pinInput.value = '';
-    return;
+  // Hibaüzenet beállítása
+  function setHiba(szoveg) {
+    if (pinHiba) pinHiba.innerHTML = szoveg || '';
   }
-  // toggle
-  var nyitva = (pinPopup.className.indexOf('nyitva') !== -1);
-  pinPopup.className = nyitva ? 'pin-popup' : 'pin-popup nyitva';
-  setHiba('');
-  if (!nyitva && pinInput) {
-    pinInput.value = '';
-    pinInput.focus();
+
+  // Popup nyitása/zárása
+  function popupNyit(zar) {
+    if (!pinPopup) return;
+    
+    if (zar) {
+      // Zárás
+      pinPopup.className = 'pin-popup';
+      setHiba('');
+      if (pinInput) pinInput.value = '';
+    } else {
+      // Nyitás / Toggle
+      var nyitva = (pinPopup.className.indexOf('nyitva') !== -1);
+      if (nyitva) {
+        pinPopup.className = 'pin-popup';
+      } else {
+        pinPopup.className = 'pin-popup nyitva';
+        setHiba('');
+        if (pinInput) {
+          pinInput.value = '';
+          pinInput.focus();
+        }
+      }
+    }
   }
-}
 
-// Csak számot engedünk + max 6 (IE11-safe)
-function tisztitPin(szoveg){
-  // nem számok törlése
-  var csakSzam = (szoveg || '').replace(/\D/g, '');
-  // max 6
-  if (csakSzam.length > 6) csakSzam = csakSzam.substring(0, 6);
-  return csakSzam;
-}
+  // Szóközök eltávolítása (marad a kért név)
+  function tisztitPin(szoveg) {
+    return (szoveg || '').replace(/\s/g, '');
+  }
 
-if (pinToggleGomb) {
-  pinToggleGomb.onclick = function () {
-    popupNyit(false);
-  };
-}
+  // --- Eseménykezelők ---
 
-if (pinInput) {
-  // gépelés / beillesztés kezelése
-  pinInput.oninput = function () {
-    var uj = tisztitPin(pinInput.value);
-    if (pinInput.value !== uj) pinInput.value = uj;
+  // Nyitó gomb
+  if (pinToggleGomb) {
+    pinToggleGomb.onclick = function () {
+      popupNyit(false);
+    };
+  }
 
-    // élő visszajelzés
-    if (uj.length === 0) setHiba('');
-    else if (uj.length < 6) setHiba('A PIN kódnak pontosan 6 számjegyűnek kell lennie.');
-    else setHiba('');
-  };
+  // Mégse gomb
+  if (pinMegse) {
+    pinMegse.onclick = function () {
+      popupNyit(true);
+    };
+  }
 
-  // keypress: ha nem szám, tiltjuk (IE11)
-  pinInput.onkeypress = function (e) {
-    e = e || window.event;
-    var code = e.which || e.keyCode;
-    if (code === 0) return true; // bizonyos billentyűknél
+  if (pinInput) {
+    // Gépelés figyelése
+    pinInput.oninput = function () {
+      var uj = tisztitPin(pinInput.value);
+      if (pinInput.value !== uj) pinInput.value = uj;
 
-    // engedjük: backspace(8) nem keypress-ben jön mindig, de ok
-    // számok: 48-57
-    if (code >= 48 && code <= 57) {
-      // ha már 6 szám megvan, ne engedjük tovább
-      var v = tisztitPin(pinInput.value);
-      if (v.length >= 6) {
+      if (uj.length === 0) {
+        setHiba('');
+      } else if (!emailRegex.test(uj)) {
+        setHiba('Nem érvényes email cím!');
+      } else {
+        setHiba('');
+      }
+    };
+
+    // Enter billentyű kezelése
+    pinInput.onkeypress = function (e) {
+      e = e || window.event;
+      var code = e.which || e.keyCode;
+      if (code === 13) {
         if (e.preventDefault) e.preventDefault();
+        if (pinMentes) pinMentes.click();
         return false;
       }
       return true;
-    }
+    };
+  }
 
-    // Enter: mentés
-    if (code === 13) {
-      if (e.preventDefault) e.preventDefault();
-      if (pinMentes) pinMentes.click();
-      return false;
-    }
+  // Mentés gomb
+  if (pinMentes) {
+    pinMentes.onclick = function () {
+      var email = tisztitPin(pinInput ? pinInput.value : '');
 
-    // minden más tiltás
-    if (e.preventDefault) e.preventDefault();
-    return false;
-  };
-}
+      if (!emailRegex.test(email)) {
+        setHiba('Kérjük, adjon meg egy érvényes email címet!');
+        if (pinInput) pinInput.focus();
+        return;
+      }
 
-if (pinMegse) {
-  pinMegse.onclick = function () {
-    popupNyit(true);
-  };
-}
+      // Mentés localStorage-ba
+      try { 
+        localStorage.setItem('app_pin_kod', email); 
+      } catch (err) { }
 
-if (pinMentes) {
-  pinMentes.onclick = function () {
-    var pin = tisztitPin(pinInput ? pinInput.value : '');
-    if (pin.length !== 6) {
-      setHiba('A PIN kódnak pontosan 6 számjegyűnek kell lennie.');
-      if (pinInput) pinInput.focus();
-      return;
-    }
-
-    // Mentés (demo): localStorage
-    try { localStorage.setItem('app_pin_kod', pin); } catch (e) {}
-
-    setHiba('PIN elmentve.');
-    // rövid idő után zárjuk
-    setTimeout(function () { popupNyit(true); }, 900);
-  };
-}
+      setHiba('Email elmentve.');
+      
+      // Bezárás késleltetve
+      setTimeout(function () { 
+        popupNyit(true); 
+      }, 900);
+    };
+  }
 })();
-
 })();
 window.setSzovegek = function(lang){
 var elems = document.querySelectorAll('[data-hu][data-en]');
