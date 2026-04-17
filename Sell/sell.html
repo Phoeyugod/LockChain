@@ -5,11 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="sell.css">
 <title>Coin Eladás</title>
-
-<style>
-
-
-</style>
+<script>
+  (function(){
+    var tema = localStorage.getItem("tema");
+    if (tema === "vilagos") {
+      document.documentElement.classList.add("tema-vilagos");
+    }
+  })();
+</script>
 </head>
 <body>
 
@@ -52,7 +55,18 @@
 </div>
 
 <script>
+// ===== TÉMA BETÖLTÉS =====
+(function () {
+  var tema = localStorage.getItem("tema");
 
+  if (tema === "vilagos") {
+    document.body.classList.add("tema-vilagos");
+    document.body.classList.remove("tema-sotet");
+  } else {
+    document.body.classList.add("tema-sotet");
+    document.body.classList.remove("tema-vilagos");
+  }
+})();
   // ===== WALLET INIT =====
   let wallet = JSON.parse(localStorage.getItem("wallet"));
   

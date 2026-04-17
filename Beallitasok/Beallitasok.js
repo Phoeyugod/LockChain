@@ -1,4 +1,15 @@
 (function () {
+  var mentettTema = localStorage.getItem("tema");
+
+  if (mentettTema === "vilagos") {
+    document.body.classList.add("tema-vilagos");
+    document.body.classList.remove("tema-sotet");
+  } else {
+    document.body.classList.add("tema-sotet");
+    document.body.classList.remove("tema-vilagos");
+  }
+})();
+(function () {
   // IE11 safe helper
   function $(sel) { return document.querySelector(sel); }
   function $all(sel) { return document.querySelectorAll(sel); }
@@ -41,23 +52,20 @@
   function temaAktiv(vilagos) {
     var body = document.body;
   
-    // töröljük a régi témát
-    body.className = body.className
-      .replace(/\btema-vilagos\b/g, '')
-      .replace(/\btema-sotet\b/g, '')
-      .trim();
+    body.classList.remove("tema-vilagos", "tema-sotet");
   
     if (vilagos) {
-      body.className += ' tema-vilagos';
+      body.classList.add("tema-vilagos");
+      localStorage.setItem("tema", "vilagos");
     } else {
-      body.className += ' tema-sotet';
+      body.classList.add("tema-sotet");
+      localStorage.setItem("tema", "sotet");
     }
   
     temaVilagos.className = vilagos ? 'tema-kartya aktiv' : 'tema-kartya';
     temaSotet.className = vilagos ? 'tema-kartya' : 'tema-kartya aktiv';
   }
-  temaVilagos.onclick = function () { temaAktiv(true); };
-  temaSotet.onclick = function () { temaAktiv(false); };
+
 
   // billentyű (Enter/Space) a kártyákra
   function kartyaKey(e, vilagos) {
