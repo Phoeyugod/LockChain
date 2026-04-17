@@ -1,3 +1,16 @@
+// ===== TÉMA BETÖLTÉS =====
+(function () {
+  var tema = localStorage.getItem("tema");
+
+  if (tema === "vilagos") {
+    document.body.classList.add("tema-vilagos");
+    document.body.classList.remove("tema-sotet");
+  } else {
+    document.body.classList.add("tema-sotet");
+    document.body.classList.remove("tema-vilagos");
+  }
+})();
+
 (function () {
   // IE11 safe helper
   function $(sel) { return document.querySelector(sel); }
