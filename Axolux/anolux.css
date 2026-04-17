@@ -248,3 +248,62 @@ body {
 .vissza-gomb:active{
   transform: scale(0.95);
 }
+/* ===== VILÁGOS TÉMA ===== */
+
+body.tema-vilagos {
+  background: #f4f7fb;
+  color: #0b1533;
+}
+
+/* fő panel */
+body.tema-vilagos .panel {
+  background: #ffffff;
+  color: #0b1533;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* akció gombok */
+body.tema-vilagos .akcio-gomb {
+  background: #f1f4fa;
+  border: 1px solid #e2e8f0;
+  color: #0b1533;
+}
+
+body.tema-vilagos .akcio-gomb:hover {
+  background: #e8eeff;
+  box-shadow: 0 10px 25px rgba(45,91,255,0.15);
+}
+
+/* ikonok */
+body.tema-vilagos .akcio-gomb .ikon {
+  background: #e6ecff;
+}
+
+/* chart kártya */
+body.tema-vilagos .chart-kartya {
+  background: #ffffff;
+}
+
+/* tranzakciók */
+body.tema-vilagos .tranzakcio {
+  background: #f1f4fa;
+  color: #0b1533;
+}
+
+/* idő gombok */
+body.tema-vilagos .ido-intervallum button {
+  background: #e9eefc;
+  color: #0b1533;
+}
+
+body.tema-vilagos .ido-intervallum .aktiv {
+  background: #2d5bff;
+  color: white;
+}
+
+/* vissza gomb */
+body.tema-vilagos .vissza-gomb {
+  background: rgba(255,255,255,0.8);
+  color: #0b1533;
+  border: 1px solid rgba(0,0,0,0.1);
+}
