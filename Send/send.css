@@ -353,3 +353,61 @@ body.tema-vilagos .slider-title,
 body.tema-vilagos .slider-labels {
   color: #555;
 }
+
+/* ===== VILÁGOS TÉMA ===== */
+
+body.tema-vilagos {
+  background:
+    radial-gradient(circle at 20% 30%, #c9d6ff 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, #e2c9ff 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, #f5f7ff 0%, #eaefff 100%);
+  color: #111;
+}
+
+/* header */
+body.tema-vilagos header {
+  background: rgba(255,255,255,0.7);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+/* kártyák */
+body.tema-vilagos .card,
+body.tema-vilagos .wallet-card {
+  background: rgba(255,255,255,0.75);
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+/* input */
+body.tema-vilagos input {
+  background: rgba(0,0,0,0.05);
+  color: #111;
+  border: 1px solid rgba(0,0,0,0.2);
+}
+
+body.tema-vilagos input::placeholder {
+  color: rgba(0,0,0,0.4);
+}
+
+/* dropdown */
+body.tema-vilagos .dropdown-btn {
+  background: rgba(0,0,0,0.05);
+  color: #111;
+}
+
+body.tema-vilagos .dropdown-menu {
+  background: white;
+  color: #111;
+}
+
+/* slider */
+body.tema-vilagos input[type="range"] {
+  filter: none;
+}
+
+/* szövegek */
+body.tema-vilagos .usd-label,
+body.tema-vilagos .slider-title,
+body.tema-vilagos .slider-labels {
+  color: rgba(0,0,0,0.7);
+}

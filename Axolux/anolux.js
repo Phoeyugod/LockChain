@@ -1,4 +1,16 @@
 
+// ===== TÉMA BETÖLTÉS (localStorage alapján) =====
+(function () {
+  var tema = localStorage.getItem("tema");
+
+  if (tema === "vilagos") {
+    document.body.classList.add("tema-vilagos");
+    document.body.classList.remove("tema-sotet");
+  } else {
+    document.body.classList.add("tema-sotet");
+    document.body.classList.remove("tema-vilagos");
+  }
+})();
 
 const grafikonElem = document.getElementById('arfolyamGrafikon');
 
