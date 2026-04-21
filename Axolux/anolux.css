@@ -307,3 +307,10 @@ body.tema-vilagos .vissza-gomb {
   color: #0b1533;
   border: 1px solid rgba(0,0,0,0.1);
 }
+body.tema-vilagos .grafikon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  pointer-events: none;
+}
