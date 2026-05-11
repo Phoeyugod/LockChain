@@ -856,3 +856,41 @@ body.tema-vilagos .balance-box,
 body.tema-vilagos .info {
   color: rgba(0,0,0,0.7);
 }
+/* KÖZÉPRE RAKÁS */
+.kontener {
+  width: 900px;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* panel tartalom középre */
+.panel {
+  margin: 14px auto 30px auto;
+  text-align: center;
+}
+
+/* belső szövegek balra maradhatnak, hogy olvasható legyen */
+.sor,
+.bizt-kartya,
+.beallitas-sor,
+.nyelv-kartya,
+.rolunk-kartya {
+  text-align: left;
+}
+
+/* témák középre maradnak */
+.tema-racs {
+  text-align: center;
+}
+
+/* TAB középre */
+.tab-tartalom {
+  text-align: center;
+}
+
+.tab-tartalom > .panel {
+  display: inline-block;
+  width: 100%;
+  max-width: 900px;
+}
