@@ -43,7 +43,7 @@
 
   var tabok = {
     kinezet: document.getElementById('tab-kinezet'),
-    tarca: document.getElementById('tab-tarca'),
+    // A Tárca tab eltávolítva
     vedelem: document.getElementById('tab-vedelem'),
     rolunk: document.getElementById('tab-rolunk')
   };

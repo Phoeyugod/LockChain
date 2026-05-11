@@ -21,7 +21,6 @@
           <p class="alcim">Szabja testre pénztárca-élményét</p>
         </div>
   
-        <!-- Fülek -->
         <div class="ful-sor">
 
           <button class="ful-gomb aktiv"
@@ -30,14 +29,6 @@
                   data-hu="Kinézet"
                   data-en="Appearance">
             Kinézet
-          </button>
-        
-          <button class="ful-gomb"
-                  type="button"
-                  data-tab="tarca"
-                  data-hu="Tárca"
-                  data-en="Wallet">
-            Tárca
           </button>
         
           <button class="ful-gomb"
@@ -58,7 +49,6 @@
         
         </div>
   
-        <!-- TAB: Kinézet -->
         <div id="tab-kinezet" class="tab-tartalom aktiv">
 
           <div class="panel">
@@ -87,68 +77,12 @@
             </div>
           </div>
         
-
-        
         </div>
   
-        <!-- TAB: Tárca -->
-        <!-- TAB: Tárca (bemásolható rész) -->
-<div id="tab-tarca" class="tab-tartalom">
-
-  <div class="panel">
-    <!-- 1. kártya -->
-    <button type="button" class="beallitas-sor" id="sorKezdomondat">
-      <div class="sor-bal">
-        <div class="sor-cim" data-hu="Seed phrase szavak megjelenítése" data-en="Show recovery phrase">
-          Kezdőmondat megjelenítése
-        </div>
-        <div class="sor-leiras" data-hu="Helyreállító szavak megtekintése" data-en="View your recovery phrase">
-          Helyreállító szavak megtekintése
-        </div>
-      </div>
-      <div class="sor-jobb" aria-hidden="true">&gt;</div>
-    </button>
-
-    <!-- 2. kártya -->
-    <button type="button" class="beallitas-sor" id="sorBiztMentes">
-      <div class="sor-bal">
-        <div class="sor-cim" data-hu="Biztonsági mentés exportálása" data-en="Export backup">
-          Biztonsági mentés exportálása
-        </div>
-        <div class="sor-leiras" data-hu="Titkosított biztonsági mentés exportálása" data-en="Export an encrypted backup">
-          Titkosított biztonsági mentés exportálása
-        </div>
-      </div>
-      <div class="sor-jobb" aria-hidden="true">&gt;</div>
-    </button>
-
-    <!-- 3. kártya: Nyelv -->
-    <div class="nyelv-kartya">
-      <div class="nyelv-fejlec">
-        <div class="nyelv-cim" data-hu="Nyelv" data-en="Language">Nyelv</div>
-      </div>
-
-      <button type="button" class="nyelv-valaszto" id="nyelvValaszto">
-        <span id="nyelvErtek" class="nyelv-ertek">Magyar</span>
-        <span class="nyelv-nyil" aria-hidden="true">&gt;</span>
-      </button>
-
-      <!-- lenyíló lista (IE11-safe) -->
-      <div id="nyelvLista" class="nyelv-lista">
-        <button type="button" class="nyelv-opcio" data-lang="hu">Magyar</button>
-        <button type="button" class="nyelv-opcio" data-lang="en">English</button>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-  
-        <!-- TAB: Védelem -->
         <div id="tab-vedelem" class="tab-tartalom">
           <div class="panel">
             <div class="szekcio-cim">Védelem</div>
-           <!-- TAB: Védelem -->
+            
         <div class="bizt-kartya">
           <div class="bizt-fej">
             <div class="bizt-szoveg">
@@ -189,7 +123,6 @@
           </div>
         </div>
       
-        <!-- 2) 2FA kártya -->
         <div class="bizt-kartya">
           <div class="bizt-fej">
             <div class="bizt-szoveg">
@@ -205,13 +138,10 @@
           </div>
         </div>
       
-      
-      
             </div>
           </div>
-        </div>
+        
   
-        <!-- TAB: Rólunk -->
         <div id="tab-rolunk" class="tab-tartalom">
           <div class="panel">
 
@@ -288,10 +218,3 @@
     <script src="Beallitasok.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-  
