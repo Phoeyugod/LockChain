@@ -273,8 +273,18 @@ body.tema-vilagos .pin-popup-input { background: #fff; color: #000; border-color
       width: 100%;
   }
 }
+/* 5. Kifejezetten a 310px alatti kritikus tartományra */
+@media (max-width: 310px) {
+  .bizt-fej, .bizt-sor {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+  }
+}
 /* ===== 7. RÓLUNK FÜL ===== */
 .rolunk-kartya {
+  text-align: center;
     max-width: 750px;
     margin: 20px auto;
     padding: 22px;
